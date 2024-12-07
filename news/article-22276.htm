@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-22276.htm" />
+    <title>springboot+layui有关分页问题</title>
+        <meta name="description" content="分页不生效明明可以分页 但是后端接收到的pagenum始终是1  &nbsp;   &nbsp;  &nbsp; 提示：这里描述项目中遇到的问题： 例如：分页出问题 @Override public " />
+        <link rel="icon" href="__ADDON__/img/macclashverge/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">springboot+layui有关分页问题</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>分页不生效明明可以分页 但是后端接收到的pagenum始终是1</p> <p><img fetchpriority="high" decoding="async" alt="" height="666" src="http://img.555519.xyz/uploads/20221229/c59a527b0de303d609252340235dc055.jpg"></p> <p>&nbsp;</p> <p><img decoding="async" alt="" height="638" src="http://img.555519.xyz/uploads/20221229/824848c76af69c307472c3fba7f563be.jpg"></p> <hr/> <p>&nbsp;<img decoding="async" alt="" height="112" src="http://img.555519.xyz/uploads/20221229/be4f575893cf736c2e3af956c4f27b01.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="307" src="http://img.555519.xyz/uploads/20221229/1c88fc7a28a3d6682389c4f0a5eaba6e.jpg"></p> <p>&nbsp;</p> <p><code>提示：这里描述项目中遇到的问题：</code></p> <p>例如：分页出问题</p> <pre>@Override public Result selectAll(Integer page,Integer size) {     //启动分页     PageHelper.startPage(page,size);     //查询所有数据进行分页     List&lt;PropertyNotice&gt; notices = propertyNoticeMapper.selectAll();     PageInfo&lt;PropertyNotice&gt; pageInfo = new PageInfo&lt;&gt;(notices);     return Result.ok().msg("").count(notices.size()).data(pageInfo); }</pre> <hr/> </h1> <blockquote> <p>提示：这里填写问题的分析：通过对前端数据源的打印可以知道这里的count数据是不对的，这里本来应该是总条数却变成了我们的设置数，那么就默认这样也只有这么多数据，自然也就不能分页，不能点击下一页</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="256" src="http://img.555519.xyz/uploads/20221229/d8159448498ec37a0727503edb8e1a4d.jpg"></p> <hr/> <p>&nbsp;</p> </h1> <blockquote> <p>提示：这里填写该问题的具体解决方案：解决办法就是只需要把count还原为总数据条数，而不是分页之后的条数，或者直接使用total</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="313" src="http://img.555519.xyz/uploads/20221229/5dd23ac8c5de4b88dd9f942824d8acae.jpg"></p> <p>这样前端就没问题了</p> <p><img loading="lazy" decoding="async" alt="" height="628" src="http://img.555519.xyz/uploads/20221229/c054bb94036e4fa7bd27d59f86c2e22b.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="656" src="http://img.555519.xyz/uploads/20221229/910a0f2e743bd6c63c6a16eca77b6db4.jpg">&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-21810.htm">去哪领养猫狗（到哪能领养猫）</a></p>
+                                        <p>下一个：<a href="/news/article-22277.htm">宠物领养电子合同模板图片 宠物领养电子合同模板图片大全</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-6-clash-verge-rev-node-github.htm" title="「10月6日」最高速度21.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月6日」最高速度21.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21810.htm" title="去哪领养猫狗（到哪能领养猫）">去哪领养猫狗（到哪能领养猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-15-node-share.htm" title="「10月15日」最高速度20.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月15日」最高速度20.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-1-latest-clash-verge-rev-node.htm" title="「11月1日」最高速度19.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月1日」最高速度19.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-22-node-share.htm" title="「9月22日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月22日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-13-clash-verge-rev-windows.htm" title="「9月13日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月13日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-clash-verge-rev-nodes.htm" title="「11月9日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月9日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-20-node-share.htm" title="「10月20日」最高速度18M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月20日」最高速度18M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-28-clash-verge-rev-node-github.htm" title="「10月28日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月28日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-3-node-share.htm" title="「9月3日」最高速度19.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月3日」最高速度19.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
