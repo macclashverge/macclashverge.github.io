@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-22732.htm" />
+    <title>为什么HTTP/3要基于UDP？可靠吗？</title>
+        <meta name="description" content="目录  前言 为什么转用UDP？  HTTP/3解决了那些问题？ 队头阻塞问题 QPACK编码   IOT 参考   推荐阅读：  计算机网络汇总  HTTP/3竟然是基于UDP的！开始我也很疑惑，U" />
+        <link rel="icon" href="__ADDON__/img/macclashverge/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">为什么HTTP/3要基于UDP？可靠吗？</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#%E5%89%8D%E8%A8%80" rel="nofollow">前言</a></li> <li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BD%AC%E7%94%A8udp" rel="nofollow">为什么转用UDP？</a> <ul> <li><a href="#http3%E8%A7%A3%E5%86%B3%E4%BA%86%E9%82%A3%E4%BA%9B%E9%97%AE%E9%A2%98" rel="nofollow">HTTP/3解决了那些问题？</a></li> <li><a href="#%E9%98%9F%E5%A4%B4%E9%98%BB%E5%A1%9E%E9%97%AE%E9%A2%98" rel="nofollow">队头阻塞问题</a></li> <li><a href="#qpack%E7%BC%96%E7%A0%81" rel="nofollow">QPACK编码</a></li> </ul> </li> <li><a href="#iot" rel="nofollow">IOT</a></li> <li><a href="#%E5%8F%82%E8%80%83" rel="nofollow">参考</a></li> </ul> </div> <p>推荐阅读：</p> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/zwtblog/tag/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"  target="_blank" rel="nofollow">计算机网络汇总</a></li> </ul> <p><code>HTTP/3</code>竟然是基于<code>UDP</code>的！开始我也很疑惑，<code>UDP</code>传输不可靠，没有拥塞机制，究竟怎么操作呢？</p> <p>先说解决方案：</p> <p><mark>QUIC</mark>（Quick UDP Internet Connection）是谷歌制定的一种基于UDP的低时延的互联网传输层协议 ！</p> <blockquote> <p>QUIC很好地解决了当今传输层和应用层面临的各种需求，包括处理更多的连接，安全性，和低延迟。</p> </blockquote> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f02b51538eede7e570f152539db9ef3d.jpg" alt="为什么HTTP/3要基于UDP？可靠吗？"></p> </h1> <p>有关于 TCP 和 UDP “连接”这个词，是一个逻辑中的“虚拟”的概念，是为了方便我们的学习理解。</p> <p>UDP的无连接，TCP的连接，唯区别是，UDP把只管发送，TCP每次都对发送的数据进行ACK确认。</p> <p>这部分代码是放在传输层，还是放在应用层，这都关系不大。</p> <p>QUIC是可以独立于操作系统发行的，避免了操作系统缓慢的更新换代问题。</p> <p>QUIC依然要面对消息的可靠性、滑动窗口、拥塞控制等问题，你可以认为它就是一个TCP（但是本质不一样）。</p> <hr/> <p>Chromium 官方宣布 Chrome正在部署到 HTTP/3 与IETF QUIC。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/3c0ed9807c47664474131477e8f1266a.jpg" alt="为什么HTTP/3要基于UDP？可靠吗？"></p> </h1> <p>因为TCP本身非常复杂，并且有太多历史遗留的包袱。</p> <p>TCP协议，目前已经被编码到了操作系统，不论是协议升级，还是Bug修复，都是一个大工程。</p> <p>选择了<code>UDP</code>， UDP是一张白纸，它只是IP协议的一个编程接口。</p> <ul> <li> <p>HTTP3创造出Connection ID概念实现了连接迁移，通过融合传输层、表示层，既缩短了握手时长，也加密了传输层中的绝大部分字段，提升了网络安全性。</p> </li> <li> <p>HTTP3在Packet层保障了连接的可靠性，在QUIC Frame层实现了有序字节流，在HTTP3 Frame层实现了HTTP语义，这彻底解开了队头阻塞问题，真正实现了应用层的多路复用。</p> </li> <li> <p>QPACK使用独立的单向Stream分别传输动态表编码、解码信息，这样乱序、并发传输HTTP消息的Stream既不会出现队头阻塞，也能基于时序性大幅压缩HTTP Header的体积。</p> </li> </ul> <h2 id="http3解决了那些问题">HTTP/3解决了那些问题？</h2> <ul> <li> <p>HTTP3基于UDP协议重新定义了连接，在QUIC层实现了无序、并发字节流的传输，解决了队头阻塞问题（包括基于QPACK解决了动态表的队头阻塞）；</p> </li> <li> <p>HTTP3重新定义了TLS协议加密QUIC头部的方式，既提高了网络攻击成本，又降低了建立连接的速度（仅需1个RTT就可以同时完成建链与密钥协商）；</p> </li> <li> <p>HTTP3 将Packet、QUIC Frame、HTTP3 Frame分离，实现了连接迁移功能，降低了5G环境下高速移动设备的连接维护成本。</p> </li> </ul> <h2 id="队头阻塞问题">队头阻塞问题</h2> <p>HTTP2协议基于TCP有序字节流实现，因此应用层的多路复用并不能做到无序地并发，在丢包场景下会出现队头阻塞问题。</p> <p>HTTP3采用UDP作为传输层协议，重新实现了无序连接，并在此基础上通过有序的QUIC Stream提供了多路复用。</p> <h2 id="qpack编码">QPACK编码</h2> <p>与HTTP2中的HPACK编码方式相似，HTTP3中的QPACK也采用了静态表、动态表及Huffman编码。</p> <p>HTTP/2 没使⽤常⻅的 gzip 压缩⽅式来压缩头部，⽽是开发了<mark>HPACK</mark> 算法，HPACK 算法主要包含：</p> <ul> <li>静态字典；（高频头部或者字段，共61种，QPACK中，则上升为98个静态表项）</li> <li>动态字典；（自行构建。Index 62 起步）<mark>动态表编解码方式差距很大</mark></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://baike.baidu.com/item/%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/1719730"  target="_blank" rel="nofollow"> Huffman  编码</a> 编码（压缩算法）；</li> </ul> <p>客户端和服务器两端都会建⽴和维护「字典」，⽤⻓度较⼩的索引号表示重复的字符串，再⽤ Huffman 编码压缩数据，可达到 50%~90% 的⾼压缩率。</p> <hr/> <p>动态表就是将未包含在静态表中的Header项，在首次出现时加入动态表，这样后续传输时仅用数字表示，大大提升了编码效率。</p> <p>因此，动态表是天然具备时序性的，如果首次出现的请求出现了丢包，后续请求解码HPACK头部时，会被阻塞。</p> <p>QPACK将动态表的编码、解码独立在单向Stream中传输，仅当单向Stream中的动态表编码成功后，接收端才能解码双向Stream上HTTP消息里的动态表索引。</p> </h1> <p>物联网时代，移动设备接入的网络会频繁变动，从而导致设备IP地址改变。</p> <p>对于通过四元组（源IP、源端口、目的IP、目的端口）定位连接的TCP协议来说，这意味着连接需要断开重连。</p> <p>而HTTP3的QUIC层允许移动设备更换IP地址后，只要仍保有上下文信息（比如连接ID、TLS密钥等），就可以复用原连接。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/2a636944a4a68126fad0d2822bbfb7e2.jpg" alt="为什么HTTP/3要基于UDP？可靠吗？"></p> <ul> <li> <p>Packet Header实现了可靠的连接。</p> </li> <li> <p>QUIC Frame Header在无序的Packet报文中，基于QUIC Stream概念实现了有序的字节流，这允许HTTP消息可以像在TCP连接上一样传输；</p> </li> <li> <p>HTTP3 Frame Header定义了HTTP Header、Body的格式，以及服务器推送、QPACK编解码流等功能。</p> </li> </ul> <p>为了进一步提升网络传输效率，Packet Header又可以细分为两种：</p> <ul> <li> <p>Long Packet Header用于首次建立连接；</p> </li> <li> <p>Short Packet Header用于日常传输数据。</p> </li> </ul> </h1> <ul> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://tools.ietf.org/html/draft-ietf-quic-http-34"  target="_blank" rel="nofollow">https://tools.ietf.org/html/draft-ietf-quic-http-34</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://tools.ietf.org/html/draft-ietf-quic-transport-34#section-17"  target="_blank" rel="nofollow">https://tools.ietf.org/html/draft-ietf-quic-transport-34#section-17</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://ably.com/topic/http3?amp%3Butm_campaign=evergreen&amp;%3Butm_source=reddit&amp;utm_medium=referral"  target="_blank" rel="nofollow">https://ably.com/topic/http3?amp%3Butm_campaign=evergreen&amp;%3Butm_source=reddit&amp;utm_medium=referral</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.nginx.org.cn/article/detail/422"  target="_blank" rel="nofollow">https://www.nginx.org.cn/article/detail/422</a></li> <li><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.chinaz.com/2020/1009/1192436.shtml"  target="_blank" rel="nofollow">https://www.chinaz.com/2020/1009/1192436.shtml</a></li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-22277.htm">宠物领养电子合同模板图片 宠物领养电子合同模板图片大全</a></p>
+                                        <p>下一个：<a href="/news/article-22733.htm">义乌免费领养狗狗地址（义乌免费领养狗狗地址在哪里）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-11-clash-verge-rev-node-github.htm" title="「9月11日」最高速度19.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月11日」最高速度19.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-1-latest-clash-verge-rev-node.htm" title="「11月1日」最高速度19.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月1日」最高速度19.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-today-clash-verge-rev-node.htm" title="「12月5日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月5日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-20437.htm" title="国内十大宠物粮食品牌有哪些名字 国内十大宠物粮食品牌有哪些名字图片">国内十大宠物粮食品牌有哪些名字 国内十大宠物粮食品牌有哪些名字图片</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-clash-verge-rev-github.htm" title="「10月26日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月26日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share.htm" title="「11月18日」最高速度20.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月18日」最高速度20.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-node-subscribe.htm" title="「12月9日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月9日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-20-node-share.htm" title="「10月20日」最高速度18M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月20日」最高速度18M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-node-subscribe-links.htm" title="「11月14日」最高速度22.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月14日」最高速度22.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-19-clash-verge-rev-windows.htm" title="「9月19日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月19日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
