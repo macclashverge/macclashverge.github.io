@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-25975.htm" />
+    <title>vue中巧用三元表达式解析_vue.js</title>
+        <meta name="description" content="目录  如何巧用三元表达式  三元表达式的巧妙使用  :class=“ “的三元表达式写法     如何巧用三元表达式 一开始我并不喜欢阅读别人的代码，话说程序员最讨厌的事：写代码要写文档、写代码要写" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">vue中巧用三元表达式解析_vue.js</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">如何巧用三元表达式</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">三元表达式的巧妙使用</a></li> </ul> <li><a href="#_label1" rel="nofollow">:class=“ “的三元表达式写法</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>如何巧用三元表达式</h2> <p>一开始我并不喜欢阅读别人的代码，话说程序员最讨厌的事：写代码要写文档、写代码要写注释、别人的代码没有文档、别人的代码没有注释。后来发现阅读别人的代码虽然很枯燥，但是很锻炼逻辑思维，而且还能学到很多东西，比如我下面要说的这个：</p> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>三元表达式的巧妙使用</h3> <p>在某天（其实具体是哪天我也忘了），我在阅读别人的代码时发现一串三元表达式，感觉很6，像是打开新世界的大门一样，顿时感觉只有你想不到的，没有别人做不到的。真的是活到老学到死啊。</p> <p><strong>下面上代码：</strong></p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;span        v-for="$index in circles"        class="circle"        :style="{          backgroundColor: activeIndex == $index ? pagerColor : pagerBgColor,          opacity:            pagerColor == pagerBgColor              ? activeIndex == $index                ? '1'                : '0.4'              : '1'        }"        :key="$index"      &gt;&lt;/span&gt;</pre> </div> <p>这代码扫一眼看着没毛病啊，就是遍历渲染数据，但是其中三元表达式的使用真的是6到飞起。可能有些大佬一看，有点鄙视我，“垃圾，就一个三元表达式，大惊小怪”，但是我是头一次看到这么写的。其实好多东西不是不会写，而是想不到。就像这个三元表达式，让谁写谁都能写出来，但是就是想不到可以这么写。这也是阅读别人代码的一个好处，可以学到一些骚操作，让自己少写代码，提高工作效率。</p> <p><strong>回头再说这个三元表达式，我们正常使用三元表达式是这样的：</strong></p> <blockquote> <p>表达式 (expr1) ? (expr2) : (expr3)  </p> <p>在 expr1 求值为 TRUE 时的值为 expr2，在 expr1 求值为 FALSE 时的值为 expr3。</p> </blockquote> <p>而上面代码中把表达式中的值又设为一个表达式，满足条件的时候执行表达式再次判断求值，将三元表达式写成了类似于if判断的东西，减少了代码量而且还增加更加容易读懂</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>:class=“ “的三元表达式写法</h2> <p><img fetchpriority="high" decoding="async" alt="" height="216" src="http://img.555519.xyz/uploads3/20220420/3e909719d0f69f6068e9baa0652a493a.jpg"></p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;div class="stepbar"&gt;     &lt;div class="stepbar-first"&gt;&lt;/div&gt;     &lt;div class="stepbar-first-line"&gt;&lt;/div&gt;     &lt;div v-if="item.applyState===5" class="stepbar-gray"&gt;&lt;/div&gt;     &lt;div v-else :class="item.applyState===1?'stepbar-red':'stepbar-first'"&gt;&lt;/div&gt;     &lt;div v-if="item.applyState!==1&amp;&amp;item.applyState!==5" class="stepbar-first-line"&gt;&lt;/div&gt;     &lt;div v-if="item.applyState!==1&amp;&amp;item.applyState!==4&amp;&amp;item.applyState!==5" :class="item.applyState===2&amp;&amp;item.applyState!==3?'stepbar-red':'stepbar-first'"&gt;&lt;/div&gt;     &lt;div v-if="item.applyState===4" class="stepbar-gray"&gt;&lt;/div&gt;   &lt;/div&gt;</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-25974.htm">对象和封装总结</a></p>
+                                        <p>下一个：<a href="/news/article-26436.htm">开一家宠物美容店要投资多少钱合适（开个宠物美容店挣钱吗）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-today-clash-verge-rev-node.htm" title="「12月5日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月5日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19523.htm" title="弄个猫粮加工厂投资多少钱（猫粮生产加工）">弄个猫粮加工厂投资多少钱（猫粮生产加工）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-clash-verge-rev-github.htm" title="「11月20日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月20日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-8-free-high-speed-nodes.htm" title="「9月8日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月8日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-clash-verge-rev-node.htm" title="「11月7日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月7日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-5-clash-verge-rev-github.htm" title="「9月5日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月5日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="「11月10日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月10日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-9-today-clash-verge-rev-node.htm" title="「9月9日」最高速度20.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月9日」最高速度20.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-node-subscribe-links.htm" title="「11月8日」最高速度20.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月8日」最高速度20.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-16-clash-verge-rev-nodes.htm" title="「10月16日」最高速度19.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月16日」最高速度19.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
