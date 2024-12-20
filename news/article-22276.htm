@@ -5,7 +5,7 @@
         <link rel="canonical" href="https://macclashverge.github.io/news/article-22276.htm" />
     <title>springboot+layui有关分页问题</title>
         <meta name="description" content="分页不生效明明可以分页 但是后端接收到的pagenum始终是1  &nbsp;   &nbsp;  &nbsp; 提示：这里描述项目中遇到的问题： 例如：分页出问题 @Override public " />
-        <link rel="icon" href="__ADDON__/img/macclashverge/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,7 +88,8 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>分页不生效明明可以分页 但是后端接收到的pagenum始终是1</p> <p><img fetchpriority="high" decoding="async" alt="" height="666" src="http://img.555519.xyz/uploads/20221229/c59a527b0de303d609252340235dc055.jpg"></p> <p>&nbsp;</p> <p><img decoding="async" alt="" height="638" src="http://img.555519.xyz/uploads/20221229/824848c76af69c307472c3fba7f563be.jpg"></p> <hr/> <p>&nbsp;<img decoding="async" alt="" height="112" src="http://img.555519.xyz/uploads/20221229/be4f575893cf736c2e3af956c4f27b01.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="307" src="http://img.555519.xyz/uploads/20221229/1c88fc7a28a3d6682389c4f0a5eaba6e.jpg"></p> <p>&nbsp;</p> <p><code>提示：这里描述项目中遇到的问题：</code></p> <p>例如：分页出问题</p> <pre>@Override public Result selectAll(Integer page,Integer size) {     //启动分页     PageHelper.startPage(page,size);     //查询所有数据进行分页     List&lt;PropertyNotice&gt; notices = propertyNoticeMapper.selectAll();     PageInfo&lt;PropertyNotice&gt; pageInfo = new PageInfo&lt;&gt;(notices);     return Result.ok().msg("").count(notices.size()).data(pageInfo); }</pre> <hr/> </h1> <blockquote> <p>提示：这里填写问题的分析：通过对前端数据源的打印可以知道这里的count数据是不对的，这里本来应该是总条数却变成了我们的设置数，那么就默认这样也只有这么多数据，自然也就不能分页，不能点击下一页</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="256" src="http://img.555519.xyz/uploads/20221229/d8159448498ec37a0727503edb8e1a4d.jpg"></p> <hr/> <p>&nbsp;</p> </h1> <blockquote> <p>提示：这里填写该问题的具体解决方案：解决办法就是只需要把count还原为总数据条数，而不是分页之后的条数，或者直接使用total</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="313" src="http://img.555519.xyz/uploads/20221229/5dd23ac8c5de4b88dd9f942824d8acae.jpg"></p> <p>这样前端就没问题了</p> <p><img loading="lazy" decoding="async" alt="" height="628" src="http://img.555519.xyz/uploads/20221229/c054bb94036e4fa7bd27d59f86c2e22b.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="656" src="http://img.555519.xyz/uploads/20221229/910a0f2e743bd6c63c6a16eca77b6db4.jpg">&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> </h1> <p>分页不生效明明可以分页 但是后端接收到的pagenum始终是1</p> <p><img fetchpriority="high" decoding="async" alt="" height="666" src="http://img.555519.xyz/uploads/20221229/c59a527b0de303d609252340235dc055.jpg"></p> <p>&nbsp;</p> <p><img decoding="async" alt="" height="638" src="http://img.555519.xyz/uploads/20221229/824848c76af69c307472c3fba7f563be.jpg"></p> <hr/> <p>&nbsp;<img decoding="async" alt="" height="112" src="http://img.555519.xyz/uploads/20221229/be4f575893cf736c2e3af956c4f27b01.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="307" src="http://img.555519.xyz/uploads/20221229/1c88fc7a28a3d6682389c4f0a5eaba6e.jpg"></p> <p>&nbsp;</p> <p><code>提示：这里描述项目中遇到的问题：</code></p> <p>例如：分页出问题</p> <pre>@Override public Result selectAll(Integer page,Integer size) {     //启动分页     PageHelper.startPage(page,size);     //查询所有数据进行分页     List&lt;PropertyNotice&gt; notices = propertyNoticeMapper.selectAll();     PageInfo&lt;PropertyNotice&gt; pageInfo = new PageInfo&lt;&gt;(notices);     return Result.ok().msg("").count(notices.size()).data(pageInfo); }</pre> <hr/> </h1> <blockquote> <p>提示：这里填写问题的分析：通过对前端数据源的打印可以知道这里的count数据是不对的，这里本来应该是总条数却变成了我们的设置数，那么就默认这样也只有这么多数据，自然也就不能分页，不能点击下一页</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="256" src="http://img.555519.xyz/uploads/20221229/d8159448498ec37a0727503edb8e1a4d.jpg"></p> <hr/> <p>&nbsp;</p> </h1> <blockquote> <p>提示：这里填写该问题的具体解决方案：解决办法就是只需要把count还原为总数据条数，而不是分页之后的条数，或者直接使用total</p> </blockquote> <p><img loading="lazy" decoding="async" alt="" height="313" src="http://img.555519.xyz/uploads/20221229/5dd23ac8c5de4b88dd9f942824d8acae.jpg"></p> <p>这样前端就没问题了</p> <p><img loading="lazy" decoding="async" alt="" height="628" src="http://img.555519.xyz/uploads/20221229/c054bb94036e4fa7bd27d59f86c2e22b.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="656" src="http://img.555519.xyz/uploads/20221229/910a0f2e743bd6c63c6a16eca77b6db4.jpg">&nbsp;</p> <p>&nbsp;</p> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-21810.htm">去哪领养猫狗（到哪能领养猫）</a></p>
                                         <p>下一个：<a href="/news/article-22277.htm">宠物领养电子合同模板图片 宠物领养电子合同模板图片大全</a></p>
@@ -101,16 +102,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-12-5-today-clash-verge-rev-node.htm" title="「12月5日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月5日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-2-clash-verge-rev-github.htm" title="「10月2日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月2日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="「11月13日」最高速度21.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月13日」最高速度21.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-8-latest-clash-verge-rev-node.htm" title="「12月8日」最高速度22.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月8日」最高速度22.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-14-clash-verge-rev-node-github.htm" title="「10月14日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月14日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-clash-verge-rev-node.htm" title="「10月7日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月7日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-24-clash-verge-rev-node-github.htm" title="「11月24日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月24日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-1-clash-verge-rev-github.htm" title="「10月1日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月1日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-22-node-share.htm" title="「9月22日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月22日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-22277.htm" title="宠物领养电子合同模板图片 宠物领养电子合同模板图片大全">宠物领养电子合同模板图片 宠物领养电子合同模板图片大全</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-free-clash-verge-rev-node.htm" title="「11月26日」最高速度18.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月26日」最高速度18.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-clash-verge-rev-node-github.htm" title="「12月14日」最高速度21.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月14日」最高速度21.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-clash-verge-rev-node-share.htm" title="「11月15日」最高速度19.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月15日」最高速度19.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23194.htm" title="狗粮颗粒机视频教程（狗粮颗粒机视频教程全集）">狗粮颗粒机视频教程（狗粮颗粒机视频教程全集）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-25-free-node-subscribe.htm" title="「9月25日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月25日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19524.htm" title="养猫的人容易得什么病视频讲解（养猫咪的人会得什么病）">养猫的人容易得什么病视频讲解（养猫咪的人会得什么病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-today-clash-verge-rev-node.htm" title="「11月23日」最高速度18.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月23日」最高速度18.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-node-share-links.htm" title="「10月18日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月18日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-25-free-node-subscribe-links.htm" title="「10月25日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月25日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26437.htm" title="动物疫苗法律法规最新（动物疫苗法案）">动物疫苗法律法规最新（动物疫苗法案）</a></li>
                     </ul>
     </div>
 </div>
@@ -122,7 +123,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -146,6 +147,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                         <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
                     </div>
                 </div>

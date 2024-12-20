@@ -5,7 +5,7 @@
         <link rel="canonical" href="https://macclashverge.github.io/news/article-21809.htm" />
     <title>Git回退代码到某次commit</title>
         <meta name="description" content="前言 工作中，Git的使用越来越频繁。。除了最常用的clone,add,commit,push,pull等命令；还有回退命令reset。这一篇博客就记录一下该回退命令的简单使用。 场景 因为公司开发过" />
-        <link rel="icon" href="__ADDON__/img/macclashverge/favicon.ico" type="image/x-icon"/>
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,7 +88,8 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-md-9">
-                                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h3 id="前言"><font color="blue">前言</font></h3> <p>工作中，Git的使用越来越频繁。。除了最常用的<code>clone</code>,<code>add</code>,<code>commit</code>,<code>push</code>,<code>pull</code>等命令；还有回退命令<code>reset</code>。这一篇博客就记录一下该回退命令的简单使用。</p> <h3 id="场景"><font color="blue">场景</font></h3> <p>因为公司开发过程中，处理订单，限时购买等业务时，都是用的阿里云的消息队列MQ实现的。或者是两个系统之间的交互，同步信息，如用户在<code>支付系统A</code>下了一个订单（支付成功），这个时候<code>支付系统A</code>除了处理订单，还有向<code>库存系统B</code>发送一个消息，告知<code>库存系统B</code>要减少下单商品的库存。</p> <p>我本地跑项目的时候，如果不注释掉<code>监听器</code>，测试服上的消息也可能会发送到我本地，导致消息丢失。<br /> 然后~~我就把本地的监听器那一段代码注释掉，方便测试人员在测试服上进行测试。注释掉代码如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/8ced3aee0a882fbbaef47e91bacb3488.jpg" alt="Git回退代码到某次commit"></p> <p>哈哈~~注释掉后，提交的时候，被我一起提交了！真是尴尬呢！测试人员说出bug了！</p> <p>一看代码提交历史~~消息监听器被我注释掉了。这个锅我背！（笑哭）</p> <h3 id="解决问题"><font color="blue">解决问题</font></h3> <p>哎呀。。。上面说的好像跟这篇文章要说的不太对的上。</p> <p>其实是开发中，我不小心把不该提交的代码提交到了本地，例如<code>TaskListener</code>这个类，改了之后，不能提交，一不小心被我commit到了本地（还没有推送到远程）。</p> <p>有可能已经commit了多次到本地。<br /> 1. 先查看commit日志 执行下面命令</p> <pre class="prettyprint"><code class="hljs rust">git<span class="hljs-keyword">log</span></code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/fc72ff59ece18954f5978e69ca66ab61.jpg" alt="Git回退代码到某次commit"><br /> 2. 回滚、取消之前的提交<br /> 这里我们假设应该回滚到<code>239afed0857cc2e77c17c01014077808619af64d</code>这个版本，及这个版本及之后的commit全部取消。</p> <pre class="prettyprint"><code class="hljs cs">git reset --hard commit_id<span class="hljs-comment">//退到/进到 指定commit的sha码 commit_id:239afed0857cc2e77c17c01014077808619af64d</span></code></pre> <p>3.ok,可以重新提交了</p> <pre class="prettyprint"><code class="hljs livecodeserver">git commit<span class="hljs-operator">a</span>.txt -m<span class="hljs-string">"重新提交"</span><span class="hljs-comment"> // 记得不要提交不想提交的文件哦</span></code></pre> <h3 id="idea-reset"><font color="blue">IDEA RESET</font></h3> <p>也可以直接使用IDEA的<code>Reset Head</code> 功能,先通过<code>git log</code> 得到要回退的<code>commit_id</code>,再进行下面截图的操作。可以先validate一下哦，看通过<code>commit_id</code>能不能找到这一次提交。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/62e17b88b200929418fc15503ec8af6a.jpg" alt="Git回退代码到某次commit"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/a4c02ee402819d1e1e22c8d48c7a77d6.jpg" alt="Git回退代码到某次commit"></p> <h3 id="总结"><font color="blue">总结</font></h3> <p>开发过程中，总是会不小心提交一些不能提交的文件。。如果你开发用的IDEA，可以看看IDEA的这个功能—实用，再也不用担心提交错了。</p> </div> 			                <div class="clearfix"></div>
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h3 id="前言"><font color="blue">前言</font></h3> <p>工作中，Git的使用越来越频繁。。除了最常用的<code>clone</code>,<code>add</code>,<code>commit</code>,<code>push</code>,<code>pull</code>等命令；还有回退命令<code>reset</code>。这一篇博客就记录一下该回退命令的简单使用。</p> <h3 id="场景"><font color="blue">场景</font></h3> <p>因为公司开发过程中，处理订单，限时购买等业务时，都是用的阿里云的消息队列MQ实现的。或者是两个系统之间的交互，同步信息，如用户在<code>支付系统A</code>下了一个订单（支付成功），这个时候<code>支付系统A</code>除了处理订单，还有向<code>库存系统B</code>发送一个消息，告知<code>库存系统B</code>要减少下单商品的库存。</p> <p>我本地跑项目的时候，如果不注释掉<code>监听器</code>，测试服上的消息也可能会发送到我本地，导致消息丢失。<br /> 然后~~我就把本地的监听器那一段代码注释掉，方便测试人员在测试服上进行测试。注释掉代码如下图：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/8ced3aee0a882fbbaef47e91bacb3488.jpg" alt="Git回退代码到某次commit"></p> <p>哈哈~~注释掉后，提交的时候，被我一起提交了！真是尴尬呢！测试人员说出bug了！</p> <p>一看代码提交历史~~消息监听器被我注释掉了。这个锅我背！（笑哭）</p> <h3 id="解决问题"><font color="blue">解决问题</font></h3> <p>哎呀。。。上面说的好像跟这篇文章要说的不太对的上。</p> <p>其实是开发中，我不小心把不该提交的代码提交到了本地，例如<code>TaskListener</code>这个类，改了之后，不能提交，一不小心被我commit到了本地（还没有推送到远程）。</p> <p>有可能已经commit了多次到本地。<br /> 1. 先查看commit日志 执行下面命令</p> <pre class="prettyprint"><code class="hljs rust">git<span class="hljs-keyword">log</span></code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/fc72ff59ece18954f5978e69ca66ab61.jpg" alt="Git回退代码到某次commit"><br /> 2. 回滚、取消之前的提交<br /> 这里我们假设应该回滚到<code>239afed0857cc2e77c17c01014077808619af64d</code>这个版本，及这个版本及之后的commit全部取消。</p> <pre class="prettyprint"><code class="hljs cs">git reset --hard commit_id<span class="hljs-comment">//退到/进到 指定commit的sha码 commit_id:239afed0857cc2e77c17c01014077808619af64d</span></code></pre> <p>3.ok,可以重新提交了</p> <pre class="prettyprint"><code class="hljs livecodeserver">git commit<span class="hljs-operator">a</span>.txt -m<span class="hljs-string">"重新提交"</span><span class="hljs-comment"> // 记得不要提交不想提交的文件哦</span></code></pre> <h3 id="idea-reset"><font color="blue">IDEA RESET</font></h3> <p>也可以直接使用IDEA的<code>Reset Head</code> 功能,先通过<code>git log</code> 得到要回退的<code>commit_id</code>,再进行下面截图的操作。可以先validate一下哦，看通过<code>commit_id</code>能不能找到这一次提交。<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/62e17b88b200929418fc15503ec8af6a.jpg" alt="Git回退代码到某次commit"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220605/a4c02ee402819d1e1e22c8d48c7a77d6.jpg" alt="Git回退代码到某次commit"></p> <h3 id="总结"><font color="blue">总结</font></h3> <p>开发过程中，总是会不小心提交一些不能提交的文件。。如果你开发用的IDEA，可以看看IDEA的这个功能—实用，再也不用担心提交错了。</p> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-21363.htm">动物疫苗接种的目的是 动物疫苗接种的目的是什么</a></p>
                                         <p>下一个：<a href="/news/article-21810.htm">去哪领养猫狗（到哪能领养猫）</a></p>
@@ -101,16 +102,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-9-13-clash-verge-rev-windows.htm" title="「9月13日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月13日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-3-node-share.htm" title="「9月3日」最高速度19.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月3日」最高速度19.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-28-clash-verge-rev-node-github.htm" title="「10月28日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月28日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-5-node-share-links.htm" title="「11月5日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月5日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-10-free-clash-verge-rev-node.htm" title="「10月10日」最高速度19.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月10日」最高速度19.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-18-node-share-links.htm" title="「10月18日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月18日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-19523.htm" title="弄个猫粮加工厂投资多少钱（猫粮生产加工）">弄个猫粮加工厂投资多少钱（猫粮生产加工）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-26-clash-verge-rev-github.htm" title="「10月26日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月26日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-2-clash-verge-rev-github.htm" title="「10月2日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月2日」最高速度21.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-13-clash-verge-rev-github.htm" title="「10月13日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月13日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21363.htm" title="动物疫苗接种的目的是 动物疫苗接种的目的是什么">动物疫苗接种的目的是 动物疫苗接种的目的是什么</a></li>
+                        <li class="py-2"><a href="/news/article-21810.htm" title="去哪领养猫狗（到哪能领养猫）">去哪领养猫狗（到哪能领养猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-17-clash-verge-rev-node-share.htm" title="「9月17日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月17日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-23648.htm" title="动物疫苗接种的目的是什么 动物疫苗接种的目的是什么呢">动物疫苗接种的目的是什么 动物疫苗接种的目的是什么呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-today-clash-verge-rev-node.htm" title="「12月5日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月5日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-25-free-node-subscribe.htm" title="「9月25日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月25日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-clash-verge-rev-node.htm" title="「10月19日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月19日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-18-clash-verge-rev-github.htm" title="「9月18日」最高速度19.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月18日」最高速度19.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-node-share.htm" title="「11月19日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月19日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25036.htm" title="上海宠物医院多少家（上海宠物医院口碑）">上海宠物医院多少家（上海宠物医院口碑）</a></li>
                     </ul>
     </div>
 </div>
@@ -122,7 +123,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
@@ -146,6 +147,15 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
                         <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
                     </div>
                 </div>
