@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-31598.htm" />
+    <title>C#语法糖系列聊聊 ref，in 修饰符底层玩法</title>
+        <meta name="description" content="自从 C# 7.3 放开 ref 之后，这玩法就太花哨了，也让 C# 这门语言变得越来越多范式，越来越重，这篇我们就来聊聊 ref，本质上来说 ref 的放开就是把 C/C++ 指针的那一套又拿回来了" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">C#语法糖系列聊聊 ref，in 修饰符底层玩法</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<p>自从 C# 7.3 放开 ref 之后，这玩法就太花哨了，也让 C# 这门语言变得越来越多范式，越来越重，这篇我们就来聊聊 ref，本质上来说 ref 的放开就是把 C/C++ 指针的那一套又拿回来了，而且还封装成一套自己的玩法，下面一一解读下。</p> <h2 id="一方法参数上的-ref">一：方法参数上的 ref</h2> <p>我想设计者的初心把 ref 的功能限制的死死的，可能也考虑到 C# 是一门面向业务开发的语言，讲究的是做项目快狠准，性能反而不是第一要素，这个时候的 ref 很简单，看一下代码：</p> <pre><code class="language-C#">     class Program     {         static void Main(string[] args)         {             long price = 0;              GetPrice(ref price);              Console.WriteLine($"output: price={price}");         }          public static void GetPrice(ref long price)         {             price = 10;         }     }  output: price=10</code></pre> <p>我相信很有朋友都知道，方法参数中的<code>ref long price</code>  拿的是栈地址，对栈地址上的值进行修改，自然就修改了指向这些地址上的变量，和引用类型原理一致，接下来我们从汇编角度去验证，在 Price 方法上下一个断点。</p> <pre><code class="language-C#"> D:\net5\ConsoleApp4\ConsoleApp3\Program.cs @ 16: 026b048e 8d4dec          lea     ecx,[ebp-14h] 026b0491 ff15a0ebc800    call    dword ptr ds:[0C8EBA0h] (ConsoleApp3.Program.GetPrice(Int64 ByRef), mdToken: 06000002) 026b0497 90              nop 0:000&gt; bp 026b0491 0:000&gt; g Breakpoint 1 hit ChangeEngineState eax=00000000 ebx=0057f354 ecx=0057f2d4 edx=783aaa50 esi=02979e7c edi=0057f2dc eip=026b0491 esp=0057f2c4 ebp=0057f2e8 iopl=0         nv up ei pl zr na pe nc cs=0023  ss=002b  ds=002b  es=002b  fs=0053  gs=002b             efl=00000246 026b0491 ff15a0ebc800    call    dword ptr ds:[0C8EBA0h] ds:002b:00c8eba0=00c2be10</code></pre> <p>从汇编的<code>lea     ecx,[ebp-14h]</code> 就能看到，将<code>ebp-14</code> 这个单元的内存地址给了 ecx，这个 ecx 也就是作为参数传递给了<code>Price</code> 方法，后续的赋值将会影响这个<code>栈位置</code> 上的内容。</p> <h2 id="2-方法返回值上的-ref">2. 方法返回值上的 ref</h2> <p>这就有意思了，进入的时候传地址，回来的时候也想传地址，很显然<code>方法线程栈</code>上的<code>值类型</code> 是传不出去的，毕竟方法返回后，esp,ebp 所控制的方法栈帧空间是要销毁的，所以只能是堆上对象才能实现。</p> <p>为了方便理解，看如下代码：</p> <pre><code class="language-C#">     class Program     {         static void Main(string[] args)         {             ref long price = ref GetCurrentPrice();              price = 12;              Console.WriteLine($"output: price={price}");         }          public static ref long GetCurrentPrice()         {             long[] nums = { 10, 20, 30 };              return ref nums[1];         }     }  output: price=12</code></pre> <p>可以看到当前的<code>price=12</code>,同时<code>nums</code> 这个数组也被修改了，可以用 windbg 验证一下。</p> <pre><code class="language-C#"> 0:000&gt; !dumpheap  -type System.Int64[]   Address       MT     Size 027ca7b0 04c39d00       36       Statistics:       MT    Count    TotalSize Class Name 04c39d00        1           36 System.Int64[] Total 1 objects 0:000&gt; dq 027ca7b0 L4 027ca7b0  00000003`04c39d00 00000000`0000000a 027ca7c0  00000000`0000000c 00000000`0000001e</code></pre> <p>可以看到上面的<code>000000000000000c</code> 被修改成<code>price=12</code> ，这时候有人就不爽了，我不希望外面的代码能修改 price 内容，那怎么办呢？ 还得在<code>ref</code> 后面加上<code>readonly</code> ，改造后如下：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/f4279856e14181131760eb07d993b271.jpg" alt="C#语法糖系列聊聊 ref，in 修饰符底层玩法"></p> <p>到此时写法就有点疯狂了，对 C# 开发者来说很难理解，对熟悉 C/C++ 指针的朋友来说又很不习惯，太纠结了，下面是一段翻译过来的<code>C/C++指针代码</code> 。</p> <pre><code class="language-C++"> const long long* getcurrentprice();  int main() { 	int i = 0;  	const long long* price = getcurrentprice();  	price = 12;  	printf("num=%d, price=%d \n", i, *price);  }  const long long* getcurrentprice() {  	long long* num = new long long[3]{ 10,20,30 }; 	return num + 1; }</code></pre> <p>说实话，这代码看起来就清爽多了。</p> <h2 id="2-对-ref-变量的-in-操作">2. 对 ref 变量的 in 操作</h2> <p>这又是一套 C/C++ 的玩法，有时候不希望某一个方法对 ref 变量进行修改，注意：是不希望某一个方法进行修改，其他方法是可以的，那这个怎么实现呢？这就需要在入参上加<code>in</code> 前缀，把代码修改一下。</p> <pre><code class="language-C#">     class Program     {         static void Main(string[] args)         {             ref long price = ref GetCurrentPrice();              ModifyPrice(in price);              Console.WriteLine($"output: price={price}");         }          public static ref long GetCurrentPrice()         {             long[] nums = { 10, 20, 30 };              return ref nums[1];         }          public static void ModifyPrice(in long price)         {             price = 12;             Console.WriteLine(price);         }     }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6e89468a5e3d2f0e468724a0ac70f229.jpg" alt="C#语法糖系列聊聊 ref，in 修饰符底层玩法"></p> <p>可以看到，这时候报错了，如果换成 C++ 就很简单了，只需要在参数上把 in 改成 const 即可。</p> <pre><code class="language-C++"> void modifyprice(const long long* price) { 	*price = 12; 	printf("%d", *price); }</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/40e79010e54d638a0441264722297bf2.jpg" alt="C#语法糖系列聊聊 ref，in 修饰符底层玩法"></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-31113.htm">丹阳有领养猫咪的地方吗（丹阳宠物免费领养）</a></p>
+                                        <p>下一个：<a href="/news/article-31599.htm">动物疫苗的正确使用方法有哪些视频（动物疫苗注射器视频）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-23-clash-verge-rev-node-github.htm" title="「9月23日」最高速度20.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月23日」最高速度20.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-high-speed-nodes.htm" title="「11月27日」最高速度22.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月27日」最高速度22.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-clash-verge-rev-node.htm" title="「10月17日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月17日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-28754.htm" title="动物医院的英文单词有哪些怎么写的（动物医院 翻译）">动物医院的英文单词有哪些怎么写的（动物医院 翻译）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-19-clash-verge-rev-node.htm" title="「10月19日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月19日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-31113.htm" title="丹阳有领养猫咪的地方吗（丹阳宠物免费领养）">丹阳有领养猫咪的地方吗（丹阳宠物免费领养）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-4-node-share-links.htm" title="「10月4日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月4日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-28288.htm" title="青浦二中高考录取率是多少分（青浦二中2020本科录取率）">青浦二中高考录取率是多少分（青浦二中2020本科录取率）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-16-clash-verge-rev-node-share.htm" title="「9月16日」最高速度21.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月16日」最高速度21.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-clash-verge-rev-node.htm" title="「12月12日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月12日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
