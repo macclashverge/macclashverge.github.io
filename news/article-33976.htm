@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-33976.htm" />
+    <title>vue 修饰符</title>
+        <meta name="description" content="Vue  表单修饰符   number 修饰符 trim 修饰符 lazy 修饰符   事件修饰符    vue 中的表单修饰符有：number、trim、lazy   number 将输入框内的字符" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">vue 修饰符</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>Vue</h3> <ul> <li><a href="#_1" rel="nofollow">表单修饰符</a></li> <li> <ul> <li><a href="#number__7" rel="nofollow">number 修饰符</a></li> <li><a href="#trim__22" rel="nofollow">trim 修饰符</a></li> <li><a href="#lazy__34" rel="nofollow">lazy 修饰符</a></li> </ul> </li> <li><a href="#_50" rel="nofollow">事件修饰符</a></li> </ul> </div> </h1> <p>vue 中的表单修饰符有：<mark>number</mark>、<mark>trim</mark>、<mark>lazy</mark></p> <blockquote> <ul> <li>number 将输入框内的字符转为数字</li> <li>trim 将输入框内中前后的空格去掉</li> <li>lazy 将输入框的值与数据转变在 change 事件中同步</li> </ul> </blockquote> <h2> <a id="number__7" rel="nofollow"></a>number 修饰符</h2> <p>vue 中 number 修饰符的作用是将输入框内的字符串转换成数字</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>input v<span class="token operator">-</span>model<span class="token punctuation">.</span>number<span class="token operator">=</span><span class="token string">"number"</span><span class="token operator">&gt;</span> <span class="token operator">&lt;</span>p @click<span class="token operator">=</span><span class="token string">"showMsg"</span><span class="token operator">&gt;</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span> number <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span> <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{<!-- --></span> 	<span class="token function-variable function">showMsg</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>number<span class="token punctuation">)</span> 		console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span> 	<span class="token punctuation">}</span> <span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span> </code></pre> <h2> <a id="trim__22" rel="nofollow"></a>trim 修饰符</h2> <p>vue 中 trim 修饰符的作用是将输入框内中前后的空格去掉</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>input v<span class="token operator">-</span>model<span class="token punctuation">.</span>trim<span class="token operator">=</span><span class="token string">"search_text"</span><span class="token operator">&gt;</span> <span class="token operator">&lt;</span>p v<span class="token operator">-</span>on<span class="token operator">:</span>click<span class="token operator">=</span><span class="token string">"showContent"</span><span class="token operator">&gt;</span> <span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span> search_text <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span> <span class="token function-variable function">showContent</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span> <span class="token string">"a"</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>search_text<span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span> </code></pre> <h2> <a id="lazy__34" rel="nofollow"></a>lazy 修饰符</h2> <p>在 change 而非 input 时更新</p> <pre><code class="prism language-javascript"><span class="token operator">&lt;</span>input v<span class="token operator">-</span>model<span class="token punctuation">.</span>lazy <span class="token operator">=</span> <span class="token string">'msg'</span><span class="token operator">&gt;</span> <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span> <span class="token punctuation">{<!-- --></span><span class="token punctuation">{<!-- --></span>msg<span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>script<span class="token operator">&gt;</span> 	<span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span> 		<span class="token literal-property property">el</span><span class="token operator">:</span><span class="token string">'#app'</span><span class="token punctuation">,</span> 		<span class="token literal-property property">data</span><span class="token operator">:</span><span class="token punctuation">{<!-- --></span> 			<span class="token literal-property property">msg</span><span class="token operator">:</span><span class="token string">'lazy'</span> 		<span class="token punctuation">}</span> 	<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span> </code></pre> </h1> <p><mark>.stop</mark>：等同于 js 中的 <mark>event.stopPropagation()</mark>，防止事件冒泡，<mark>阻止事件传播</mark><br /><mark>.prevent</mark>：等同于js中的 <mark>event.preventDefault()</mark>，防止执行预设的行为（如果事件可取消，则取消该事件，而不停止事件的进一步传播），<mark>阻止事件（超链接）默认行为</mark><br /><mark>.capture</mark>：与事件冒泡的方向相反，<mark>事件捕获</mark><br /><mark>.self</mark>：只会触发自己范围内的事件，不包含子元素（事件目标对象是自己，才会触发）<br /><mark>.once</mark>：只会触发一次</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-33506.htm">动保疫苗厂家（动保疫苗龙头企业）</a></p>
+                                        <p>下一个：<a href="/news/article-33977.htm">常州宠颐生动物医院招聘电话（常州宠颐生美多格动物医院）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-1-free-subscribe-node.htm" title="「1月1日」最高速度21.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月1日」最高速度21.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33505.htm" title="动物疫苗是什么单位的 动物疫苗是什么单位的工作">动物疫苗是什么单位的 动物疫苗是什么单位的工作</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-19-clash-verge-rev-windows.htm" title="「9月19日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月19日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-7-clash-verge-rev-node.htm" title="「11月7日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月7日」最高速度21.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-clash-verge-rev-node-share.htm" title="「12月18日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月18日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-21-free-subscribe-node.htm" title="「9月21日」最高速度21.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月21日」最高速度21.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-4-node-share-links.htm" title="「10月4日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月4日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share.htm" title="「11月18日」最高速度20.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月18日」最高速度20.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-8-latest-clash-verge-rev-node.htm" title="「12月8日」最高速度22.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月8日」最高速度22.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-clash-verge-rev-node-share.htm" title="「11月25日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月25日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
