@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-36847.htm" />
+    <title>适合初学者的C语言数据类型的讲解_C 语言</title>
+        <meta name="description" content="之前说过写代码是为了解决生活中的问题，比如购物。 假设我们要买一本书，它的价格是10.5，是个小数，也可以是一个整数10，它的书名是钢铁是怎样炼成的，是一组字符串，就像svli@gikvw这些，里面每" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">适合初学者的C语言数据类型的讲解_C 语言</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<p>之前说过写代码是为了解决生活中的问题，比如购物。</p> <p>假设我们要买一本书，它的价格是10.5，是个小数，也可以是一个整数10，它的书名是钢铁是怎样炼成的，是一组字符串，就像svli@gikvw这些，里面每个称为字符。</p> <p>我们要去用c语言来去存储这些信息呢，在c语言里面为了能够描述这些类型。</p> <p>就把小数抽象出来一个数据类型，叫浮点型</p> <p>把整数抽象出来一个数据类型，叫整型（就是上一个博客里面的int）</p> <p>把字符抽象出来一个数据类型，就叫字符</p> <blockquote> <p> 10.5 -  小数  -  浮点型<br /> 10   -  整数  -  整型<br /> A    -  字符  -  字符</p> </blockquote> <p>那么c语言里面抽象出来哪些数据类型呢？</p> <blockquote> <p>char          //字符数据类型<br />short         //短整型<br />int           //整型<br />long          //长整型<br />long long     //更长的整型<br />float         //单精度浮点数<br />double        //双精度浮点数<br />//浮点型  10.5<br />//整型    10<br />//字符    A</p> </blockquote> <p>看了上面的数据类型，很容易看出来下面的关系：</p> <p style="text-align:center"><img decoding="async" alt="请添加图片描述" src="http://img.555519.xyz/uploads3/20220419/208d0adae18afd3b3da17e2f1c32b265.jpg"></p> <p>为什么叫浮点数？</p> <p>就像66.6和6.66*10，小数点是可以浮动的，所以叫浮点数</p> <p>那么，为什么会有上面这么多的类型呢？我们就需要先回答一下下面这个问题：</p> <p>每一种类型的大小是多少？</p> <p>我们等一下用代码问一下他们各自的大小</p> <p>先了解一下新的东西</p> <div class="ay1code"> <pre class="brush:cpp;">#include&lt;stdio.h&gt;    int main()  {  printf("%d\n",100)//  return 0;}  </pre> </div> <p>这个%d指的是打印（输出）的格式，即整型，后面的100是返回值，即打印的是100，\n的意思就像enter，空行的意思，如图：</p> <p>运行结果：</p> <blockquote> <p>100</p> </blockquote> <p style="text-align:center"><img decoding="async" alt="请添加图片描述" src="http://img.555519.xyz/uploads3/20220419/38e35c1cbde94b665a6dc558ba6a0ad5.jpg"></p> <p>现在来解释一下\n的作用，这里用两组代码来对比一下：</p> <p>第一组</p> <div class="ay1code"> <pre class="brush:cpp;">#include&lt;stdio.h&gt;    int main()  {  printf("%d\n",100)//  printf("%d\n",100)  printf("%d\n",100)  return 0;}  </pre> </div> <p>运行的结果：</p> <blockquote> <p>100</p> <p>100</p> <p>100</p> </blockquote> <p style="text-align:center"><img decoding="async" alt="请添加图片描述" src="http://img.555519.xyz/uploads3/20220419/1846e408e7ec000c2cb7df946a66818f.jpg"></p> <p>第二组</p> <div class="ay1code"> <pre class="brush:cpp;">#include&lt;stdio.h&gt;    int main()  {  printf("%d",100)//  printf("%d",100)  printf("%d",100)  return 0;}  </pre> </div> <p>运行的结果：</p> <blockquote> <p>100100100</p> </blockquote> <p style="text-align:center"><img decoding="async" alt="请添加图片描述" src="http://img.555519.xyz/uploads3/20220419/863f53e9f2a351302addf285493cf45a.jpg"></p> <p>可以看出，\n的作用就是空一行，就是平时enter的作用</p> <p>接下来就是</p> <div class="ay1code"> <pre class="brush:cpp;">#include&lt;stdio.h&gt;    int main()  {      printf("%d ", sizeof(char));  	printf("%d ", sizeof(short));  	printf("%d ", sizeof(int));  	printf("%d ", sizeof(long));  	printf("%d ", sizeof(long long));  	printf("%d ", sizeof(float));  	printf("%d ", sizeof(double));      return 0;  }  </pre> </div> <p>运行结果：</p> <blockquote> <p>1 2 4 4 8 4 8</p> </blockquote> <p>（那么这些数字的含义是什么？它们又是怎么来看出所占内存的大小呢？我们等一会儿就来解释。）</p> <p style="text-align:center"><img decoding="async" alt="请添加图片描述" src="http://img.555519.xyz/uploads3/20220419/d2fe784c014904aa84fa6969a8666ed8.jpg"></p> <p>这里的sizeof()的作用就是返回数据类型中的char在内存中所占的大小，通俗点就是用它来告诉你char这个数据类型占多少内存</p> <p>不过这里用%d不太合适，在一些的编译器里面会报警告，我们用%zu最合适，sizeof的返回值要用%zu来打印。</p> <div class="ay1code"> <pre class="brush:cpp;">int main()  {  	printf("%zu\n", sizeof(char));  	printf("%zu\n", sizeof(short));  	printf("%zu\n", sizeof(int));  	printf("%zu\n", sizeof(long));  	printf("%zu\n", sizeof(long long));  	printf("%zu\n", sizeof(float));  	printf("%zu\n", sizeof(double));  	return 0;  }  </pre> </div> <p>结果跟上面那个图是一样的，运行结果是：</p> <blockquote> <p>1</p> <p>2</p> <p>4</p> <p>4</p> <p>8</p> <p>4</p> <p>8</p> </blockquote> <p>（我里面加了\n，所以是一排一排的）</p> <p>接着我们来讲上面那些数字的含义，</p> <p>你只看到了它们这些数字，但没有单位，其实它们都是有单位的，这里我们就来了解一下计算机的单位：</p> <p>计算机的单位从大到小就是PB，TB，GB，MB，KB，byte。就像我们平时生活中用的流量，一般开通的套餐只到GB，所以GB，MB，KB这些我们都已经很熟悉了，下面就是各单位间的换算</p> <blockquote> <p> 1Pb=1024Tb                   <br /> 1Tb=1024Gb<br /> 1Gb=1024Mb                  <br /> 1Mb=1024kb<br /> 1kb=1024byte（字节）  <br /> 1byte=8bit（比特位）</p> </blockquote> <p>看到这些，你可能对这些没有什么概念，我们再来进一步了解一下</p> <p>我们都知道计算机使用的是二进制语言，而我们生活在十进制的世界，</p> <p>来给一个空间| |，里面可以填1或0就是|1|或|0|，这就是一个bit，对应的就是灯亮和灯灭</p> <p>那么一个字节byte呢？</p> <p>|1| |0| |1| |0| |0| |1| |0| |1|占了8个空间，也就是8个bit</p> <p>10100101 对应的十进制就是 165</p> <p>一个字节能储存多大的数字呢？</p> <p>11111111 对应的十进制就是255，即最多可以储存2^8-1这么大的数</p> <p>我们可以感受到越到后面的单位大小越庞大</p> <p>解释完计算机的单位，我们就来回到上面的1 2 4 4 8 4 8，它们的单位都是字节</p> <p>char对应1字节，可以开辟一个能储存2^8-1的空间</p> <p>short对应2字节，可以开辟一个能储存2^16-1的空间</p> <p>int对应4字节，可以开辟一个能储存2^32-1的空间</p> <p>long long对应8字节，可以开辟一个能储存2^64-1的空间</p> <p>里面的float和double是来存储小数的，双精度浮点数比单精度浮点数精度要高一点，这个在以后的博客会更加深入的去讲解</p> <p>但是我们看到int和long为什么都是4呢？</p> <p>C语言规定，<code>sizeof(long)&gt;=sizeof(int)</code>就行，但不会超过<code>sizeof(long long)</code></p> <p>那么我们回到前面提出的问题，为什么要规定这样的数据类型呢，答案是节省空间：</p> <p>给你一个数2，你要把它存起来，你用了long long这个数据类型，开辟了能储存2^64-1的空间来放这个2，是不是有点大材小用了，用一个char就行了，提高空间的利用率</p> <p>接下来我们来解释一下下面的代码，来引入下一个博客讲的变量和常量</p> <div class="ay1code"> <pre class="brush:cpp;">#include&lt;stdio.h&gt;  int main()  {  int age=18;  double weight=16.5;  return 0;  }  </pre> </div> <p>int age=18;</p> <p>向内存申请一个int大小的空间，来把18这个数据放在age这个变量里面，通俗一点就是，int要了一个房间，起名为age（随便起名），把18放到了里面。</p> <p>double weight=16.5;</p> <p>这个像上面一样，double是数据类型，weight是个变量，16.5是个小数</p> <p>这些数据类型就是来定义变量的</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-36360.htm">小猫养多久才认家（小猫刚开始养多久能认识主人）</a></p>
+                                        <p>下一个：<a href="/news/article-36848.htm">猫抓了一下有淡淡红痕没出血第二天结痂（猫抓了一下出了点血伤口有点红）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-26-clash-verge-rev-github.htm" title="「10月26日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月26日」最高速度22M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-clash-verge-rev-node.htm" title="「11月30日」最高速度21.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月30日」最高速度21.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-free-subscribe-node.htm" title="「10月31日」最高速度19.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月31日」最高速度19.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-36155.htm" title="spring schedule 配置多任务动态 cron 【增删启停】">spring schedule 配置多任务动态 cron 【增删启停】</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-15-node-share.htm" title="「10月15日」最高速度20.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月15日」最高速度20.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-22732.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-node-subscribe.htm" title="「12月9日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月9日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-clash-verge-rev-node.htm" title="「10月7日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月7日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-3-free-clash-verge-rev-node.htm" title="「11月3日」最高速度21.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月3日」最高速度21.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-24-clash-verge-rev-nodes.htm" title="「10月24日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月24日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">21</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
