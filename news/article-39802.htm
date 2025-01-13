@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-39802.htm" />
+    <title>再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</title>
+        <meta name="description" content="call的基本使用  var ary = [12, 23, 34];  ary.slice();  以上两行简单的代码的执行过程为：ary这个实例通过原型链的查找机制找到Array.prototype" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<h2>call的基本使用</h2> <div class="ay1code"> <pre class="brush:js;">var ary = [12, 23, 34];  ary.slice();</pre> </div> <p>以上两行简单的代码的执行过程为：<code>ary</code>这个实例通过原型链的查找机制找到<code>Array.prototype</code>上的<code>slice</code>方法，让找到的<code>slice</code>方法执行，在执行<code>slice</code>方法的过程中才把<code>ary</code>数组进行了截取。</p> <p><strong>注意</strong>：<code>slice</code>方法执行之前有一个在原型上查找的过程（当前实例中没有找到，再根据原型链查找）。</p> <p>当知道了一个对象调用方法会有一个查找过程之后，我们再看：</p> <div class="ay1code"> <pre class="brush:js;">var obj = {name:'iceman'};  function fn() {      console.log(this);      console.log(this.name);  }  fn(); // this --&gt; window  // obj.fn(); // Uncaught TypeError: obj.fn is not a function  fn.call(obj);</pre> </div> <p><strong>call方法的作用</strong>：首先寻找<code>call</code>方法，最后通过原型链在<code>Function</code>的原型中找到<code>call</code>方法，然后让<code>call</code>方法执行，在执行<code>call</code>方法的时候，让<code>fn</code>方法中的<code>this</code>变为第一个参数值<code>obj</code>，最后再把<code>fn</code>这个函数执行。</p> <p>知道这个原型上的原理后，咱们就可以动手分析实现这三个方法了。</p> <h3>bind、call、apply 区别</h3> <ul> <li> <code>call</code> 和 <code>apply</code> 都是为了解决改变 <code>this</code> 的指向。作用都是相同的，只是传参的方式不同。</li> <li>除了第一个参数外，<code>call</code> 可以接收一个参数列表，<code>apply</code> 只接受一个参数数组</li> </ul> <div class="ay1code"> <pre class="brush:js;">let a = {      value: 1  }  function getValue(name, age) {      console.log(name)      console.log(age)      console.log(this.value)  }  getValue.call(a, 'yck', '24')  getValue.apply(a, ['yck', '24'])</pre> </div> <blockquote> <p><code>bind</code> 和其他两个方法作用也是一致的，只是该方法会返回一个函数。并且我们可以通过 <code>bind</code> 实现柯里化</p> </blockquote> <h3>如何实现一个 bind 函数</h3> <p>对于实现以下几个函数，可以从几个方面思考</p> <ul> <li>不传入第一个参数，那么默认为 <code>window</code> </li> <li>改变了 <code>this</code> 指向，让新的对象可以执行该函数。那么思路是否可以变成给新的对象添加一个函数，然后在执行完以后删除？</li> </ul> <p>当然是肯定的，于是我们可以这样写：</p> <div class="ay1code"> <pre class="brush:js;">Function.prototype.myBind = function (context) {    if (typeof this !== 'function') {      throw new TypeError('Error')    }    var _this = this    var args = [...arguments].slice(1)    // 返回一个函数    return function F() {      // 因为返回了一个函数，我们可以 new F()，所以需要判断      if (this instanceof F) {        return new _this(...args, ...arguments)      }      return _this.apply(context, args.concat(...arguments))    }  }</pre> </div> <h3>如何实现一个 call 函数</h3> <div class="ay1code"> <pre class="brush:js;">Function.prototype.myCall = function (context,...arg) {    var context = context || window  // 给 context 添加一个属性    // getValue.call(a, 'yck', '24') =&gt; a.fn = getValue    //使用symbol 选择一个独一无二的值作为新添加的属性    let symbol = new Symbol();    context[symbol] = this;    let result = context[symbol](...arg)    // 删除添加的函数    delete context[symbol]      return result  }</pre> </div> <h3>如何实现一个apply 函数</h3> <p>apply实现原理与call实现基本类似，只有传值的方式不一样。</p> <div class="ay1code"> <pre class="brush:js;">Function.prototype.myApply = function (context,arg) {    var context = context || window // 给 context 添加一个属性   // getValue.call(a, 'yck', '24') =&gt; a.fn = getValue   //使用symbol 选择一个独一无二的值作为新添加的属性   let symbol = new Symbol();   context[symbol] = this;   let result = context[symbol](arg)   // 删除添加的函数   delete context[symbol]   return result  }</pre> </div> <p>经过对以上的函数进行检测 , 完美通过。</p> <div class="ay1code"> <pre class="brush:js;">const obj = {     name : 'xiaoxiao',     getName : function (arg) {     console.log(`我是${this.name}里面的,我里面有${arg}`);     }    }    obj.getName([0,0,0,0,0]); // 我是xiaoxiao里面的    const obj2 = {     name : 'huahua'    }    //传值不一样    obj.getName.myCall(obj2,1,1,1,1,1,1);    obj.getName.myBind(obj2)(2,2,2,2,2,2);    obj.getName.myApply(obj2,[3,3,3,3,3,3]);</pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-39801.htm">Java并发工具学习（八）——Semaphore和Condition</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-9-free-node-subscribe-links.htm" title="「1月9日」最高速度21M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月9日」最高速度21M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-34453.htm" title="麦富迪猫粮怎么样（麦富迪猫粮怎么样?）">麦富迪猫粮怎么样（麦富迪猫粮怎么样?）</a></li>
+                        <li class="py-2"><a href="/news/article-19063.htm" title="宠物医院好评100字评论（宠物医院好评100字评论文案）">宠物医院好评100字评论（宠物医院好评100字评论文案）</a></li>
+                        <li class="py-2"><a href="/news/article-39802.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-clash-verge-rev-node-github.htm" title="「11月2日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月2日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-30-latest-clash-verge-rev-node.htm" title="「10月30日」最高速度19.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月30日」最高速度19.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-node-share.htm" title="「11月19日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月19日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-clash-verge-rev-node-share.htm" title="「12月11日」最高速度18.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月11日」最高速度18.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-15-node-share.htm" title="「10月15日」最高速度20.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月15日」最高速度20.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-clash-verge-rev-node-share.htm" title="「1月7日」最高速度22.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月7日」最高速度22.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
