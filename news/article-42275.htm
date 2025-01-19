@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-42275.htm" />
+    <title>request和response——请求响应对象</title>
+        <meta name="description" content="获取get请求的值  一次请求，返回一个响应。 地址栏：http://127.0.0.1:8000/day3/get_request?lan=python 问号：代表请求参数   需求：拿到请求参数 " />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-42275.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="request和response——请求响应对象" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/3ca310159d4417ec4a2d64b8e2ccf789.webp" />
+        <meta property="og:release_date" content="2025-01-18T07:13:30" />
+    <meta property="og:updated_time" content="2025-01-18T07:13:30" />
+        <meta property="og:description" content="获取get请求的值  一次请求，返回一个响应。 地址栏：http://127.0.0.1:8000/day3/get_request?lan=python 问号：代表请求参数   需求：拿到请求参数 " />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">request和response——请求响应对象</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				</h1> <h2 id="获取get请求的值">获取get请求的值</h2> <blockquote> <p>一次请求，返回一个响应。<br /> 地址栏：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://127.0.0.1:8000/day3/get_request?lan=python"  target="_blank" rel="nofollow">http://127.0.0.1:8000/day3/get_request?lan=python</a><br /> 问号：代表请求参数</p> </blockquote> <blockquote> <p>需求：拿到请求参数</p> </blockquote> <h3 id="传入单个值">传入单个值</h3> <pre><code class="language-python"># views.py def get_request(request):     return HttpResponse('getrequest') # urls.py path('getrequest',get_request),</code></pre> <p>想要拿到地址栏中的参数<br /><code>print(request.GET)</code><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/edce18ec10e3a70c3f7b50b558ff8f91.jpg" alt="request和response——请求响应对象"><br /> 发现打印出来的是字典，所以——<br /><code>print(request.GET.get('lan'))</code><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/21bddde9a8508d6c45afc1191bba4e3a.jpg" alt="request和response——请求响应对象"></p> <blockquote> <p><strong>【知识点】</strong><br /> 打印字典中的值，有两种办法：<br /> 1，print(request.GET.get('lan'))——（一般用这个）假设key不存在，返回空值None<br /> 2，print(request.GET['lan'])——key不存在，会抛出异常</p> </blockquote> <h3 id="传入多个值">传入多个值</h3> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/1490fd63ff08d47e3e4d30082deca62f.jpg" alt="request和response——请求响应对象"><br /><code>print(request.GET.getlist('lan'))</code><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e65701e970c5c59bfe5314329b2e6eca.jpg" alt="request和response——请求响应对象"></p> <h3 id="获取路由地址">获取路由地址</h3> <p>如何来到get_request函数的（这个视图函数）<br /><code>print(request.path_info)</code><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7e3ab109f55aa7ba185a7fe482c209f1.jpg" alt="request和response——请求响应对象"></p> <h3 id="获取请求方式getpost">获取请求方式(get/post)</h3> <p><code>print(request.method)</code><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b4e073a471958ed8d65761502731ec16.jpg" alt="request和response——请求响应对象"></p> <blockquote> <p><strong>【知识点】</strong><br /> Django中地址栏默认是get请求，如果要发送post请求，需要把中间件的（选中的）注释掉<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/fea2c2a5b60d05c8492237511586afcf.jpg" alt="request和response——请求响应对象"></p> </blockquote> <blockquote> <p><strong>【知识点】</strong><br /> post请求，往表单中传入数据（用的postman）<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a54c50ce8c95d845bbe52a6fdcf884c0.jpg" alt="request和response——请求响应对象"></p> </blockquote> <h2 id="获取post请求的值">获取post请求的值</h2> <h3 id="获取value">获取value</h3> <p>假设表单中的值是这样的：<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/89c6dd2c61fe96c05df6cf22fd66f0d2.jpg" alt="request和response——请求响应对象"><br /> 先看看request.POST打印出什么<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/382c934c4259fca399b8f5ffffe2e5e3.jpg" alt="request和response——请求响应对象"><br /> 拿到request.POST.get('b_title')<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b3b5a114b2ec77a0fc64db37a9367d7d.jpg" alt="request和response——请求响应对象"></p> <h3 id="表单上传">表单上传</h3> <p><code>print(request.FILES)</code><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/294fed407d8d3dc7060447b38ade7cca.jpg" alt="request和response——请求响应对象"><br /> (files里面对应的是文件对象）</p> <h2 id="根据请求方式选择路由">根据请求方式选择路由</h2> <pre><code>path('testgetpost', test_get_post), # 根据不同的请求方式做不同的处理 def test_get_post(request):     if request.method == 'GET':         return HttpResponse('get请求')     elif request.method == 'POST':         # li = [1,2]         # print(li[2])         return HttpResponse('post请求')     else:         return HttpResponse(request.method)</code></pre> </h1> <h2 id="常见的状态码">常见的状态码</h2> <blockquote> <p>200（响应成功）<br /> 500（python代码有问题）<br /> 404(资源找不到)<br /> 405（请求不被允许）<br /> 301 302 （重定向，浏览器的行为）</p> </blockquote> <h2 id="给定响应头">给定响应头</h2> <h3 id="默认返回的头信息">默认返回的头信息</h3> <pre><code> path('test_response_header',test_response_header), def test_response_header(request):     ret = HttpResponse('test_response_header')     return ret</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d5648a943c90f0e9d35f3ee371814e03.jpg" alt="request和response——请求响应对象"></p> <h3 id="自定义头信息">自定义头信息</h3> <pre><code> path('test_response_header',test_response_header), def test_response_header(request):     # content-type是html类型     ret = HttpResponse('test_response_header')     # 自定义头信息     ret['msg'] = 'success'     ret['code'] = 'ok'     return ret</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b16df0e8b62bfbf9a62b9414dc170ff7.jpg" alt="request和response——请求响应对象"></p> <h2 id="其他响应对象">其他响应对象</h2> <blockquote> <p>json 数据格式 解决前后端数据不认识的问题 {'key':value}<br /> 前后不分离项目 ：前后端全部编写，会经常使用HttpResponse对象<br /> 前后分离项目时使用: 会经常使用JsonResponse对象</p> </blockquote> <h3 id="json-数据格式">json 数据格式</h3> <p>用途：一般做前后分离项目时使用</p> <pre><code>path('test_json_response', test_json_response), def test_json_response(request):     # content-type是json类型     return JsonResponse(request.GET)</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a448942a20a2025328e32ead59ee6cab.jpg" alt="request和response——请求响应对象"><br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bb52fca78994d1aa5a70f90d8902ade9.jpg" alt="request和response——请求响应对象"></p> <h3 id="文件处理">文件处理</h3> <pre><code>path('test_file_response',test_file_response),  def test_file_response(request):     return FileResponse(open('manage.py','rb'))</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ea961e8ae99f0f12ee260ae4bad2536d.jpg" alt="request和response——请求响应对象"></p> <h3 id="return-jsonresponse和return-fileresponse的区别">return JsonResponse和return FileResponse的区别</h3> <blockquote> <p>return JsonResponse和return：返回值类型是Json<br /> return FileResponse：返回值类型是文件的类型</p> </blockquote> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-42274.htm">docker-compose部署etcd 集群</a></p>
+                                        <p>下一个：<a href="/news/article-42774.htm">动物医院有哪些功能区（动物医院有哪些功能区）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-19064.htm" title="领养狗狗是怎么回事（领养狗的坏处）">领养狗狗是怎么回事（领养狗的坏处）</a></li>
+                        <li class="py-2"><a href="/news/article-37830.htm" title="MultipartFile转成File类型">MultipartFile转成File类型</a></li>
+                        <li class="py-2"><a href="/news/article-39801.htm" title="Java并发工具学习（八）——Semaphore和Condition">Java并发工具学习（八）——Semaphore和Condition</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-high-speed-nodes.htm" title="「11月16日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月16日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-31112.htm" title="动物疫苗经营范围有哪些类型（动物疫苗经营许可）">动物疫苗经营范围有哪些类型（动物疫苗经营许可）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-today-clash-verge-rev-node.htm" title="「1月11日」最高速度20.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月11日」最高速度20.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-16-latest-clash-verge-rev-node.htm" title="「1月16日」最高速度18.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月16日」最高速度18.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-41782.htm" title="领养猫免费的地方在哪里（领养宠物猫免费的地方在哪里）">领养猫免费的地方在哪里（领养宠物猫免费的地方在哪里）</a></li>
+                        <li class="py-2"><a href="/news/article-25037.htm" title="猫咪三针疫苗分别是什么时间打（猫咪三针疫苗的时间）">猫咪三针疫苗分别是什么时间打（猫咪三针疫苗的时间）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-17-clash-verge-rev-node.htm" title="「10月17日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月17日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
