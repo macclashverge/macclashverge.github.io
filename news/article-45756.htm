@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-45756.htm" />
+    <title>Apache Kafka消息传递可靠性分析</title>
+        <meta name="description" content="如果MQ没有类似数据库事务结构和保证，是不可能达到消息投递100%可靠的，极端情况下消息投递要么丢失或重复。 下面咋们从producer，broker，consumer的角度分析一下Kafka中会出现" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-45756.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="Apache Kafka消息传递可靠性分析" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/2bcc1335bb65dde0350e82529e54f7cc.webp" />
+        <meta property="og:release_date" content="2025-01-25T09:51:15" />
+    <meta property="og:updated_time" content="2025-01-25T09:51:15" />
+        <meta property="og:description" content="如果MQ没有类似数据库事务结构和保证，是不可能达到消息投递100%可靠的，极端情况下消息投递要么丢失或重复。 下面咋们从producer，broker，consumer的角度分析一下Kafka中会出现" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Apache Kafka消息传递可靠性分析">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">Apache Kafka消息传递可靠性分析</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><span style="font-size:14px">如果MQ没有类似数据库事务结构和保证，是不可能达到消息投递100%可靠的，极端情况下消息投递要么丢失或重复。</span></p> <p><span style="font-size:14px">下面咋们</span><span style="font-size:14px">从producer，broker，consumer的角度</span><span style="font-size:14px">分析一下Kafka中会出现哪些情况：</span></p> </h1> <p><span style="font-size:14px"><img fetchpriority="high" decoding="async" src="http://img.555519.xyz/uploads3/20220821/ad0ce1e050c5c8616af17d8ba9999253.jpg" alt="Apache Kafka消息传递可靠性分析" width="414" height="224"><br /></span></p> <p><span style="font-size:14px">目前生产者发送消息(</span><span style="font-size:14px">request.required.acks</span><span style="font-size:14px">)有三种方式。</span></p> <p class="p1" style="font-size:14px"><span style="font-size:14px">acks =</span><span class="s1">0</span>: producer不会等待broker发送ack ，因为发送消息网络超时或broker crash(1.Partition的Leader还没有commit消息 2.Leader与Follower数据不同步)，既有可能丢失也可能会重发。</p> <p class="p1" style="font-size:14px"><span style="font-size:14px">acks =</span><span class="s1">1</span>: 当leader接收到消息之后发送ack，丢会重发，丢的概率很小</p> <p class="p1" style="font-size:14px">acks = -1: 当所有的follower都同步消息成功后发送ack. &nbsp;丢失消息可能性比较低。</p> <p class="p1" style="font-size:14px"></p> </h1> <p class="p1"><span style="font-size:14px"><img decoding="async" src="http://img.555519.xyz/uploads3/20220821/2e667fd0a8fd1ecc3566c10687aecfba.jpg" alt="Apache Kafka消息传递可靠性分析" width="412" height="224"><br /></span></p> <p class="p1" style="font-size:14px">Kafka中有两种consumer接口，分别为Low<span style="font-size:14px">-level API</span>和High-level<span style="font-size:14px">API</span></p> <p class="p1" style="font-size:14px">(1).<span style="font-size:14px">Low</span><span style="font-size:14px">-level API &nbsp;SimpleConsumer</span></p> <p class="p1" style="font-size:14px"><span style="font-size:14px"></span></p> <p class="p1"><span style="font-size:14px">这套接口比较复杂的，使用者必须要考虑很多事情，优点就是对Kafka可以有完全的控制。</span></p> <p class="p1">(2).<span style="font-size:14px">High-level</span><span style="font-size:14px">API&nbsp;ZookeeperConsumerConnector</span></p> <p class="p1"><span style="font-size:14px"></span></p> <p class="p1"><span style="font-size:14px">High-level&nbsp;API使用比较简单，已经封装了对partition和offset的管理，默认是会定期自动commit offset，这样可能会丢数据的，因为consumer可能拿到数据没有处理完crash。 High-level API接口的特点，自动管理，使用简单，但是对Kafka的控制不够灵活。</span></p> <p class="p1"></p> </h1> <p class="p1"> <p class="p1"><span style="font-size:14px">&nbsp; &nbsp; (1). 对于broker，落盘的数据，除非磁盘坏了，一般不会丢的。</span></p> <p class="p1"><span style="font-size:14px">&nbsp; &nbsp; (2). &nbsp;对于内存脏(没有flush磁盘)数据，broker重启会丢.<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 可以通过log.flush.interval.messages和log.flush.interval.ms来配置flush间隔，interval大丢的数据多些，小会影响性能<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 但在0.8.x版本以后，可以通过replica机制保证数据不丢，代价就是需要更多资源，尤其是磁盘资源，kafka当前支持GZip和Snappy压缩，来缓解这个问题。<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 是否使用replica取决于在可靠性和资源代价之间的平衡。</span></p> <p></p> <p class="p1"></p> <p class="p1"><span style="font-size:18px; color:#009900">总结</span></p> <p class="p1"> <p class="p1"><span style="font-size:14px">Kafka只是能保证at-least once消息语义，即数据是可能重复的，这个在应用上需要可以容忍，<br /> 对于Kafka consumer，一般情况下推荐使用high-level API接口，最好不要直接使用low-level API，自己写起来比较麻烦和困难。</span></p> <p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-45260.htm">有免费领养宠物的软件吗知乎推荐（有免费领养宠物的软件吗知乎推荐下载）</a></p>
+                                        <p>下一个：<a href="/news/article-45757.htm">收狗狗的平台哪个好（收狗狗的平台哪个好一点）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-20-clash-verge-rev-github.htm" title="「11月20日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月20日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-20901.htm" title="中国农业大学动物医院排班表 中国农业大学动物医院排班表2023">中国农业大学动物医院排班表 中国农业大学动物医院排班表2023</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-28-free-subscribe-node.htm" title="「11月28日」最高速度19.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月28日」最高速度19.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-37336.htm" title="动物医院办理条件有哪些内容呢（动物医院办理条件有哪些内容呢英语）">动物医院办理条件有哪些内容呢（动物医院办理条件有哪些内容呢英语）</a></li>
+                        <li class="py-2"><a href="/news/article-21810.htm" title="去哪领养猫狗（到哪能领养猫）">去哪领养猫狗（到哪能领养猫）</a></li>
+                        <li class="py-2"><a href="/news/article-36848.htm" title="猫抓了一下有淡淡红痕没出血第二天结痂（猫抓了一下出了点血伤口有点红）">猫抓了一下有淡淡红痕没出血第二天结痂（猫抓了一下出了点血伤口有点红）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-high-speed-nodes.htm" title="「10月21日」最高速度22.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月21日」最高速度22.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-29698.htm" title="瑞鹏宠物医院收费价目表最新消息（瑞鹏宠物医院企查查）">瑞鹏宠物医院收费价目表最新消息（瑞鹏宠物医院企查查）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-clash-verge-rev-node-share.htm" title="「11月15日」最高速度19.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月15日」最高速度19.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-30644.htm" title="宠物粮食店名称大全图片 宠物粮食店名称大全图片及价格">宠物粮食店名称大全图片 宠物粮食店名称大全图片及价格</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">75</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
