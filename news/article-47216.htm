@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-47216.htm" />
+    <title>实现一个大文件上传和断点续传</title>
+        <meta name="description" content="本文将从零搭建前端和服务端，实现一个大文件上传和断点续传的 demo 前言 本文将从零搭建前端和服务端，实现一个大文件上传和断点续传的 demo 前端：vue element-ui 服务端：nodej" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-47216.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="实现一个大文件上传和断点续传" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/b6dd3b94a88c5b276bff2a57ef497e80.webp" />
+        <meta property="og:release_date" content="2025-01-28T09:30:49" />
+    <meta property="og:updated_time" content="2025-01-28T09:30:49" />
+        <meta property="og:description" content="本文将从零搭建前端和服务端，实现一个大文件上传和断点续传的 demo 前言 本文将从零搭建前端和服务端，实现一个大文件上传和断点续传的 demo 前端：vue element-ui 服务端：nodej" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="实现一个大文件上传和断点续传">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">实现一个大文件上传和断点续传</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h4><a id="_demo_0" rel="nofollow"></a>本文将从零搭建前端和服务端，实现一个大文件上传和断点续传的 demo</h4> <h2><a id="_4" rel="nofollow"></a>前言</h2> <p>本文将从零搭建前端和服务端，实现一个大文件上传和断点续传的 demo</p> <p>前端：vue element-ui</p> <p>服务端：nodejs</p> <p>文章有误解的地方，欢迎指出，将在第一时间改正，有更好的实现方式希望留下你的评论</p> <p>大文件上传</p> <h2><a id="_15" rel="nofollow"></a>整体思路</h2> <h3><a id="_16" rel="nofollow"></a>前端</h3> <p>前端大文件上传网上的大部分文章已经给出了解决方案，核心是利用 Blob.prototype.slice 方法，和数组的 slice 方法相似，调用的 slice 方法可以返回原文件的某个切片</p> <p>这样我们就可以根据预先设置好的切片最大数量将文件切分为一个个切片，然后借助 http 的可并发性，同时上传多个切片，这样从原本传一个大文件，变成了同时传多个小的文件切片，可以大大减少上传时间</p> <p>另外由于是并发，传输到服务端的顺序可能会发生变化，所以我们还需要给每个切片记录顺序</p> <h3><a id="_23" rel="nofollow"></a>服务端</h3> <p>服务端需要负责接受这些切片，并在接收到所有切片后合并切片</p> <p>这里又引伸出两个问题</p> <h4><a id="_28" rel="nofollow"></a>何时合并切片，即切片什么时候传输完成？如何合并切片？</h4> <p>第一个问题需要前端进行配合，前端在每个切片中都携带切片最大数量的信息，当服务端接受到这个数量的切片时自动合并，也可以额外发一个请求主动通知服务端进行切片的合并</p> <p>第二个问题，具体如何合并切片呢？这里可以使用 nodejs 的 api fs.appendFileSync，它可以同步地将数据追加到指定文件，也就是说，当服务端接受到所有切片后，先创建一个最终的文件，然后将所有切片逐步合并到这个文件中</p> <p>talk is cheap,show me the code，接着我们用代码实现上面的思路</p> <h3><a id="_35" rel="nofollow"></a>前端部分</h3> <p>前端使用 Vue 作为开发框架，对界面没有太大要求，原生也可以，考虑到美观使用 element-ui 作为 UI 框架</p> <h4><a id="_38" rel="nofollow"></a>上传控件</h4> <p>首先创建选择文件的控件，监听 change 事件以及上传按钮</p> <pre><code>&lt;template&gt;    &lt;div&gt;     &lt;input type="file" @change="handleFileChange" /&gt;     &lt;el-button @click="handleUpload"&gt;上传&lt;/el-button&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {   data: () =&gt; ({     container: {       file: null     }   }),   methods: {     async handleFileChange(e) {       const <div class="down"><a class="d-popup" title="下载链接" href="#button_file"><i class="be be-download"></i>下载地址</a><div class="clear"></div></div> = e.target.files;       if (!file) return;       Object.assign(this.$data, this.$options.data());       this.container.file = file;     },     async handleUpload() {}   } }; &lt;/script&gt;\</code></pre> <h4><a id="_69" rel="nofollow"></a>请求逻辑</h4> <p>考虑到通用性，这里没有用第三方的请求库，而是用原生 XMLHttpRequest 做一层简单的封装来发请求</p> <pre><code>request({       url,       method = "post",       data,       headers = {},       requestList     }) {       return new Promise(resolve =&gt; {         const xhr = new XMLHttpRequest();         xhr.open(method, url);         Object.keys(headers).forEach(key =&gt;           xhr.setRequestHeader(key, headers[key])         );         xhr.send(data);         xhr.onload = e =&gt; {           resolve({             data: e.target.response           });         };       });     }</code></pre> <h4><a id="_95" rel="nofollow"></a>上传切片</h4> <p>接着实现比较重要的上传功能，上传需要做两件事</p> <h4><a id="_98" rel="nofollow"></a>对文件进行切片</h4> <p>将切片传输给服务端</p> <pre><code class="prism language-<template>">  &lt;div&gt;     &lt;input type="file" @change="handleFileChange" /&gt;     &lt;el-button @click="handleUpload"&gt;上传&lt;/el-button&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; const LENGTH = 10; // 切片数量  export default {   data: () =&gt; ({     container: {       file: null,     data: []     }   }),   methods: {     request() {},     async handleFileChange() {},    // 生成文件切片    createFileChunk(file, length = LENGTH) {      const fileChunkList = [];      const chunkSize = Math.ceil(file.size / length);      let cur = 0;      while (cur &lt; file.size) {        fileChunkList.push({ file: file.slice(cur, cur chunkSize) });        cur += chunkSize;      }      return fileChunkList;    },   // 上传切片    async uploadChunks() {      const requestList = this.data        .map(({ chunk }) =&gt; {          const formData = new FormData();          formData.append("chunk", chunk); +					 formData.append("hash", hash);          formData.append("filename", this.container.file.name);          return { formData };        })        .map(async ({ formData }) =&gt;          this.request({            url: "http://localhost:3000",            data: formData          })        );      await Promise.all(requestList); // 并发切片    },    async handleUpload() {      if (!this.container.file) return;      const fileChunkList = this.createFileChunk(this.container.file);      this.data = fileChunkList.map(({ file }，index) =&gt; ({        chunk: file,        hash: this.container.file.name "-" index // 文件名 数组下标      }));      await this.uploadChunks();    }   } }; &lt;/script&gt;</code></pre> <p>当点击上传按钮时，调用 createFileChunk 将文件切片，切片数量通过一个常量 Length 控制，这里设置为 10，即将文件分成 10 个切片上传</p> <p>createFileChunk 内使用 while 循环和 slice 方法将切片放入 fileChunkList 数组中返回</p> <p>在生成文件切片时，需要给每个切片一个标识作为 hash，这里暂时使用文件名 下标，这样后端可以知道当前切片是第几个切片，由于之后的合并切片</p> <p>随后调用 uploadChunks 上传所有的文件切片，将文件切片，切片 hash，以及文件名放入 FormData 中，再调用上一步的 request 函数返回一个 proimise，最后调用 Promise.all 并发上传所有的切片</p> <h4><a id="></a>发送合并请求</h4> <p>这里使用整体思路中提到的第二种合并切片的方式，即前端主动通知服务端进行合并，所以前端还需要额外发请求，服务端接受到这个请求时主动合并切片</p> <pre><code class="prism language-<template>">  &lt;div&gt;     &lt;input type="file" @change="handleFileChange" /&gt;     &lt;el-button @click="handleUpload"&gt;上传&lt;/el-button&gt;   &lt;/div&gt; &lt;/template&gt;  &lt;script&gt; export default {   data: () =&gt; ({     container: {       file: null     },     data: []   }),   methods: {     request() {},     async handleFileChange() {},     createFileChunk() {},     // 上传切片，同时过滤已上传的切片     async uploadChunks() {       const requestList = this.data         .map(({ chunk }) =&gt; {           const formData = new FormData();           formData.append("chunk", chunk);           formData.append("hash", hash);           formData.append("filename", this.container.file.name);           return { formData };         })         .map(async ({ formData }) =&gt;           this.request({             url: "http://localhost:3000",             data: formData           })         );       await Promise.all(requestList);      // 合并切片     await this.mergeRequest();     },    async mergeRequest() {      await this.request({        url: "http://localhost:3000/merge",        headers: {          "content-type": "application/json"        },        data: JSON.stringify({          filename: this.container.file.name        })      });    },         async handleUpload() {}   } }; &lt;/script&gt;``` ### 服务端部分 简单使用 http 模块搭建服务端  ```const http = require("http"); const server = http.createServer();  server.on("request", async (req, res) =&gt; {   res.setHeader("Access-Control-Allow-Origin", "*");   res.setHeader("Access-Control-Allow-Headers", "*");   if (req.method === "OPTIONS") {     res.status = 200;     res.end();     return;   } });  server.listen(3000, () =&gt; console.log("正在监听 3000 端口"));</code></pre> <h4><a id="></a>接受切片</h4> <p>使用 multiparty 包处理前端传来的 FormData</p> <p>在 multiparty.parse 的回调中，files 参数保存了 FormData 中文件，fields 参数保存了 FormData 中非文件的字段</p> <pre><code>const http = require("http"); const path = require("path"); const fse = require("fs-extra"); const multiparty = require("multiparty");  const server = http.createServer(); const UPLOAD_DIR = path.resolve(__dirname, "..", "target"); // 大文件存储目录  server.on("request", async (req, res) =&gt; {   res.setHeader("Access-Control-Allow-Origin", "*");   res.setHeader("Access-Control-Allow-Headers", "*");   if (req.method === "OPTIONS") {     res.status = 200;     res.end();     return;   }   const multipart = new multiparty.Form();   multipart.parse(req, async (err, fields, files) =&gt; {    if (err) {      return;    }    const [chunk] = files.chunk;    const [hash] = fields.hash;    const [filename] = fields.filename;    const chunkDir = `${UPLOAD_DIR}/${filename}`;    // 切片目录不存在，创建切片目录    if (!fse.existsSync(chunkDir)) {      await fse.mkdirs(chunkDir);    }     // 重命名文件    await fse.rename(chunk.path, `${chunkDir}/${hash}`);    res.end("received file chunk");  }); });  server.listen(3000, () =&gt; console.log("正在监听 3000 端口"));</code></pre> <p>查看 multiparty 处理后的 chunk 对象，path 是存储临时文件的路径，size 是临时文件大小，在 multiparty 文档中提到可以使用 fs.rename 重命名的方式移动临时文件，也就是文件切片</p> <p>在接受文件切片时，需要先创建存储切片的文件夹，由于前端在发送每个切片时额外携带了唯一值 hash，所以以 hash 作为文件名，将切片从临时路径移动切片文件夹中，最后的结果如下</p> <h4><a id="_297" rel="nofollow"></a>合并切片</h4> <p>在接收到前端发送的合并请求后，服务端将文件夹下的所有切片进行合并</p> <pre><code>const http = require("http"); const path = require("path"); const fse = require("fs-extra");  const server = http.createServer(); const UPLOAD_DIR = path.resolve(__dirname, "..", "target"); // 大文件存储目录  const resolvePost = req =&gt;   new Promise(resolve =&gt; {     let chunk = "";     req.on("data", data =&gt; {       chunk += data;     });     req.on("end", () =&gt; {       resolve(JSON.parse(chunk));     });   });  // 合并切片 const mergeFileChunk = async (filePath, filename) =&gt; {   const chunkDir = `${UPLOAD_DIR}/${filename}`;   const chunkPaths = await fse.readdir(chunkDir);   await fse.writeFile(filePath, "");   chunkPaths.forEach(chunkPath =&gt; {     fse.appendFileSync(filePath, fse.readFileSync(`${chunkDir}/${chunkPath}`));     fse.unlinkSync(`${chunkDir}/${chunkPath}`);   });   fse.rmdirSync(chunkDir); // 合并后删除保存切片的目录 };  server.on("request", async (req, res) =&gt; {   res.setHeader("Access-Control-Allow-Origin", "*");   res.setHeader("Access-Control-Allow-Headers", "*");   if (req.method === "OPTIONS") {     res.status = 200;     res.end();     return;   }    if (req.url === "/merge") {     const data = await resolvePost(req);     const { filename } = data;     const filePath = `${UPLOAD_DIR}/${filename}`;     await mergeFileChunk(filePath, filename);     res.end(       JSON.stringify({         code: 0,         message: "file merged success"       })     );   }  });  server.listen(3000, () =&gt; console.log("正在监听 3000 端口"));</code></pre> <p>由于前端在发送合并请求时会携带文件名，服务端根据文件名可以找到上一步创建的切片文件夹</p> <p>接着使用 fs.writeFileSync 先创建一个空文件，这个空文件的文件名就是切片文件夹名 后缀名组合而成，随后通过 fs.appendFileSync 从切片文件夹中不断将切片合并到空文件中，每次合并完成后删除这个切片，等所有切片都合并完毕后最后删除切片文件夹</p> <p>至此一个简单的大文件上传就完成了，接下来我们再此基础上扩展一些额外的功能</p> <p>显示上传进度条<br /> 上传进度分两种，一个是每个切片的上传进度，另一个是整个文件的上传进度，而整个文件的上传进度是基于每个切片上传进度计算而来，所以我们先实现切片的上传进度</p> <h4><a id="_366" rel="nofollow"></a>切片进度条</h4> <p>XMLHttpRequest 原生支持上传进度的监听，只需要监听 upload.onprogress 即可，我们在原来的 request 基础上传入 onProgress 参数，给 XMLHttpRequest 注册监听事件</p> <pre><code>// xhr    request({      url,      method = "post",      data,      headers = {},     onProgress = e =&gt; e,      requestList    }) {      return new Promise(resolve =&gt; {        const xhr = new XMLHttpRequest();       xhr.upload.onprogress = onProgress;        xhr.open(method, url);        Object.keys(headers).forEach(key =&gt;          xhr.setRequestHeader(key, headers[key])        );        xhr.send(data);        xhr.onload = e =&gt; {          resolve({            data: e.target.response          });        };      });    }</code></pre> <p>由于每个切片都需要触发独立的监听事件，所以还需要一个工厂函数，根据传入的切片返回不同的监听函数</p> <p>在原先的前端上传逻辑中新增监听函数部分</p> <pre><code>// 上传切片，同时过滤已上传的切片     async uploadChunks(uploadedList = []) {       const requestList = this.data         .map(({ chunk }) =&gt; {           const formData = new FormData();           formData.append("chunk", chunk);           formData.append("filename", this.container.file.name);           return { formData };         })         .map(async ({ formData }) =&gt;           this.request({             url: "http://localhost:3000",             data: formData，           onProgress: this.createProgressHandler(this.data[index]),           })         );       await Promise.all(requestList);        // 合并切片       await this.mergeRequest();     },     async handleUpload() {       if (!this.container.file) return;       const fileChunkList = this.createFileChunk(this.container.file);       this.data = fileChunkList.map(({ file }，index) =&gt; ({         chunk: file,       index,         hash: this.container.file.name "-" index       percentage:0       }));       await this.uploadChunks();     }       createProgressHandler(item) {      return e =&gt; {        item.percentage = parseInt(String((e.loaded / e.total) * 100));      };    }</code></pre> <p>每个切片在上传时都会通过监听函数更新 data 数组对应元素的 percentage 属性，之后把将 data 数组放到视图中展示即可</p> <p>文件进度条<br /> 将每个切片已上传的部分累加，除以整个文件的大小，就能得出当前文件的上传进度，所以这里使用 Vue 计算属性</p> <pre><code>computed: {        uploadPercentage() {           if (!this.container.file || !this.data.length) return 0;           const loaded = this.data             .map(item =&gt; item.size * item.percentage)             .reduce((acc, cur) =&gt; acc cur);           return parseInt((loaded / this.container.file.size).toFixed(2));         }  }</code></pre> <h3><a id="_453" rel="nofollow"></a>最终视图如下</h3> <h4><a id="_455" rel="nofollow"></a>断点续传</h4> <p>断点续传的原理在于前端/服务端需要记住已上传的切片，这样下次上传就可以跳过之前已上传的部分，有两种方案实现记忆的功能</p> <h4><a id="_localStorage__hash_458" rel="nofollow"></a>前端使用 localStorage 记录已上传的切片 hash</h4> <p>服务端保存已上传的切片 hash，前端每次上传前向服务端获取已上传的切片<br /> 第一种是前端的解决方案，第二种是服务端，而前端方案有一个缺陷，如果换了个浏览器就失去了记忆的效果，所以这里选取后者</p> <h4><a id="_hash_462" rel="nofollow"></a>生成 hash</h4> <p>无论是前端还是服务端，都必须要生成文件和切片的 hash，之前我们使用文件名 切片下标作为切片 hash，这样做文件名一旦修改就失去了效果，而事实上只要文件内容不变，hash 就不应该变化，所以正确的做法是根据文件内容生成 hash，所以我们修改一下 hash 的生成规则</p> <p>这里用到另一个库 spark-md5，它可以根据文件内容计算出文件的 hash 值，另外考虑到如果上传一个超大文件，读取文件内容计算 hash 是非常耗费时间的，并且会引起 UI 的阻塞，导致页面假死状态，所以我们使用 web-worker 在 worker 线程计算 hash，这样用户仍可以在主界面正常的交互</p> <p>由于实例化 web-worker 时，参数是一个 js 文件路径且不能跨域，所以我们单独创建一个 hash.js 文件放在 public 目录下，另外在 worker 中也是不允许访问 dom 的，但它提供了importScripts 函数用于导入外部脚本，通过它导入 spark-md5</p> <pre><code>// /public/hash.js self.importScripts("/spark-md5.min.js"); // 导入脚本  // 生成文件 hash self.onmessage = e =&gt; {   const { fileChunkList } = e.data;   const spark = new self.SparkMD5.ArrayBuffer();   let percentage = 0;   let count = 0;   const loadNext = index =&gt; {     const reader = new FileReader();     reader.readAsArrayBuffer(fileChunkList[index].file);     reader.onload = e =&gt; {       count++;       spark.append(e.target.result);       if (count === fileChunkList.length) {         self.postMessage({           percentage: 100,           hash: spark.end()         });         self.close();       } else {         percentage += 100 / fileChunkList.length;         self.postMessage({           percentage         });         // 递归计算下一个切片         loadNext(count);       }     };   };   loadNext(0); };</code></pre> <p>在 worker 线程中，接受文件切片 fileChunkList，利用 FileReader 读取每个切片的 ArrayBuffer 并不断传入 spark-md5 中，每计算完一个切片通过 postMessage 向主线程发送一个进度事件，全部完成后将最终的 hash 发送给主线程</p> <p>spark-md5 需要根据所有切片才能算出一个 hash 值，不能直接将整个文件放入计算，否则即使不同文件也会有相同的 hash，具体可以看官方文档</p> <p>spark-md5</p> <p>接着编写主线程与 worker 线程通讯的逻辑</p> <pre><code>//生成文件 hash（web-worker）    calculateHash(fileChunkList) {      return new Promise(resolve =&gt; {       // 添加 worker 属性        this.container.worker = new Worker("/hash.js");        this.container.worker.postMessage({ fileChunkList });        this.container.worker.onmessage = e =&gt; {          const { percentage, hash } = e.data;          this.hashPercentage = percentage;          if (hash) {            resolve(hash);          }        };      });     },     async handleUpload() {       if (!this.container.file) return;       const fileChunkList = this.createFileChunk(this.container.file);     this.container.hash = await this.calculateHash(fileChunkList);       this.data = fileChunkList.map(({ file }，index) =&gt; ({       fileHash: this.container.hash,         chunk: file,         hash: this.container.file.name "-" index, // 文件名 数组下标         percentage:0       }));       await this.uploadChunks();     }</code></pre> <p>主线程使用 postMessage 给 worker 线程传入所有切片 fileChunkList，并监听 worker 线程发出的 postMessage 事件拿到文件 hash</p> <p>加上显示计算 hash 的进度条，看起来像这样</p> <p>至此前端需要将之前用文件名作为 hash 的地方改写为 workder 返回的这个 hash</p> <p>服务端则使用 hash 作为切片文件夹名，hash 下标作为切片名，hash 扩展名作为文件名，没有新增的逻辑</p> <h3><a id="_549" rel="nofollow"></a>文件秒传</h3> <p>在实现断点续传前先简单介绍一下文件秒传</p> <p>所谓的文件秒传，即在服务端已经存在了上传的资源，所以当用户再次上传时会直接提示上传成功</p> <p>文件秒传需要依赖上一步生成的 hash，即在上传前，先计算出文件 hash，并把 hash 发送给服务端进行验证，由于 hash 的唯一性，所以一旦服务端能找到 hash 相同的文件，则直接返回上传成功的信息即可</p> <pre><code> async verifyUpload(filename, fileHash) {       const { data } = await this.request({         url: "http://localhost:3000/verify",         headers: {           "content-type": "application/json"         },         data: JSON.stringify({           filename,           fileHash         })       });       return JSON.parse(data);     },    async handleUpload() {       if (!this.container.file) return;       const fileChunkList = this.createFileChunk(this.container.file);       this.container.hash = await this.calculateHash(fileChunkList);     const { shouldUpload } = await this.verifyUpload(       this.container.file.name,       this.container.hash     );     if (!shouldUpload) {       this.$message.success("秒传：上传成功");       return;    }      this.data = fileChunkList.map(({ file }, index) =&gt; ({         fileHash: this.container.hash,         index,         hash: this.container.hash "-" index,         chunk: file,         percentage: 0       }));       await this.uploadChunks();     }</code></pre> <p>秒传其实就是给用户看的障眼法，实质上根本没有上传</p> <p>服务端的逻辑非常简单，新增一个验证接口，验证文件是否存在即可</p> <pre><code>const extractExt = filename =&gt;  filename.slice(filename.lastIndexOf("."), filename.length); // 提取后缀名 const UPLOAD_DIR = path.resolve(__dirname, "..", "target"); // 大文件存储目录  const resolvePost = req =&gt;   new Promise(resolve =&gt; {     let chunk = "";     req.on("data", data =&gt; {       chunk += data;     });     req.on("end", () =&gt; {       resolve(JSON.parse(chunk));     });   });  server.on("request", async (req, res) =&gt; {   if (req.url === "/verify") {    const data = await resolvePost(req);    const { fileHash, filename } = data;    const ext = extractExt(filename);    const filePath = `${UPLOAD_DIR}/${fileHash}${ext}`;    if (fse.existsSync(filePath)) {      res.end(        JSON.stringify({          shouldUpload: false        })      );    } else {      res.end(        JSON.stringify({          shouldUpload: true        })      );    }   } }); server.listen(3000, () =&gt; console.log("正在监听 3000 端口"));</code></pre> <p>暂停上传<br /> 讲完了生成 hash 和文件秒传，回到断点续传</p> <p>断点续传顾名思义即断点 续传，所以我们第一步先实现“断点”，也就是暂停上传</p> <p>原理是使用 XMLHttpRequest 的 abort 方法，可以取消一个 xhr 请求的发送，为此我们需要将上传每个切片的 xhr 对象保存起来，我们再改造一下 request 方法</p> <pre><code>request({    url,    method = "post",    data,    headers = {},    onProgress = e =&gt; e,  requestList  }) {    return new Promise(resolve =&gt; {      const xhr = new XMLHttpRequest();      xhr.upload.onprogress = onProgress;      xhr.open(method, url);      Object.keys(headers).forEach(key =&gt;        xhr.setRequestHeader(key, headers[key])      );      xhr.send(data);      xhr.onload = e =&gt; {       // 将请求成功的 xhr 从列表中删除       if (requestList) {         const xhrIndex = requestList.findIndex(item =&gt; item === xhr);         requestList.splice(xhrIndex, 1);       }        resolve({          data: e.target.response        });      };     // 暴露当前 xhr 给外部     requestList?.push(xhr);    });  },</code></pre> <p>这样在上传切片时传入 requestList 数组作为参数，request 方法就会将所有的 xhr 保存在数组中了</p> <p>每当一个切片上传成功时，将对应的 xhr 从 requestList 中删除，所以 requestList 中只保存正在上传切片的 xhr</p> <p>之后新建一个暂停按钮，当点击按钮时，调用保存在 requestList 中 xhr 的 abort 方法，即取消并清空所有正在上传的切片</p> <pre><code>handlePause() {     this.requestList.forEach(xhr =&gt; xhr?.abort());     this.requestList = []; }</code></pre> <p>点击暂停按钮可以看到 xhr 都被取消了</p> <p>恢复上传<br /> 之前在介绍断点续传的时提到使用第二种服务端存储的方式实现续传</p> <p>由于当文件切片上传后，服务端会建立一个文件夹存储所有上传的切片，所以每次前端上传前可以调用一个接口，服务端将已上传的切片的切片名返回，前端再跳过这些已经上传切片，这样就实现了“续传”的效果</p> <p>而这个接口可以和之前秒传的验证接口合并，前端每次上传前发送一个验证的请求，返回两种结果</p> <p>服务端已存在该文件，不需要再次上传<br /> 服务端不存在该文件或者已上传部分文件切片，通知前端进行上传，并把已上传的文件切片返回给前端<br /> 所以我们改造一下之前文件秒传的服务端验证接口</p> <pre><code>const extractExt = filename =&gt;   filename.slice(filename.lastIndexOf("."), filename.length); // 提取后缀名 const UPLOAD_DIR = path.resolve(__dirname, "..", "target"); // 大文件存储目录  const resolvePost = req =&gt;   new Promise(resolve =&gt; {     let chunk = "";     req.on("data", data =&gt; {       chunk += data;     });     req.on("end", () =&gt; {       resolve(JSON.parse(chunk));     });   });   // 返回已经上传切片名列表 const createUploadedList = async fileHash =&gt;   fse.existsSync(`${UPLOAD_DIR}/${fileHash}`)    ? await fse.readdir(`${UPLOAD_DIR}/${fileHash}`)    : [];  server.on("request", async (req, res) =&gt; {   if (req.url === "/verify") {     const data = await resolvePost(req);     const { fileHash, filename } = data;     const ext = extractExt(filename);     const filePath = `${UPLOAD_DIR}/${fileHash}${ext}`;     if (fse.existsSync(filePath)) {       res.end(         JSON.stringify({           shouldUpload: false         })       );     } else {       res.end(         JSON.stringify({           shouldUpload: true，         uploadedList: await createUploadedList(fileHash)         })       );     }   } }); server.listen(3000, () =&gt; console.log("正在监听 3000 端口"));</code></pre> <p>接着回到前端，前端有两个地方需要调用验证的接口</p> <p>点击上传时，检查是否需要上传和已上传的切片<br /> 点击暂停后的恢复上传，返回已上传的切片<br /> 新增恢复按钮并改造原来上传切片的逻辑</p> <pre><code>&lt;template&gt;   &lt;div id="app"&gt;       &lt;input         type="file"         @change="handleFileChange"       /&gt;        &lt;el-button @click="handleUpload"&gt;上传&lt;/el-button&gt;        &lt;el-button @click="handlePause" v-if="isPaused"&gt;暂停&lt;/el-button&gt;      &lt;el-button @click="handleResume" v-else&gt;恢复&lt;/el-button&gt;       //...     &lt;/div&gt; &lt;/template&gt;    async handleResume() {      const { uploadedList } = await this.verifyUpload(        this.container.file.name,        this.container.hash      );      await this.uploadChunks(uploadedList);     },     async handleUpload() {       if (!this.container.file) return;       const fileChunkList = this.createFileChunk(this.container.file);       this.container.hash = await this.calculateHash(fileChunkList);      const { shouldUpload, uploadedList } = await this.verifyUpload(         this.container.file.name,         this.container.hash       );       if (!shouldUpload) {         this.$message.success("秒传：上传成功");         return;       }        this.data = fileChunkList.map(({ file }, index) =&gt; ({         fileHash: this.container.hash,         index,         hash: this.container.hash "-" index,         chunk: file，         percentage: 0       }));       await this.uploadChunks(uploadedList);     },    // 上传切片，同时过滤已上传的切片   async uploadChunks(uploadedList = []) {       const requestList = this.data        .filter(({ hash }) =&gt; !uploadedList.includes(hash))         .map(({ chunk, hash, index }) =&gt; {           const formData = new FormData();           formData.append("chunk", chunk);           formData.append("hash", hash);           formData.append("filename", this.container.file.name);           formData.append("fileHash", this.container.hash);           return { formData, index };         })         .map(async ({ formData, index }) =&gt;           this.request({             url: "http://localhost:3000",             data: formData,             onProgress: this.createProgressHandler(this.data[index]),             requestList: this.requestList           })         );       await Promise.all(requestList);       // 之前上传的切片数量 本次上传的切片数量 = 所有切片数量时       // 合并切片      if (uploadedList.length requestList.length === this.data.length) {          await this.mergeRequest();      }     }</code></pre> <p>这里给原来上传切片的函数新增 uploadedList 参数，即上图中服务端返回的切片名列表，通过 filter 过滤掉已上传的切片，并且由于新增了已上传的部分，所以之前合并接口的触发条件做了一些改动</p> <p>到这里断点续传的功能基本完成了</p> <p>进度条改进<br /> 虽然实现了断点续传，但还需要修改一下进度条的显示规则，否则在暂停上传/接收到已上传切片时的进度条会出现偏差</p> <p>切片进度条<br /> 由于在点击上传/恢复上传时，会调用验证接口返回已上传的切片，所以需要将已上传切片的进度变成 100%</p> <pre><code>async handleUpload() {       if (!this.container.file) return;       const fileChunkList = this.createFileChunk(this.container.file);       this.container.hash = await this.calculateHash(fileChunkList);       const { shouldUpload, uploadedList } = await this.verifyUpload(         this.container.file.name,         this.container.hash       );       if (!shouldUpload) {         this.$message.success("秒传：上传成功");         return;       }       this.data = fileChunkList.map(({ file }, index) =&gt; ({         fileHash: this.container.hash,         index,         hash: this.container.hash "-" index,         chunk: file,       percentage: uploadedList.includes(index) ? 100 : 0       }));       await this.uploadChunks(uploadedList);     },</code></pre> <p>uploadedList 会返回已上传的切片，在遍历所有切片时判断当前切片是否在已上传列表里即可</p> <p>文件进度条<br /> 之前说到文件进度条是一个计算属性，根据所有切片的上传进度计算而来，这就遇到了一个问题</p> <p>点击暂停会取消并清空切片的 xhr 请求，此时如果已经上传了一部分，就会发现文件进度条有倒退的现象</p> <p>当点击恢复时，由于重新创建了 xhr 导致切片进度清零，所以总进度条就会倒退</p> <p>此时需要创建一个“假”的进度条，这个假进度条基于文件进度条，但只会停止和增加，然后给用户展示这个假的进度条</p> <p>这里我们使用 Vue 的监听属性</p> <pre><code>data: () =&gt; ({  fakeUploadPercentage: 0 }), computed: {   uploadPercentage() {     if (!this.container.file || !this.data.length) return 0;     const loaded = this.data       .map(item =&gt; item.size * item.percentage)       .reduce((acc, cur) =&gt; acc cur);     return parseInt((loaded / this.container.file.size).toFixed(2));   } },   watch: {  uploadPercentage(now) {    if (now &gt; this.fakeUploadPercentage) {      this.fakeUploadPercentage = now;    }   } },</code></pre> <p>当 uploadPercentage 即真的文件进度条增加时，fakeUploadPercentage 也增加，一旦文件进度条后退，假的进度条只需停止即可</p> <p>至此一个大文件上传 断点续传的解决方案就完成了</p> <h3><a id="_895" rel="nofollow"></a>总结</h3> <h4><a id="_896" rel="nofollow"></a>大文件上传</h4> <p>前端上传大文件时使用 Blob.prototype.slice 将文件切片，并发上传多个切片，最后发送一个合并的请求通知服务端合并切片<br /> 服务端接收切片并存储，收到合并请求后使用 fs.appendFileSync 对多个切片进行合并<br /> 原生 XMLHttpRequest 的 upload.onprogress 对切片上传进度的监听<br /> 使用 Vue 计算属性根据每个切片的进度算出整个文件的上传进度</p> <h4><a id="_902" rel="nofollow"></a>断点续传</h4> <p>使用 spart-md5 根据文件内容算出文件 hash<br /> 通过 hash 可以判断服务端是否已经上传该文件，从而直接提示用户上传成功（秒传）<br /> 通过 XMLHttpRequest 的 abort 方法暂停切片的上传<br /> 上传前服务端返回已经上传的切片名，前端跳过这些切片的上传</p> <h4><a id="_908" rel="nofollow"></a>源代码</h4> <p>源代码增加了一些按钮的状态，交互更加友好，文章表达比较晦涩的地方可以跳转到源代码查看</p> <p>file-upload</p> <p>谢谢观看 ????</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-46737.htm">怎么开宠物店需要些什么（怎么何能开一家宠物店）</a></p>
+                                        <p>下一个：<a href="/news/article-47217.htm">沈阳芭比娃娃专柜（沈阳哪里卖芭比娃娃的专卖店）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-clash-verge-rev-node.htm" title="「12月7日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月7日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-25506.htm" title="宠物粮厂得投资多少钱啊知乎文章（宠物粮食加工厂）">宠物粮厂得投资多少钱啊知乎文章（宠物粮食加工厂）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-node-share-links.htm" title="「11月5日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月5日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-7-free-clash-verge-rev-node.htm" title="「10月7日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月7日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-23-free-clash-verge-rev-node.htm" title="「10月23日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月23日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-9-clash-verge-rev-nodes.htm" title="「11月9日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月9日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-23-node-share-links.htm" title="「12月23日」最高速度23M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月23日」最高速度23M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-clash-verge-rev-windows.htm" title="「10月9日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月9日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-clash-verge-rev-node.htm" title="「11月21日」最高速度19M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月21日」最高速度19M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-35794.htm" title="自制宠物零食赚钱吗（自制宠物零食卖违法吗）">自制宠物零食赚钱吗（自制宠物零食卖违法吗）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

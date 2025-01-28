@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-46248.htm" />
+    <title>如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行</title>
+        <meta name="description" content="1、 首先打开Project Structure  2、打开 Artifacts， 选择Output directory war包输出路径  3、打开Maven Project,然后在Lifecycl" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-46248.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/b921c0e7867a36a20084577a8a0c86be.webp" />
+        <meta property="og:release_date" content="2025-01-26T09:57:42" />
+    <meta property="og:updated_time" content="2025-01-26T09:57:42" />
+        <meta property="og:description" content="1、 首先打开Project Structure  2、打开 Artifacts， 选择Output directory war包输出路径  3、打开Maven Project,然后在Lifecycl" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>1、 首先打开Project Structure</p> <p><img fetchpriority="high" decoding="async" alt="" height="464" src="http://img.555519.xyz/uploads3/20220603/254a5807d37e6775b99d5b6b1f3deb32.jpg"></p> <p>2、打开 Artifacts， 选择Output directory war包输出路径</p> <p><img decoding="async" alt="" height="301" src="http://img.555519.xyz/uploads3/20220603/1309a6c338f17d38ebd8d8a6ef5b5b50.jpg"></p> <p>3、打开Maven Project,然后在Lifecycle中，依次点击clean清空旧的target，再点击compile重新编译最新的代码，最后点击package打包代码。看到日志打包完成后就会在上面Output directory指定目录下找到打包好的war包了。</p> <p><img decoding="async" alt="" height="408" src="http://img.555519.xyz/uploads3/20220603/9164ccbfdcd9cf7282b95e0bdedff902.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="372" src="http://img.555519.xyz/uploads3/20220603/92b12b5f38be0f33b53de4028ef79127.jpg"></p> <p>注意：如果编译的时候出现错误代码里面版本不符合的问题</p> <p><img loading="lazy" decoding="async" alt="" height="65" src="http://img.555519.xyz/uploads3/20220603/d6e69a3b989fbcd3ef6be5b524dcd1ea.jpg"></p> <p>可以打开Project Structure --》&nbsp; Modules 将 language level 调到合适的版本，我的环境调到8就可以了，后面重新编译就没问题了。</p> <p><img loading="lazy" decoding="async" alt="" height="338" src="http://img.555519.xyz/uploads3/20220603/4ef4e971afdf0ddb5e9214ff2655f9d6.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="656" src="http://img.555519.xyz/uploads3/20220603/62d1bdfe583e0eb2439bc403bc6d5504.jpg"></p> <p>4、打war包成功后，到Output directory的目录下就可以看到对应的war包了。</p> <p><img loading="lazy" decoding="async" alt="" height="234" src="http://img.555519.xyz/uploads3/20220603/2e732da56901ddb0d651f2c5726305f8.jpg"></p> <p>5、打包成功后，将war包放到tomacat服务器的<strong>webapps</strong>文件加下，然后解压，再去bin下面打开服务器，通过双击<strong>startup.bat，</strong>至此就可以通过localhost:8080/order/index.jsp。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-45757.htm">收狗狗的平台哪个好（收狗狗的平台哪个好一点）</a></p>
+                                        <p>下一个：<a href="/news/article-46249.htm">宠物粮食加工厂设备哪的好一点呢知乎 宠物粮食加工厂设备哪的好一点呢知乎</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-45757.htm" title="收狗狗的平台哪个好（收狗狗的平台哪个好一点）">收狗狗的平台哪个好（收狗狗的平台哪个好一点）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-high-speed-nodes.htm" title="「11月17日」最高速度21.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月17日」最高速度21.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-4-clash-verge-rev-node-github.htm" title="「1月4日」最高速度18.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月4日」最高速度18.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-44757.htm" title="宠物粮行业分析报告模板 宠物粮行业分析报告模板范文">宠物粮行业分析报告模板 宠物粮行业分析报告模板范文</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-clash-verge-rev-nodes.htm" title="「12月22日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月22日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-22-free-node-subscribe-links.htm" title="「1月22日」最高速度18.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月22日」最高速度18.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26898.htm" title="动物医院价格公示法律规定 动物医院价格公示法律规定最新">动物医院价格公示法律规定 动物医院价格公示法律规定最新</a></li>
+                        <li class="py-2"><a href="/news/article-45756.htm" title="Apache Kafka消息传递可靠性分析">Apache Kafka消息传递可靠性分析</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-18-node-share.htm" title="「1月18日」最高速度18.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月18日」最高速度18.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-40292.htm" title="制定动物防疫计划的意义是什么（制定动物防疫法的目的）">制定动物防疫计划的意义是什么（制定动物防疫法的目的）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

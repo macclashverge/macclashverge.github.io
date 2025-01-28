@@ -1,4 +1,4 @@
-# 「1月25日」最高速度20.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接  更新时间 2025-01-25 10:06:57
+# 「1月28日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接  更新时间 2025-01-28 09:48:15
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://macclashverge.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### Clash订阅链接
 
-- https://macclashverge.github.io/uploads/2025/01/0-20250125.yaml
-- https://macclashverge.github.io/uploads/2025/01/1-20250125.yaml
-- https://macclashverge.github.io/uploads/2025/01/2-20250125.yaml
-- https://macclashverge.github.io/uploads/2025/01/3-20250125.yaml
-- https://macclashverge.github.io/uploads/2025/01/4-20250125.yaml
+- https://macclashverge.github.io/uploads/2025/01/0-20250128.yaml
+- https://macclashverge.github.io/uploads/2025/01/1-20250128.yaml
+- https://macclashverge.github.io/uploads/2025/01/2-20250128.yaml
+- https://macclashverge.github.io/uploads/2025/01/3-20250128.yaml
+- https://macclashverge.github.io/uploads/2025/01/4-20250128.yaml
 
 ### V2ray订阅链接
 
-- https://macclashverge.github.io/uploads/2025/01/0-20250125.txt
-- https://macclashverge.github.io/uploads/2025/01/1-20250125.txt
-- https://macclashverge.github.io/uploads/2025/01/2-20250125.txt
-- https://macclashverge.github.io/uploads/2025/01/3-20250125.txt
-- https://macclashverge.github.io/uploads/2025/01/4-20250125.txt
+- https://macclashverge.github.io/uploads/2025/01/0-20250128.txt
+- https://macclashverge.github.io/uploads/2025/01/1-20250128.txt
+- https://macclashverge.github.io/uploads/2025/01/2-20250128.txt
+- https://macclashverge.github.io/uploads/2025/01/3-20250128.txt
+- https://macclashverge.github.io/uploads/2025/01/4-20250128.txt
 
 ### Sing-box订阅链接
 
-- https://macclashverge.github.io/uploads/2025/01/20250125.json
+- https://macclashverge.github.io/uploads/2025/01/20250128.json
 
 ## 更多clash节点订阅 ：
 
