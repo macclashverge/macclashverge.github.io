@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-49215.htm" />
+    <title>C语言操作符详解</title>
+        <meta name="description" content="欸为巴帝，我我我我我又来了 今天咱不搞虚的，带来一期满满干货 —— C语言操作符详解 从我开始学习编程到现在，操作符一直是个让我头疼的东西，但是，铁子不要害怕，看完我这篇博客就不头疼了！ C语言中的操" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-49215.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="C语言操作符详解" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/a49b75a1c550abaebb2014152162f32f.webp" />
+        <meta property="og:release_date" content="2025-02-01T07:12:28" />
+    <meta property="og:updated_time" content="2025-02-01T07:12:28" />
+        <meta property="og:description" content="欸为巴帝，我我我我我又来了 今天咱不搞虚的，带来一期满满干货 —— C语言操作符详解 从我开始学习编程到现在，操作符一直是个让我头疼的东西，但是，铁子不要害怕，看完我这篇博客就不头疼了！ C语言中的操" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C语言操作符详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">C语言操作符详解</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>欸为巴帝，我我我我我又来了</p> <p>今天咱不搞虚的，带来一期满满干货 —— C语言操作符详解</p> <p>从我开始学习编程到现在，操作符一直是个让我头疼的东西，但是，铁子不要害怕，看完我这篇博客就不头疼了！</p> <p>C语言中的操作符属于C语言的基础部分，俗话说，要想楼房建得高，地基可得打牢。所以咱就反手一个深度剖析操作符~</p> <p>废话不多讲，正文开始 ——</p> <p><strong>1.操作符的分类</strong></p> <p>算数操作符</p> <p>移位操作符</p> <p>位操作符</p> <p>赋值操作符</p> <p>单目操作符</p> <p>关系操作符</p> <p>条件操作符</p> <p>逻辑操作符</p> <p>逗号表达式</p> <p>下标引用、函数调用和结构成员</p> <p>以上就是10类操作符，接下来我们依次展开讲讲</p> <p><strong>2. 算数操作符</strong></p> <blockquote> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%</p> </blockquote> <p>2.1&nbsp; &nbsp; &nbsp; + - 就跟我们平常认识的 + -一个意思</p> <p>2.2&nbsp; &nbsp; &nbsp; &nbsp;* /&nbsp; 其实变化也不大，只是和数学中的 ✖ 和 ➗ 长得不太一样</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是有一点需要注意，在编程时&nbsp; 整数/整数&nbsp; 只能得到整数，是不能得到小数的，要想得到小数，需要对数字进行<span style="color:#4da8ee;">算术转换或者整型提升</span></p> <p><span style="color:#0d0016;">2.3&nbsp; &nbsp; &nbsp; &nbsp; %&nbsp; 就相对特殊一点，是取模，取余数的意思，例如5%3==2，因为&nbsp; &nbsp;5/3=1…2</span></p> <p><span style="color:#0d0016;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;因为&nbsp; % 的使用方法，就限制了它只能用在整数与整数之间，浮点数就不行了</span></p> <p><span style="color:#0d0016;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;还需要注意：正 % 正 ---&gt; 正，如果操作数中至少有一个负数，那么运算结果就取决于编译器了，所以尽量避免出现负数的%</span></p> <p><strong><span style="color:#0d0016;">3.移位操作符</span></strong></p> <blockquote> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&gt;&gt;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&lt;&lt;</p> </blockquote> <p>在讲上面两个符号之前，我们先插入一点辅助知识</p> <p>开始学习编程的时候我们都知道，计算机是只能执行只包含0、1的代码的，我们所编写的程序是要通过编译器进行处理，转换成只包含0、1的计算机语言，计算机才能执行的</p> <p>所以呢，我们先来了解一下整数在内存中的存储方式</p> <p>首先提出原码、反码、补码的3个概念</p> <p>二进制码的最高位为符号位：</p> <p>0&nbsp; &nbsp;-----&gt;&nbsp; &nbsp;正数</p> <p>1&nbsp; &nbsp;-----&gt;&nbsp; &nbsp;负数</p> <p>原码：十进制数直接转换成二进制数，在不同位的计算机中存放不同位数</p> <p>反码：在原码的基础上，符号位不变，剩下的位1变0，0变1</p> <p>补码：在反码的基础上+1</p> <p>移位操作符操作的都是二进制序列</p> <p>整数在内存中存放的是二进制的补码</p> <p>正整数的原码、反码、补码相同，负整数的原码、反码、补码按上述规则变化</p> <p>想要了解更多计算机内存中数据的储存，请移步<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_57864385/article/details/123239764"  title="C语言数据的类型以及在内存中的储存_Joker2373的博客-CSDN博客" rel="nofollow">C语言数据的类型以及在内存中的储存_Joker2373的博客-CSDN博客</a></p> <p>3.1&nbsp; &nbsp; &lt;&lt; 左移操作符</p> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;把一个数的二进制序列向左移动n位，左边的位丢掉，右边补0，有乘以2^n的效果</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; 符号位该丢就丢，不要舍不得</p> <p>3.2&nbsp; &nbsp; &gt;&gt; 右移操作符</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; 右移操作符分为两种：算术右移和逻辑右移&nbsp; (具体为哪种类型由编译器说了算)</p> <p>算数右移：把一个数的二进制序列向右移动n位，右边的位丢掉，左边补原符号位(有除以2的效果，但不总是有)</p> <p>逻辑右移：把一个数的二进制序列向右移动n位，不论原符号位是1还是0，右边的位丢掉，左边补0</p> <p>有一点需注意：无论是左移还是右移，都不允许移动负数位，因为标准未定义</p> <p><strong>4.位操作符</strong></p> <blockquote> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^</p> </blockquote> <p>操作的同样是二进制序列, 位操作符是两目操作符，目就是指操作数</p> <p>4.1&nbsp; &nbsp; &nbsp;&amp;&nbsp; 按位与</p> <blockquote> <p>&nbsp;0 &amp; 0 = 0；&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 &amp; 1 = 0；&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 &amp; 0 = 0；&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 &amp; 1 = 1</p> </blockquote> <p>我们要与&nbsp; &nbsp; &amp;a&nbsp; &nbsp;这样的写法区分开来，虽然字符是同一个，但是意义大不相同，一个是对二进制数按位与，一个是取一个数在内存中的地址，而且，取地址符是单目操作符</p> <p>4.2&nbsp; &nbsp; &nbsp; |&nbsp; 按位或</p> <blockquote> <p>&nbsp;0 | 0 = 0；&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 0 | 1 = 1；&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 | 0 = 1；&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 &amp; 1 = 1</p> </blockquote> <p>4.3&nbsp; &nbsp; &nbsp;^&nbsp; &nbsp;按位异或</p> <blockquote> <p>&nbsp; &nbsp; &nbsp; 0 ^ 0 = 0;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;0 ^ 1 = 1;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1 ^ 0 = 1;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1 ^ 1 = 0;</p> </blockquote> <p>按位异或只能作用于整数,&nbsp;a ^ a = 0; a ^ 0 = a;</p> <p>了解以上三个操作符之后，我们可以利用操作符来解决很多问题，</p> <p>例如：不创建临时变量交换两个数字的值</p> <p>求一个数在内存中中二进制序列中1的个数</p> <p>……（这些可以在各种刷题网站上找到，大家有兴趣可以自己去试试看）</p> <p><strong>5.单目操作符</strong></p> <blockquote> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;！&nbsp; &nbsp; &nbsp; &nbsp; +&nbsp; &nbsp; &nbsp; &nbsp; -&nbsp; &nbsp; &nbsp; &nbsp; &amp;&nbsp; &nbsp; &nbsp; &nbsp; *&nbsp; &nbsp; &nbsp; &nbsp; sizeof()&nbsp; &nbsp; &nbsp; &nbsp; ~&nbsp; &nbsp; &nbsp; &nbsp; ++&nbsp; &nbsp; &nbsp; &nbsp; --&nbsp; &nbsp; &nbsp; &nbsp; (类型)</p> </blockquote> <p>5.1 ！逻辑反</p> <p>可以实现&nbsp; &nbsp; &nbsp; &nbsp;真--&gt;假，假--&gt;真&nbsp; &nbsp; &nbsp; &nbsp; （对于整数来说，0表示假，非0表示真)</p> <p>在C99标准引入之前，没有专门表示真假的变量，在C99之后，引入了bool型变量，包含头文件为</p> <p>&lt;stdbool.h&gt;,定义类型符为 _BOOL, bool. 布尔变量的引入使得表示真假更加纯粹</p> <p>5.2 +&nbsp; &nbsp; -</p> <p>就很简单的操作符，正数前面为+，一般都会省略，负数前面为-</p> <p>5.3 &amp; 取地址操作符&nbsp; &nbsp; &nbsp; &nbsp;*解引用操作符(间接操作符)</p> <p>&nbsp;p = &amp;a, 将变量a的地址取出来存放在p中，只要是对象，在内存中就会占用内存，只要占用内存，就一定有确定的地址</p> <p>*p刚好与&amp;相反，是通过p中存放的地址来找到该地址上放的数据</p> <p>*(&amp;a) ==&gt; a</p> <p>5.4 sizeof()&nbsp; 操作数的类型长度</p> <pre><code>int a = 0; sizeof(a); //4 sizeof(int); //4 sizeof a; //4 sizeof int; //err</code></pre> <p>sizeof()看起来像一个函数，但实际上是一个操作符，因为sizeof()括号内的如果是变量，()是可以省略的，但是()中是类型名，()就不能省略了</p> <p>sizeof()括号中的表达式不参与运算，因为sizeof()在编译期间就被处理了，而表达式要在源程序生成.exe文件时才运行处理</p> <p>5.5 ~ 按位取反（包括符号位）</p> <p>在处理多组输入时我们常用</p> <pre><code>while(~scanf("%d", &amp;a))</code></pre> <p>也因为在输入遇到错误时或者遇到end of file时会返回EOF，EOF定义为-1，在对-1按位取反就会得到0，循环也就不再进行</p> <p>5.6 ++ 自增&nbsp; &nbsp; &nbsp; --自减</p> <p>均分为前置和后置，前置是先++/--，后使用，后置刚好相反</p> <p>5.7&nbsp; （类型） 强制类型转换</p> <p><strong>6.赋值操作符</strong></p> <p>6.1&nbsp; =&nbsp; 普通赋值操作符，对于变量中的值不满意就改成自己满意的</p> <p>6.2 复合操作符</p> <blockquote> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^=</p> </blockquote> <p>就是一些简写，使得代码看起来更简洁，是否使用主要看个人喜好</p> <p><strong>7.关系操作符</strong></p> <blockquote> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&gt;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!=&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;==</p> </blockquote> <p>不是所有东西都能用关系操作符来比较，</p> <p>例如字符串的比较需要用strcmp()来进行比较，如果是直接两个字符串用关系操作符来比较，那么比较的是这两个字符串在内存空间中的地址的大小</p> <p><strong>8.逻辑操作符</strong></p> <blockquote> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp;&nbsp; &nbsp; &nbsp; &nbsp; ||</p> </blockquote> <p>8.1 &amp;&amp; 逻辑与</p> <p>如果第一个表达式的语句为0，那么后面的语句都不再执行</p> <p>8.2 ||&nbsp; 逻辑或</p> <p>如果第一个表达式的语句为1，那么后面的语句都不再执行</p> <p><strong>9.条件操作符</strong></p> <blockquote> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp1 ? exp2 : exp3</p> </blockquote> <p>先执行exp1，如果exp1为真，那么整个表达式的值为exp2的返回值，否则为exp3的返回值</p> <p>这是C语言中唯一一个三目操作符</p> <p><strong>10. 逗号表达式</strong></p> <blockquote> <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exp1, exp2, exp3,……，expN</p> </blockquote> <p>依次执行，结果为最后一个表达式的值</p> <p><strong>11.下标引用、函数调用和结构成员</strong></p> <blockquote> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;()&nbsp; &nbsp; &nbsp; &nbsp; -&gt;&nbsp; &nbsp; &nbsp; &nbsp; .</p> </blockquote> <p>11.1 [] 下标引用</p> <p>双目操作符，操作数为数组名和下标，arr[4] = *(arr+4) = *(4+arr) = 4[arr] , 以为加法具有交换律，然后类比，就可以得到上述结果，但是实际编程时，不建议使用最后一种下标引用方式</p> <p>因为[]是操作符，操作的是操作数，是对操作数进行运算，但是对于下面的函数调用，就不能交换操作数的位置了，因为函数调用实际上是进行传递，而不是运算，是一一对应的，改变顺序会使代码乱套</p> <p>11.2 () 函数调用操作符</p> <p>操作数至少为1个，因为就算函数不需要参数，函数名还是必须存在的，也就是说，函数名也是操作数</p> <p>11.3 -&gt;&nbsp; &nbsp; .&nbsp; &nbsp; 结构体成员访问操作符</p> <p>使用：结构体变量指针 -&gt; 成员名</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;结构体变量 . 成员名</p> <p>结构的详细剖析会在接下来的文章讲解，敬请期待</p> <p>关于C语言操作符的详细介绍就讲完啦，欢迎各位uu的建议和指正</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-49214.htm">Go语言标准库log介绍</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-42775.htm" title="猫咪疫苗可以自己打嘛视频（猫咪疫苗自己打可以吗）">猫咪疫苗可以自己打嘛视频（猫咪疫苗自己打可以吗）</a></li>
+                        <li class="py-2"><a href="/news/article-49214.htm" title="Go语言标准库log介绍">Go语言标准库log介绍</a></li>
+                        <li class="py-2"><a href="/news/article-23195.htm" title="动物医院的规划和布局图（动物医院的规划和布局图）">动物医院的规划和布局图（动物医院的规划和布局图）</a></li>
+                        <li class="py-2"><a href="/news/article-30644.htm" title="宠物粮食店名称大全图片 宠物粮食店名称大全图片及价格">宠物粮食店名称大全图片 宠物粮食店名称大全图片及价格</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-11-today-clash-verge-rev-node.htm" title="「1月11日」最高速度20.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月11日」最高速度20.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-clash-verge-rev-node-share.htm" title="「12月11日」最高速度18.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月11日」最高速度18.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27362.htm" title="宠物领养资格证怎么考证（宠物领养流程）">宠物领养资格证怎么考证（宠物领养流程）</a></li>
+                        <li class="py-2"><a href="/news/article-48198.htm" title="vscode for c/c++（ACM配置）">vscode for c/c++（ACM配置）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-16-latest-clash-verge-rev-node.htm" title="「1月16日」最高速度18.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月16日」最高速度18.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-1-free-subscribe-node.htm" title="「1月1日」最高速度21.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月1日」最高速度21.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

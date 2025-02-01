@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-49214.htm" />
+    <title>Go语言标准库log介绍</title>
+        <meta name="description" content="无论是软件开发的调试阶段还是软件上线之后的运行阶段，日志一直都是非常重要的一个环节，我们也应该养成在程序中记录日志的好习惯。  Go语言内置的log包实现了简单的日志服务。本文介绍了标准库log的基本" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-49214.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="Go语言标准库log介绍" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/67f2fb69c81e93db3adb0e6c1c0a0b30.webp" />
+        <meta property="og:release_date" content="2025-02-01T07:12:28" />
+    <meta property="og:updated_time" content="2025-02-01T07:12:28" />
+        <meta property="og:description" content="无论是软件开发的调试阶段还是软件上线之后的运行阶段，日志一直都是非常重要的一个环节，我们也应该养成在程序中记录日志的好习惯。  Go语言内置的log包实现了简单的日志服务。本文介绍了标准库log的基本" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Go语言标准库log介绍">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+                <span>Mac Clash Verge</span>
+            </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="#">关于</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">联系</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">Go语言标准库log介绍</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> </h1> <p>无论是软件开发的调试阶段还是软件上线之后的运行阶段，日志一直都是非常重要的一个环节，我们也应该养成在程序中记录日志的好习惯。</p> </h1> <p>Go语言内置的<code>log</code>包实现了简单的日志服务。本文介绍了标准库<code>log</code>的基本使用。</p> <h2> <a id="Logger_10" rel="nofollow"></a>使用Logger</h2> <p>log包定义了Logger类型，该类型提供了一些格式化输出的方法。本包也提供了一个预定义的“标准”logger，可以通过调用函数<code>Print系列</code>(Print|Printf|Println）、<code>Fatal系列</code>（Fatal|Fatalf|Fatalln）、和<code>Panic系列</code>（Panic|Panicf|Panicln）来使用，比自行创建一个logger对象更容易使用。</p> <p>例如，我们可以像下面的代码一样直接通过<code>log</code>包来调用上面提到的方法，默认它们会将日志信息打印到终端界面：</p> <pre><code class="prism language-go"><span class="token keyword">package</span> main  <span class="token keyword">import</span> <span class="token punctuation">(</span> 	<span class="token string">"log"</span> <span class="token punctuation">)</span>  <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"这是一条很普通的日志。"</span><span class="token punctuation">)</span> 	v <span class="token operator">:=</span> <span class="token string">"很普通的"</span> 	log<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"这是一条%s日志。\n"</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">Fatalln</span><span class="token punctuation">(</span><span class="token string">"这是一条会触发fatal的日志。"</span><span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">Panicln</span><span class="token punctuation">(</span><span class="token string">"这是一条会触发panic的日志。"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <p>编译并执行上面的代码会得到如下输出：</p> <pre><code class="prism language-bash">2017/06/19 14:04:17 这是一条很普通的日志。 2017/06/19 14:04:17 这是一条很普通的日志。 2017/06/19 14:04:17 这是一条会触发fatal的日志。 </code></pre> <p>logger会打印每条日志信息的日期、时间，默认输出到系统的标准错误。Fatal系列函数会在写入日志信息后调用os.Exit(1)。Panic系列函数会在写入日志信息后panic。</p> <h2> <a id="logger_42" rel="nofollow"></a>配置logger</h2> <h3> <a id="logger_44" rel="nofollow"></a>标准logger的配置</h3> <p>默认情况下的logger只会提供日志的时间信息，但是很多情况下我们希望得到更多信息，比如记录该日志的文件名和行号等。<code>log</code>标准库中为我们提供了定制这些设置的方法。</p> <p><code>log</code>标准库中的<code>Flags</code>函数会返回标准logger的输出配置，而<code>SetFlags</code>函数用来设置标准logger的输出配置。</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">Flags</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token keyword">func</span> <span class="token function">SetFlags</span><span class="token punctuation">(</span>flag <span class="token builtin">int</span><span class="token punctuation">)</span> </code></pre> <h3> <a id="flag_55" rel="nofollow"></a>flag选项</h3> <p><code>log</code>标准库提供了如下的flag选项，它们是一系列定义好的常量。</p> <pre><code class="prism language-go"><span class="token keyword">const</span> <span class="token punctuation">(</span>     <span class="token comment">// 控制输出日志信息的细节，不能控制输出的顺序和格式。</span>     <span class="token comment">// 输出的日志在每一项后会有一个冒号分隔：例如2009/01/23 01:23:23.123123 /a/b/c/d.go:23: message</span>     Ldate         <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token boolean">iota</span>     <span class="token comment">// 日期：2009/01/23</span>     Ltime                         <span class="token comment">// 时间：01:23:23</span>     Lmicroseconds                 <span class="token comment">// 微秒级别的时间：01:23:23.123123（用于增强Ltime位）</span>     Llongfile                     <span class="token comment">// 文件全路径名+行号： /a/b/c/d.go:23</span>     Lshortfile                    <span class="token comment">// 文件名+行号：d.go:23（会覆盖掉Llongfile）</span>     LUTC                          <span class="token comment">// 使用UTC时间</span>     LstdFlags     <span class="token operator">=</span> Ldate <span class="token operator">|</span> Ltime <span class="token comment">// 标准logger的初始值</span> <span class="token punctuation">)</span> </code></pre> <p>下面我们在记录日志之前先设置一下标准logger的输出选项如下：</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	log<span class="token punctuation">.</span><span class="token function">SetFlags</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>Llongfile <span class="token operator">|</span> log<span class="token punctuation">.</span>Lmicroseconds <span class="token operator">|</span> log<span class="token punctuation">.</span>Ldate<span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"这是一条很普通的日志。"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <p>编译执行后得到的输出结果如下：</p> <pre><code class="prism language-go"><span class="token number">2017</span><span class="token operator">/</span><span class="token number">06</span><span class="token operator">/</span><span class="token number">19</span> <span class="token number">14</span><span class="token punctuation">:</span><span class="token number">05</span><span class="token punctuation">:</span><span class="token number">17.494943</span> <span class="token operator">...</span><span class="token operator">/</span>log_demo<span class="token operator">/</span>main<span class="token punctuation">.</span><span class="token keyword">go</span><span class="token punctuation">:</span><span class="token number">11</span><span class="token punctuation">:</span> 这是一条很普通的日志。 </code></pre> <h3> <a id="_88" rel="nofollow"></a>配置日志前缀</h3> <p><code>log</code>标准库中还提供了关于日志信息前缀的两个方法：</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">Prefix</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token keyword">func</span> <span class="token function">SetPrefix</span><span class="token punctuation">(</span>prefix <span class="token builtin">string</span><span class="token punctuation">)</span> </code></pre> <p>其中<code>Prefix</code>函数用来查看标准logger的输出前缀，<code>SetPrefix</code>函数用来设置输出前缀。</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	log<span class="token punctuation">.</span><span class="token function">SetFlags</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>Llongfile <span class="token operator">|</span> log<span class="token punctuation">.</span>Lmicroseconds <span class="token operator">|</span> log<span class="token punctuation">.</span>Ldate<span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"这是一条很普通的日志。"</span><span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">SetPrefix</span><span class="token punctuation">(</span><span class="token string">"[小王子]"</span><span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"这是一条很普通的日志。"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <p>上面的代码输出如下：</p> <pre><code class="prism language-bash"><span class="token punctuation">[</span>小王子<span class="token punctuation">]</span>2017/06/19 14:05:57.940542 <span class="token punctuation">..</span>./log_demo/main.go:13: 这是一条很普通的日志。 </code></pre> <p>这样我们就能够在代码中为我们的日志信息添加指定的前缀，方便之后对日志信息进行检索和处理。</p> <h3> <a id="_116" rel="nofollow"></a>配置日志输出位置</h3> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">SetOutput</span><span class="token punctuation">(</span>w io<span class="token punctuation">.</span>Writer<span class="token punctuation">)</span> </code></pre> <p><code>SetOutput</code>函数用来设置标准logger的输出目的地，默认是标准错误输出。</p> <p>例如，下面的代码会把日志输出到同目录下的<code>xx.log</code>文件中。</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	logFile<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">OpenFile</span><span class="token punctuation">(</span><span class="token string">"./xx.log"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>O_CREATE<span class="token operator">|</span>os<span class="token punctuation">.</span>O_WRONLY<span class="token operator">|</span>os<span class="token punctuation">.</span>O_APPEND<span class="token punctuation">,</span> <span class="token number">0644</span><span class="token punctuation">)</span> 	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{<!-- --></span> 		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"open log file failed, err:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span> 		<span class="token keyword">return</span> 	<span class="token punctuation">}</span> 	log<span class="token punctuation">.</span><span class="token function">SetOutput</span><span class="token punctuation">(</span>logFile<span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">SetFlags</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>Llongfile <span class="token operator">|</span> log<span class="token punctuation">.</span>Lmicroseconds <span class="token operator">|</span> log<span class="token punctuation">.</span>Ldate<span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"这是一条很普通的日志。"</span><span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">SetPrefix</span><span class="token punctuation">(</span><span class="token string">"[小王子]"</span><span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"这是一条很普通的日志。"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <p>如果你要使用标准的logger，我们通常会把上面的配置操作写到<code>init</code>函数中。</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	logFile<span class="token punctuation">,</span> err <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">OpenFile</span><span class="token punctuation">(</span><span class="token string">"./xx.log"</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>O_CREATE<span class="token operator">|</span>os<span class="token punctuation">.</span>O_WRONLY<span class="token operator">|</span>os<span class="token punctuation">.</span>O_APPEND<span class="token punctuation">,</span> <span class="token number">0644</span><span class="token punctuation">)</span> 	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{<!-- --></span> 		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"open log file failed, err:"</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span> 		<span class="token keyword">return</span> 	<span class="token punctuation">}</span> 	log<span class="token punctuation">.</span><span class="token function">SetOutput</span><span class="token punctuation">(</span>logFile<span class="token punctuation">)</span> 	log<span class="token punctuation">.</span><span class="token function">SetFlags</span><span class="token punctuation">(</span>log<span class="token punctuation">.</span>Llongfile <span class="token operator">|</span> log<span class="token punctuation">.</span>Lmicroseconds <span class="token operator">|</span> log<span class="token punctuation">.</span>Ldate<span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <h2> <a id="logger_155" rel="nofollow"></a>创建logger</h2> <p><code>log</code>标准库中还提供了一个创建新logger对象的构造函数–<code>New</code>，支持我们创建自己的logger示例。<code>New</code>函数的签名如下：</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">New</span><span class="token punctuation">(</span>out io<span class="token punctuation">.</span>Writer<span class="token punctuation">,</span> prefix <span class="token builtin">string</span><span class="token punctuation">,</span> flag <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">*</span>Logger </code></pre> <p>New创建一个Logger对象。其中，参数out设置日志信息写入的目的地。参数prefix会添加到生成的每一条日志前面。参数flag定义日志的属性（时间、文件等等）。</p> <p>举个例子：</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{<!-- --></span> 	logger <span class="token operator">:=</span> log<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>os<span class="token punctuation">.</span>Stdout<span class="token punctuation">,</span> <span class="token string">"&lt;New&gt;"</span><span class="token punctuation">,</span> log<span class="token punctuation">.</span>Lshortfile<span class="token operator">|</span>log<span class="token punctuation">.</span>Ldate<span class="token operator">|</span>log<span class="token punctuation">.</span>Ltime<span class="token punctuation">)</span> 	logger<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"这是自定义的logger记录的日志。"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <p>将上面的代码编译执行之后，得到结果如下：</p> <pre><code class="prism language-bash"><span class="token operator">&lt;</span>New<span class="token operator">&gt;</span>2017/06/19 14:06:51 main.go:34: 这是自定义的logger记录的日志。 </code></pre> <h2> <a id="_180" rel="nofollow"></a>总结</h2> <p>Go内置的log库功能有限，例如无法满足记录不同级别日志的情况，我们在实际的项目中根据自己的需要选择使用第三方的日志库，如<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/sirupsen/logrus"  rel="nofollow">logrus</a>、<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/uber-go/zap"  rel="nofollow">zap</a>等。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-48704.htm">猫亲近人有什么寓意（猫 亲近）</a></p>
+                                        <p>下一个：<a href="/news/article-49215.htm">C语言操作符详解</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-high-speed-nodes.htm" title="「11月27日」最高速度22.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月27日」最高速度22.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-18-node-share.htm" title="「11月18日」最高速度20.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月18日」最高速度20.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-clash-verge-rev-node-github.htm" title="「11月2日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月2日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-node-share-links.htm" title="「11月5日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月5日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-clash-verge-rev-node-github.htm" title="「12月13日」最高速度20.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月13日」最高速度20.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-high-speed-nodes.htm" title="「12月1日」最高速度22.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月1日」最高速度22.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-20436.htm" title="沈阳芭比堂动物医院院分布地方在哪里（芭比堂动物医院有限责任公司）">沈阳芭比堂动物医院院分布地方在哪里（芭比堂动物医院有限责任公司）</a></li>
+                        <li class="py-2"><a href="/news/article-39802.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/news/article-19981.htm" title="动物疫苗龙头企业名单公布了吗（动物疫苗龙头企业名单公布了吗知乎）">动物疫苗龙头企业名单公布了吗（动物疫苗龙头企业名单公布了吗知乎）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-clash-verge-rev-node.htm" title="「12月12日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月12日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
