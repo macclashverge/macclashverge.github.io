@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://macclashverge.github.io/news/article-25975.htm" />
     <title>vue中巧用三元表达式解析_vue.js</title>
         <meta name="description" content="目录  如何巧用三元表达式  三元表达式的巧妙使用  :class=“ “的三元表达式写法     如何巧用三元表达式 一开始我并不喜欢阅读别人的代码，话说程序员最讨厌的事：写代码要写文档、写代码要写" />
         <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-25975.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="vue中巧用三元表达式解析_vue.js" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/a49b75a1c550abaebb2014152162f32f.webp" />
+        <meta property="og:release_date" content="2024-12-15T10:43:55" />
+    <meta property="og:updated_time" content="2024-12-15T10:43:55" />
+        <meta property="og:description" content="目录  如何巧用三元表达式  三元表达式的巧妙使用  :class=“ “的三元表达式写法     如何巧用三元表达式 一开始我并不喜欢阅读别人的代码，话说程序员最讨厌的事：写代码要写文档、写代码要写" />
+        
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue中巧用三元表达式解析_vue.js">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
@@ -92,7 +121,7 @@
                   				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">如何巧用三元表达式</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_0_0" rel="nofollow">三元表达式的巧妙使用</a></li> </ul> <li><a href="#_label1" rel="nofollow">:class=“ “的三元表达式写法</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>如何巧用三元表达式</h2> <p>一开始我并不喜欢阅读别人的代码，话说程序员最讨厌的事：写代码要写文档、写代码要写注释、别人的代码没有文档、别人的代码没有注释。后来发现阅读别人的代码虽然很枯燥，但是很锻炼逻辑思维，而且还能学到很多东西，比如我下面要说的这个：</p> <p class="maodian"><a name="_lab2_0_0" rel="nofollow"></a></p> <h3>三元表达式的巧妙使用</h3> <p>在某天（其实具体是哪天我也忘了），我在阅读别人的代码时发现一串三元表达式，感觉很6，像是打开新世界的大门一样，顿时感觉只有你想不到的，没有别人做不到的。真的是活到老学到死啊。</p> <p><strong>下面上代码：</strong></p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;span        v-for="$index in circles"        class="circle"        :style="{          backgroundColor: activeIndex == $index ? pagerColor : pagerBgColor,          opacity:            pagerColor == pagerBgColor              ? activeIndex == $index                ? '1'                : '0.4'              : '1'        }"        :key="$index"      &gt;&lt;/span&gt;</pre> </div> <p>这代码扫一眼看着没毛病啊，就是遍历渲染数据，但是其中三元表达式的使用真的是6到飞起。可能有些大佬一看，有点鄙视我，“垃圾，就一个三元表达式，大惊小怪”，但是我是头一次看到这么写的。其实好多东西不是不会写，而是想不到。就像这个三元表达式，让谁写谁都能写出来，但是就是想不到可以这么写。这也是阅读别人代码的一个好处，可以学到一些骚操作，让自己少写代码，提高工作效率。</p> <p><strong>回头再说这个三元表达式，我们正常使用三元表达式是这样的：</strong></p> <blockquote> <p>表达式 (expr1) ? (expr2) : (expr3)  </p> <p>在 expr1 求值为 TRUE 时的值为 expr2，在 expr1 求值为 FALSE 时的值为 expr3。</p> </blockquote> <p>而上面代码中把表达式中的值又设为一个表达式，满足条件的时候执行表达式再次判断求值，将三元表达式写成了类似于if判断的东西，减少了代码量而且还增加更加容易读懂</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>:class=“ “的三元表达式写法</h2> <p><img fetchpriority="high" decoding="async" alt="" height="216" src="http://img.555519.xyz/uploads3/20220420/3e909719d0f69f6068e9baa0652a493a.jpg"></p> <div class="ay1code"> <pre class="brush:xhtml;">&lt;div class="stepbar"&gt;     &lt;div class="stepbar-first"&gt;&lt;/div&gt;     &lt;div class="stepbar-first-line"&gt;&lt;/div&gt;     &lt;div v-if="item.applyState===5" class="stepbar-gray"&gt;&lt;/div&gt;     &lt;div v-else :class="item.applyState===1?'stepbar-red':'stepbar-first'"&gt;&lt;/div&gt;     &lt;div v-if="item.applyState!==1&amp;&amp;item.applyState!==5" class="stepbar-first-line"&gt;&lt;/div&gt;     &lt;div v-if="item.applyState!==1&amp;&amp;item.applyState!==4&amp;&amp;item.applyState!==5" :class="item.applyState===2&amp;&amp;item.applyState!==3?'stepbar-red':'stepbar-first'"&gt;&lt;/div&gt;     &lt;div v-if="item.applyState===4" class="stepbar-gray"&gt;&lt;/div&gt;   &lt;/div&gt;</pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-25974.htm">对象和封装总结</a></p>
-                                        <p>下一个：<a href="/news/article-26436.htm">开一家宠物美容店要投资多少钱合适（开个宠物美容店挣钱吗）</a></p>
+                                        <p>下一个：<a href="/news/article-28289.htm">dellbios检测不到固态硬盘（dell识别不了固态硬盘）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -102,16 +131,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-24-clash-verge-rev-nodes.htm" title="「10月24日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月24日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-13-clash-verge-rev-windows.htm" title="「9月13日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月13日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-20436.htm" title="沈阳芭比堂动物医院院分布地方在哪里（芭比堂动物医院有限责任公司）">沈阳芭比堂动物医院院分布地方在哪里（芭比堂动物医院有限责任公司）</a></li>
-                        <li class="py-2"><a href="/news/article-32551.htm" title="属相养猫有禁忌吗（生肖不适合养猫）">属相养猫有禁忌吗（生肖不适合养猫）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-clash-verge-rev-node.htm" title="「11月30日」最高速度21.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月30日」最高速度21.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-20437.htm" title="国内十大宠物粮食品牌有哪些名字 国内十大宠物粮食品牌有哪些名字图片">国内十大宠物粮食品牌有哪些名字 国内十大宠物粮食品牌有哪些名字图片</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-19-clash-verge-rev-windows.htm" title="「9月19日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月19日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-8-free-high-speed-nodes.htm" title="「9月8日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月8日」最高速度22.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-17-clash-verge-rev-node.htm" title="「10月17日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月17日」最高速度22.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-22732.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-clash-verge-rev-node.htm" title="「12月12日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月12日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-26437.htm" title="动物疫苗法律法规最新（动物疫苗法案）">动物疫苗法律法规最新（动物疫苗法案）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-15-today-clash-verge-rev-node.htm" title="「12月15日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月15日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-clash-verge-rev-node-share.htm" title="「12月18日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月18日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-22-clash-verge-rev-nodes.htm" title="「12月22日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月22日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-node-share-links.htm" title="「12月19日」最高速度18.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月19日」最高速度18.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-42274.htm" title="docker-compose部署etcd 集群">docker-compose部署etcd 集群</a></li>
+                        <li class="py-2"><a href="/news/article-33024.htm" title="猫三联一共几针,间隔多久打（猫三联一共几针,间隔多久打一次）">猫三联一共几针,间隔多久打（猫三联一共几针,间隔多久打一次）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-node-share-links.htm" title="「11月5日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月5日」最高速度18.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-24580.htm" title="C++数据结构与算法之排序桶排序">C++数据结构与算法之排序桶排序</a></li>
                     </ul>
     </div>
 </div>
@@ -123,19 +152,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

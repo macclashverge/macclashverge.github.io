@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://macclashverge.github.io/news/article-32078.htm" />
     <title>手把手带你入门链表的基本操作及其优化</title>
         <meta name="description" content="文章目录  一、概念   头指针： 头结点(虚拟头结点/哨兵节点/哑节点) 首元节点 三者关系图 判断链表为空   代码理解   一、遍历 二、查找 三、插入   1、链表头部插入 2、链表尾部插入 " />
         <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-32078.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="手把手带你入门链表的基本操作及其优化" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/2a2c5b76a4253c1b110a009a36a4b50d.webp" />
+        <meta property="og:release_date" content="2024-12-28T10:05:02" />
+    <meta property="og:updated_time" content="2024-12-28T10:05:02" />
+        <meta property="og:description" content="文章目录  一、概念   头指针： 头结点(虚拟头结点/哨兵节点/哑节点) 首元节点 三者关系图 判断链表为空   代码理解   一、遍历 二、查找 三、插入   1、链表头部插入 2、链表尾部插入 " />
+        
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="手把手带你入门链表的基本操作及其优化">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
@@ -102,16 +131,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-30173.htm" title="如何在58同城发布宠物领养信息（58同城宠物怎么发布信息）">如何在58同城发布宠物领养信息（58同城宠物怎么发布信息）</a></li>
-                        <li class="py-2"><a href="/news/article-33506.htm" title="动保疫苗厂家（动保疫苗龙头企业）">动保疫苗厂家（动保疫苗龙头企业）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-11-clash-verge-rev-node-share.htm" title="「12月11日」最高速度18.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月11日」最高速度18.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-6-node-share-links.htm" title="「11月6日」最高速度22.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月6日」最高速度22.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-15-free-node-subscribe-links.htm" title="「9月15日」最高速度19.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月15日」最高速度19.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-20-free-subscribe-node.htm" title="「12月20日」最高速度22.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月20日」最高速度22.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-12-free-node-subscribe.htm" title="「10月12日」最高速度19.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月12日」最高速度19.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-27-free-node-subscribe-links.htm" title="「9月27日」最高速度22.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月27日」最高速度22.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-19-node-share.htm" title="「11月19日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月19日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-22732.htm" title="为什么HTTP/3要基于UDP？可靠吗？">为什么HTTP/3要基于UDP？可靠吗？</a></li>
+                        <li class="py-2"><a href="/news/article-47712.htm" title="电脑无法装机怎么回事 电脑无法装系统怎么办">电脑无法装机怎么回事 电脑无法装系统怎么办</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-clash-verge-rev-nodes.htm" title="「1月21日」最高速度23M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月21日」最高速度23M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-45756.htm" title="Apache Kafka消息传递可靠性分析">Apache Kafka消息传递可靠性分析</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-clash-verge-rev-node.htm" title="「1月17日」最高速度22.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月17日」最高速度22.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-high-speed-nodes.htm" title="「11月27日」最高速度22.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月27日」最高速度22.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-46737.htm" title="怎么开宠物店需要些什么（怎么何能开一家宠物店）">怎么开宠物店需要些什么（怎么何能开一家宠物店）</a></li>
+                        <li class="py-2"><a href="/news/article-28753.htm" title="狗粮十大品牌有哪些牌子（狗粮十大品牌有哪些牌子图片）">狗粮十大品牌有哪些牌子（狗粮十大品牌有哪些牌子图片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-latest-clash-verge-rev-node.htm" title="「12月21日」最高速度19.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月21日」最高速度19.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-19523.htm" title="弄个猫粮加工厂投资多少钱（猫粮生产加工）">弄个猫粮加工厂投资多少钱（猫粮生产加工）</a></li>
+                        <li class="py-2"><a href="/news/article-20436.htm" title="沈阳芭比堂动物医院院分布地方在哪里（芭比堂动物医院有限责任公司）">沈阳芭比堂动物医院院分布地方在哪里（芭比堂动物医院有限责任公司）</a></li>
                     </ul>
     </div>
 </div>
@@ -123,19 +152,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

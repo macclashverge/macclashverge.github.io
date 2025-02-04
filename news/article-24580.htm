@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://macclashverge.github.io/news/article-24580.htm" />
     <title>C++数据结构与算法之排序桶排序</title>
         <meta name="description" content="C++桶排序    桶排序的基本思想 桶排序的代码     桶排序的基本思想 原来：把数值记作桶号，遍历整个数组，将相应的桶进行计数 第一步：遍历原数组，找到最大值max，并且申请max+1个桶，初始" />
         <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-24580.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="C++数据结构与算法之排序桶排序" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/79bf8c94c3b0891bad8acf876bb9fa14.webp" />
+        <meta property="og:release_date" content="2024-12-12T10:06:01" />
+    <meta property="og:updated_time" content="2024-12-12T10:06:01" />
+        <meta property="og:description" content="C++桶排序    桶排序的基本思想 桶排序的代码     桶排序的基本思想 原来：把数值记作桶号，遍历整个数组，将相应的桶进行计数 第一步：遍历原数组，找到最大值max，并且申请max+1个桶，初始" />
+        
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="C++数据结构与算法之排序桶排序">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
@@ -92,7 +121,7 @@
                   				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>C++桶排序</h3> <ul> <li> <ul> <li><a href="#_1" rel="nofollow">桶排序的基本思想</a></li> <li><a href="#_7" rel="nofollow">桶排序的代码</a></li> </ul> </li> </ul> </div> <h2><a id="_1" rel="nofollow"></a>桶排序的基本思想</h2> <p>原来：把数值记作桶号，遍历整个数组，将相应的桶进行计数<br /> 第一步：遍历原数组，找到最大值max，并且申请max+1个桶，初始化为0（下标从0到max），即vector bucket(max+1,0);<br /> 第二步：遍历原数组，找到每个数值对应的桶号，并对桶计数++，即bucket[vec[i]]++；<br /> 第三步：遍历桶数组，看对应的桶内计数为几就取出几个下标值，放到原数组，即while(bucker[i]–) vec[index++]=bucket[i];<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220707/5db464c9312c6ab859094ab50a9478b8.jpg" alt="C++数据结构与算法之排序桶排序"></p> <h2><a id="_7" rel="nofollow"></a>桶排序的代码</h2> <pre><code class="prism language-cpp"><span class="token keyword">int</span><span class="token function">findMax</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span>vec<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">if</span><span class="token punctuation">(</span>vec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token keyword">return</span> INT_MIN<span class="token punctuation">;</span><span class="token keyword">int</span> max<span class="token operator">=</span> vec<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>vec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		max<span class="token operator">=</span> max<span class="token operator">&gt;</span>vec<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">?</span>max<span class="token operator">:</span>vec<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">return</span> max<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span><span class="token function">bucketSort</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span>vec<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">int</span> max<span class="token operator">=</span><span class="token function">findMax</span><span class="token punctuation">(</span>vec<span class="token punctuation">)</span><span class="token punctuation">;</span> 	vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token function">bucket</span><span class="token punctuation">(</span>max<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//遍历原数组，对桶进行计数</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>vec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 		bucket<span class="token punctuation">[</span>vec<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token comment">//遍历桶，得到排序结果</span><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>bucket<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">int</span> index<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token keyword">while</span><span class="token punctuation">(</span>bucket<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 				vec<span class="token punctuation">[</span>index<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span> bucket<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">}</span></code></pre> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-24114.htm">动物疫苗许可证在哪里办（动物疫苗证去哪里办怎么办）</a></p>
-                                        <p>下一个：<a href="/news/article-24581.htm">妙三多猫疫苗好吗（妙三多猫疫苗都预防哪些疾病）</a></p>
+                                        <p>下一个：<a href="/news/article-28289.htm">dellbios检测不到固态硬盘（dell识别不了固态硬盘）</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -102,16 +131,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2025-1-1-free-subscribe-node.htm" title="「1月1日」最高速度21.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月1日」最高速度21.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-13-clash-verge-rev-windows.htm" title="「9月13日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「9月13日」最高速度20.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-26-latest-clash-verge-rev-node.htm" title="「12月26日」最高速度20.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月26日」最高速度20.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-20901.htm" title="中国农业大学动物医院排班表 中国农业大学动物医院排班表2023">中国农业大学动物医院排班表 中国农业大学动物医院排班表2023</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-4-free-subscribe-node.htm" title="「11月4日」最高速度21.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月4日」最高速度21.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-20-clash-verge-rev-github.htm" title="「11月20日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月20日」最高速度20M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-28289.htm" title="dellbios检测不到固态硬盘（dell识别不了固态硬盘）">dellbios检测不到固态硬盘（dell识别不了固态硬盘）</a></li>
-                        <li class="py-2"><a href="/news/article-33024.htm" title="猫三联一共几针,间隔多久打（猫三联一共几针,间隔多久打一次）">猫三联一共几针,间隔多久打（猫三联一共几针,间隔多久打一次）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-3-free-high-speed-nodes.htm" title="「10月3日」最高速度19M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月3日」最高速度19M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-24-clash-verge-rev-nodes.htm" title="「10月24日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「10月24日」最高速度19.2M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-high-speed-nodes.htm" title="「12月1日」最高速度22.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月1日」最高速度22.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-21810.htm" title="去哪领养猫狗（到哪能领养猫）">去哪领养猫狗（到哪能领养猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-node-share-links.htm" title="「1月27日」最高速度18.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月27日」最高速度18.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-37830.htm" title="MultipartFile转成File类型">MultipartFile转成File类型</a></li>
+                        <li class="py-2"><a href="/news/article-28753.htm" title="狗粮十大品牌有哪些牌子（狗粮十大品牌有哪些牌子图片）">狗粮十大品牌有哪些牌子（狗粮十大品牌有哪些牌子图片）</a></li>
+                        <li class="py-2"><a href="/news/article-19524.htm" title="养猫的人容易得什么病视频讲解（养猫咪的人会得什么病）">养猫的人容易得什么病视频讲解（养猫咪的人会得什么病）</a></li>
+                        <li class="py-2"><a href="/news/article-37335.htm" title="宠物寄养协议书范本免费版大全图（寄养宠物协议合同怎么写）">宠物寄养协议书范本免费版大全图（寄养宠物协议合同怎么写）</a></li>
+                        <li class="py-2"><a href="/news/article-36156.htm" title="动物疫苗管理工作总结范文模板（重大动物疫苗工作简报）">动物疫苗管理工作总结范文模板（重大动物疫苗工作简报）</a></li>
+                        <li class="py-2"><a href="/news/article-23646.htm" title="动物执业医师资格（动物医生职业资格证书）">动物执业医师资格（动物医生职业资格证书）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-clash-verge-rev-windows.htm" title="「12月24日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月24日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
                     </ul>
     </div>
 </div>
@@ -123,19 +152,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

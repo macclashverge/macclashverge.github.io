@@ -1,22 +1,51 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://macclashverge.github.io/news/article-38811.htm" />
     <title>MySQL如何使用YEAR数据类型在表中存储年值？</title>
         <meta name="description" content="MySQL允许声明YEAR类型的列，借助它我们可以将年份值存储在该列中。 mysql&gt;&nbsp;Create&nbsp;table&nbsp;year1&nbsp;(Year_Copyrigh" />
         <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-38811.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="MySQL如何使用YEAR数据类型在表中存储年值？" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/2bcc1335bb65dde0350e82529e54f7cc.webp" />
+        <meta property="og:release_date" content="2025-01-11T10:01:54" />
+    <meta property="og:updated_time" content="2025-01-11T10:01:54" />
+        <meta property="og:description" content="MySQL允许声明YEAR类型的列，借助它我们可以将年份值存储在该列中。 mysql&gt;&nbsp;Create&nbsp;table&nbsp;year1&nbsp;(Year_Copyrigh" />
+        
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="format-detection" content="telephone=no">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL如何使用YEAR数据类型在表中存储年值？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
     <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
@@ -102,16 +131,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-26436.htm" title="开一家宠物美容店要投资多少钱合适（开个宠物美容店挣钱吗）">开一家宠物美容店要投资多少钱合适（开个宠物美容店挣钱吗）</a></li>
-                        <li class="py-2"><a href="/news/article-26898.htm" title="动物医院价格公示法律规定 动物医院价格公示法律规定最新">动物医院价格公示法律规定 动物医院价格公示法律规定最新</a></li>
-                        <li class="py-2"><a href="/news/article-39802.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
-                        <li class="py-2"><a href="/news/article-28753.htm" title="狗粮十大品牌有哪些牌子（狗粮十大品牌有哪些牌子图片）">狗粮十大品牌有哪些牌子（狗粮十大品牌有哪些牌子图片）</a></li>
+                        <li class="py-2"><a href="/news/article-21363.htm" title="动物疫苗接种的目的是 动物疫苗接种的目的是什么">动物疫苗接种的目的是 动物疫苗接种的目的是什么</a></li>
+                        <li class="py-2"><a href="/news/article-19523.htm" title="弄个猫粮加工厂投资多少钱（猫粮生产加工）">弄个猫粮加工厂投资多少钱（猫粮生产加工）</a></li>
                         <li class="py-2"><a href="/free-nodes/2025-1-10-latest-clash-verge-rev-node.htm" title="「1月10日」最高速度20.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月10日」最高速度20.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-12-free-high-speed-nodes.htm" title="「1月12日」最高速度20.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月12日」最高速度20.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-13-free-subscribe-node.htm" title="「1月13日」最高速度22.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月13日」最高速度22.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-21809.htm" title="Git回退代码到某次commit">Git回退代码到某次commit</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-10-node-share-links.htm" title="「12月10日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月10日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
-                        <li class="py-2"><a href="/news/article-38316.htm" title="梦中抱着别的女人什么意思（梦到抱着别的女人睡觉什么意思）">梦中抱着别的女人什么意思（梦到抱着别的女人睡觉什么意思）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-5-clash-verge-rev-github.htm" title="「1月5日」最高速度18.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月5日」最高速度18.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-21-latest-clash-verge-rev-node.htm" title="「12月21日」最高速度19.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月21日」最高速度19.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-41285.htm" title="宠物粮市场开发方案 宠物粮市场开发方案怎么写">宠物粮市场开发方案 宠物粮市场开发方案怎么写</a></li>
+                        <li class="py-2"><a href="/news/article-41783.htm" title="宠物粮食加工设备有哪些厂家 宠物粮食加工设备有哪些厂家生产">宠物粮食加工设备有哪些厂家 宠物粮食加工设备有哪些厂家生产</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-31-free-high-speed-nodes.htm" title="「1月31日」最高速度19M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月31日」最高速度19M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-24-clash-verge-rev-windows.htm" title="「12月24日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月24日」最高速度22.8M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33976.htm" title="vue 修饰符">vue 修饰符</a></li>
                     </ul>
     </div>
 </div>
@@ -123,16 +152,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">32</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
