@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-55049.htm" />
+    <title>node.js &#8211; 包、express</title>
+        <meta name="description" content="首先，要先在这里分享一下我的喜悦，从昨天开始其实一直都在喜悦当中的，我收到了我的第一份offer，这感觉不摆了，比第一桶金都还舒服，虽然我还没收到第一桶金哈哈，不过offer都得了应该也快了。 今天的" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-55049.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="node.js &#8211; 包、express" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/98db8d7b3ef6727cd217046f59646e3f.webp" />
+        <meta property="og:release_date" content="2025-02-12T09:05:49" />
+    <meta property="og:updated_time" content="2025-02-12T09:05:49" />
+        <meta property="og:description" content="首先，要先在这里分享一下我的喜悦，从昨天开始其实一直都在喜悦当中的，我收到了我的第一份offer，这感觉不摆了，比第一桶金都还舒服，虽然我还没收到第一桶金哈哈，不过offer都得了应该也快了。 今天的" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="node.js &#8211; 包、express">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">node.js &#8211; 包、express</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<p>首先，要先在这里分享一下我的喜悦，从昨天开始其实一直都在喜悦当中的，我收到了我的第一份offer，这感觉不摆了，比第一桶金都还舒服，虽然我还没收到第一桶金哈哈，不过offer都得了应该也快了。</p> <p>今天的内容有点小多，容我慢慢道来</p> <p>1.</p> <p>首先我们看到包的管理配置文件以及下包慢的问题，在我们多人协作下，是不是要经常把自己的代码共享出去通过git、github之类的，那么我应该发现一个问题，一个项目文件，有30M大小，而代码只有区区2M左右的内存，剩余的都给谁了？都给了第三方包也就是node_modules里面的内容，所以为了轻量化，我们在共享代码的时候肯定是不能带node_modules这个文件夹的，把她扔进.gitignore文件里面忽略掉，那我们没有了第三方包的依赖怎么执行代码呢，第三方包肯定还是要的，没有怎么能行，我们有一个package.json的文件在这里面存放了安装的所有的第三方包的内容。</p> <p>1.1</p> <p>快速创建packagejson</p> <p>只需要在项目的文件中执行node init -y</p> <p>要注意一下，只能在英文目录下去创建这个文件，这里的英文是当前目录为英文，也就是上一级为中文都没的关系，然后就是当我们运行npm i安装第三方包的时候就会把信息给到这个json文件中，所以我们在安装前要先创建json文件。</p> <p>1.2</p> <p>dependencies节点</p> <p>这是这个json里面的节点名，记录了npm安装了哪些包</p> <p>1.3</p> <p>既然我们没有包，又知道了所有需要的包名，那么怎么来一次性安装所有的包？</p> <p>npm install或者i不添加包名即可安装所有的包</p> <p>1.4</p> <p>卸载包</p> <p>npm uninstall 包名没有简写</p> <p>1.5</p> <p>devDependencies节点</p> <p>这个节点也是保存的安装的包，有些包是我们在项目开发过程中才会用到，而有些包使我们开发上线都会用到的包，我们一般把前者放在devDependencies节点里面，把后者放在dependencies节点里面。</p> <p>当然他也有特定的安装方式</p> <p>npm i 包名 -D</p> <p>2.</p> <p>然后我们看到下包会慢的一些原因，是因为我们的npm的服务器是国外的，通过海底光缆传过来的数据当然慢，所以这个时候我们需要把npm的镜像服务器换掉，通过npm config set registry可以查看当前npm的服务器</p> <p>再通过npm config set registry='淘宝或者腾讯的镜像地址'就可以设置过来了。</p> <p>之所以粗略带过，是因为我们有简便方法，通过npm先安装一个nrm全局可用工具，全局就需要在包名后面添加一个-g</p> <p>然后nrm ls 可查看当前可设置的服务器地址，再用nrm use 加这个服务器名字即可使用。</p> <p>3.</p> <p>包的分类</p> <p>我们把包分为两大类，一个是项目包，就是被安装到node_modules里面的包，这里面又有开发依赖包放在devDependencies节点里面的和核心依赖包开发上线都用得到的，</p> <p>二个是全局包，放在c盘目录下面的，安装的时候通过-g参数安装的。</p> <p>注意一下：只有工具性质的包才有全局安装的必要，因为他们提供了终端的一些命令</p> <p>3.1</p> <p>i5ting_toc</p> <p>可以把md文件转换为html的小工具，注意是工具，这个其实挺方便的，前面一直用的Markdownpad2。</p> <p>怎么来使用呢？</p> <p>i5ting_toc&nbsp; -f&nbsp; md文件路径 -o表示浏览器打开</p> <p>3.2</p> <p>一个规范包的结构必须要包含三个东西</p> <p>①每个包必须是单独目录</p> <p>②包的顶级目录下必须包含package.json</p> <p>③packag.json必须包含name、version、main三个属性</p> <p>接下来我们就来做一个 属于自己的包：要实现的功能就为：可以格式化日期、可以对html中的字符转义为特殊字符又转义回来。</p> <p>首先要初始化包的基本结构，创建一个包的文件夹，里面放三个文件，index.js、package.json、README.md分别表示包入口文件、包的配置文件、包说明文档。</p> <p>接下来在初始化package.json里面的内容，｛name：使我们包的名字到时候npm网站上搜索也是这个名字，所以使用前先去网站看一下有没有重名的，</p> <p>version：版本号，</p> <p>main：入口文件，说明了我们的导入就为这个文件要注意一下，如果说外界导入的时候只是导入了一个目录，并不是这个js文件，那么node就会去找这个目录下的package.json里面的main再去找入口文件,</p> <p>description:详细介绍，</p> <p>keywords：关键字是一个数组，</p> <p>license：开原许可协议｝</p> <p>接下来就是在index.js中定义三个功能的函数了 ，这里有一个很重要的概念，模块化，我们的格式化时间是不是需要一个函数，还要补零是不是又要一个函数，那么这两个函数可以放在一个单独的js文件里面，我们的html转为特殊字符、特殊字符返回html也需要一个单独的js文件，完成过后需要在各自的文件把函数放进exports里面，然后index.js导入两个js文件他此时得到的是一个放有这几个函数的对象，我们需要通过es6语法中的扩展运算法，给她解构出来，就只有逗号分隔的函数了，这里有点绕可以配合代码好好理解下。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/3f295a75c6674b259ee68a15997a239e.jpg" alt="node.js - 包、express"></p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 1.格式化时间</span><span style="color: rgba(0, 0, 255, 1)">function</span><span style="color: rgba(0, 0, 0, 1)"> dateFormat(time) {     const date</span>=<span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> Date(time)     let y</span>=<span style="color: rgba(0, 0, 0, 1)"> date.getFullYear()     let m</span>= getZero(date.getMonth() + 1<span style="color: rgba(0, 0, 0, 1)">)     let d</span>=<span style="color: rgba(0, 0, 0, 1)"> getZero(date.getDate())     let h</span>=<span style="color: rgba(0, 0, 0, 1)"> getZero(date.getHours())     let mm</span>=<span style="color: rgba(0, 0, 0, 1)"> getZero(date.getMinutes())     let s</span>=<span style="color: rgba(0, 0, 0, 1)"> getZero(date.getSeconds())</span><span style="color: rgba(0, 0, 255, 1)">return</span> `${y}-${m}-<span style="color: rgba(0, 0, 0, 1)">${d} ${h}:${mm}:${s}` }</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 2.补零函数</span><span style="color: rgba(0, 0, 255, 1)">function</span><span style="color: rgba(0, 0, 0, 1)"> getZero(n) {</span><span style="color: rgba(0, 0, 255, 1)">return</span> n &lt; 10 ? '0' +<span style="color: rgba(0, 0, 0, 1)"> n : n }</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)">  6.1共享成员</span> module.exports =<span style="color: rgba(0, 0, 0, 1)"> {     dateFormat }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 4.html转义函数</span><span style="color: rgba(0, 0, 255, 1)">function</span><span style="color: rgba(0, 0, 0, 1)"> getHtmlCode(htmlStr) {</span><span style="color: rgba(0, 0, 255, 1)">return</span> htmlStr.replace(/&lt;|&gt;|"|&amp;/g, match =&gt;<span style="color: rgba(0, 0, 0, 1)"> {</span><span style="color: rgba(0, 0, 255, 1)">switch</span><span style="color: rgba(0, 0, 0, 1)">(match) {</span><span style="color: rgba(0, 0, 255, 1)">case</span> '&lt;'<span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">return</span> '&amp;lt;'<span style="color: rgba(0, 0, 255, 1)">case</span> '&gt;'<span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">return</span> '&amp;gt;'<span style="color: rgba(0, 0, 255, 1)">case</span> '"'<span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">return</span> '&amp;quot;'<span style="color: rgba(0, 0, 255, 1)">case</span> '&amp;'<span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">return</span> '&amp;amp;'<span style="color: rgba(0, 0, 0, 1)">         }     }) }</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 5.还原html</span><span style="color: rgba(0, 0, 255, 1)">function</span><span style="color: rgba(0, 0, 0, 1)"> getHtml(htmlStr) {</span><span style="color: rgba(0, 0, 255, 1)">return</span> htmlStr.replace(/&amp;lt;|&amp;gt;|&amp;quot;|&amp;amp;/g, match =&gt;<span style="color: rgba(0, 0, 0, 1)"> {</span><span style="color: rgba(0, 0, 255, 1)">switch</span><span style="color: rgba(0, 0, 0, 1)">(match) {</span><span style="color: rgba(0, 0, 255, 1)">case</span> '&amp;lt;'<span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">return</span> '&lt;'<span style="color: rgba(0, 0, 255, 1)">case</span> '&amp;gt;'<span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">return</span> '&gt;'<span style="color: rgba(0, 0, 255, 1)">case</span> '&amp;quot;'<span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">return</span> '"'<span style="color: rgba(0, 0, 255, 1)">case</span> '&amp;amp;'<span style="color: rgba(0, 0, 0, 1)">:</span><span style="color: rgba(0, 0, 255, 1)">return</span> '&amp;'<span style="color: rgba(0, 0, 0, 1)">             }         }) }</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 6.2共享成员</span> module.exports =<span style="color: rgba(0, 0, 0, 1)"> {     getHtmlCode,     getHtml }</span></pre> </div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 0, 1)">index.js<br/>//</span><span style="color: rgba(0, 128, 0, 1)"> 6.3 导入</span> const date = require('./src/dateFormat'<span style="color: rgba(0, 0, 0, 1)">) const strEscape</span>= require('./src/strEscape'<span style="color: rgba(0, 0, 0, 1)">)</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 3.共享成员</span> module.exports =<span style="color: rgba(0, 0, 0, 1)"> {    ...date,    ...strEscape }</span></pre> </div> <p>test.js</p> <div class="cnblogs_code"> <pre>const bag = require('./index'<span style="color: rgba(0, 0, 0, 1)">) console.log(bag.dateFormat(</span><span style="color: rgba(0, 0, 255, 1)">new</span><span style="color: rgba(0, 0, 0, 1)"> Date())); console.log(bag.getHtmlCode(</span>'&lt;h2&gt;我是一个大温柔"嘻嘻"ss&amp;&lt;/h2&gt;'<span style="color: rgba(0, 0, 0, 1)">)); console.log(bag.getHtml(</span>'&amp;lt;h2&amp;gt;我是一个大温柔&amp;quot;嘻嘻&amp;quot;ss&amp;amp;&amp;lt;/h2&amp;gt;'));</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f28da2f79a5126fe7377eaa4da79d8ca.jpg" alt="node.js - 包、express"></p> <p>&nbsp;3.3</p> <p>我们继续看到怎么来编写包的说明文档，就是把包的作用以及用法，注意事项说明清楚即可</p> <div> <div>## 安装</div> <div>```</div> <p></p> <div>npm i mybag-huang</div> <p></p> <div>```</div> <p></p> <div>## 导入</div> <div>```js</div> <p></p> <div>const mybag = require('mybag-huang')</div> <p></p> <div>```</div> <p></p> <div>## 格式化时间</div> <p></p> <div>```js</div> <p></p> <div>const time = mybag.dateFormat(new Date())</div> <p></p> <div>```</div> <div>## 转义html代码中的特殊字符</div> <div>```js</div> <p></p> <div>&nbsp;mybag.getHtmlCode('&lt;h2&gt;我是一个大温柔"嘻嘻"ss&amp;&lt;/h2&gt;')</div> <p></p> <div>&nbsp;```</div> <p></p> <div>&nbsp;## 转义html代码中的正常字符</div> <div>&nbsp;```js</div> <p></p> <div>&nbsp;mybag.getHtml('&amp;lt;h2&amp;gt;我是一个大温柔&amp;quot;嘻嘻&amp;quot;ss&amp;amp;&amp;lt;/h2&amp;gt;')</div> <p></p> <div>```</div> <p></p> <div>## 开源协议</div> <div>ISC</div> </div> <div>3.4</div> <div>发布包</div> <div>首先注册npm账号，然后登陆 账号是在终端上登录：npm login</div> <div>然后到所处的包的 目录下 npm pbulish既可以发布在npm网站上，但是要注意一下，需要切回到官方的服务器才能够发布成功。</div> <div>删除已发布的包npm unpublish 包名 --force 只能删除发布后72小时内的包，删除后二十四小时内不可再发布相同的包</div> <div>4.</div> <div>模块加载机制</div> <div>我们的模块都是优先从缓存当中来加载的，当我们导入过后就会第一时间加载在缓存中，所以导入相同的文件不管你导入多少次，都是加载的第一个文件。</div> <div>内置模块的加载机制</div> <div>内置模块加载的优先级最高，比如说内置模块和我们的自定义模块如果名字一样，那么导入的时候是认为这是一个内置模块的。</div> <div>自定义模块的加载机制</div> <div>require里面的文件必须以./或者../开头不然就会被当为内置或者第三方模块。</div> <div>如果说省略了扩展名，那么node会依次开始查找js、json、node的文件扩展名都没有找到就会报错。</div> <div>第三方模块的加载机制</div> <div>require不是内置模块也不是,/开头那么就会从当前目录的modules文件夹里面开始照这个第三方模块而且没找到的话会继续往上一级找，直到找到根目录为止。</div> <div>当你把目录作为require的路径时，会首先去找package里面的main如果没有指定，就会加载当前目录下的index.js都没有就会报错。</div> <div></div> <div>5.</div> <div>express</div> <div>5.1</div> <div>首先什么叫做express</div> <div>他和http内置模块相同，专门创建web服务器的</div> <div>5.2</div> <div>基本使用</div> <div>1.安装</div> <div>npm i express</div> <div>2.创建web服务器</div> <div>①导入express</div> <div>②创建服务器</div> <div>const app = express（）</div> <div>③diaoyong</div> <div>app.listen(端口号，回调函数)</div> <div>3.</div> <div>监听get、post</div> <div>app.get/post（url，回调函数）</div> <div> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 1.导入</span> const express = require('express'<span style="color: rgba(0, 0, 0, 1)">)</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 2.创建服务器</span> const app =<span style="color: rgba(0, 0, 0, 1)"> express()</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 4.监听客户端的get和post请求并响应</span> app.get('/index.html ', (req, res) =&gt;<span style="color: rgba(0, 0, 0, 1)"> {     res.send({</span>"name" : "zs"<span style="color: rgba(0, 0, 0, 1)">,</span>"sex" : "男"<span style="color: rgba(0, 0, 0, 1)">,</span>"age" : 19<span style="color: rgba(0, 0, 0, 1)">     }) }) app.post(</span>'/index', (req, res) =&gt; res.send('post成功'<span style="color: rgba(0, 0, 0, 1)">))</span><span style="color: rgba(0, 128, 0, 1)">//</span><span style="color: rgba(0, 128, 0, 1)"> 3.开启服务器</span> app.listen(80, () =&gt;<span style="color: rgba(0, 0, 0, 1)"> {     console.log(</span>'express server running at http://127.0.0.1'<span style="color: rgba(0, 0, 0, 1)">     ) })</span></pre> </div> <p>4</p> <p>获取url中的参数</p> <p>通过req.query获得一个对象保存的参数</p> <div class="cnblogs_code"> <pre>const express = require('express'<span style="color: rgba(0, 0, 0, 1)">) const app</span>=<span style="color: rgba(0, 0, 0, 1)"> express() app.get(</span>'/', (req, res) =&gt;<span style="color: rgba(0, 0, 0, 1)"> {     res.send(req.query) }) app.listen(</span>80, () =&gt;<span style="color: rgba(0, 0, 0, 1)"> {     console.log(</span>'express server running at http://127.0.0.1'<span style="color: rgba(0, 0, 0, 1)">); })</span></pre> </div> <p>获取url当中的动态参数</p> <p>req.params</p> <div class="cnblogs_code"> <pre>const express = require('express'<span style="color: rgba(0, 0, 0, 1)">) const app</span>=<span style="color: rgba(0, 0, 0, 1)"> express() app.get(</span>'/:id', (req, res) =&gt;<span style="color: rgba(0, 0, 0, 1)"> {     console.log(req.params); }) app.listen(</span>80, () =&gt;<span style="color: rgba(0, 0, 0, 1)"> {     console.log(</span>'express server running at http://127.0.0.1'<span style="color: rgba(0, 0, 0, 1)">); })</span></pre> </div> <p>5.3</p> <p>托管静态资源</p> <p>express.static（）这个方法可以创建静态服务器的时候，将文件目录下的css、图片、js等共享出去对外开放。</p> <p>app.use(express.static('文件夹'))要注意一点对谁开放那么这个目录是不会出现在url路径当中的</p> <div class="cnblogs_code"> <pre>const express = require('express'<span style="color: rgba(0, 0, 0, 1)">) const app</span>=<span style="color: rgba(0, 0, 0, 1)"> express()  app.use(express.static(</span>'./clock'<span style="color: rgba(0, 0, 0, 1)">))   app.listen(</span>80, () =&gt; console.log('express server running at http://127.0.0.1'))</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/fc33ad40a68e3d14333c24e191ca0fc3.jpg" alt="node.js - 包、express"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/be094229e4fd14aead34abc5e827ae63.jpg" alt="node.js - 包、express"></p> <p>&nbsp;如果要托管多个目录就把代码执行多次即可，但是要注意如果访问的文件名有几个目录都有的话，会按照顺序执行前面的。</p> <p>挂在路径前缀</p> <div class="cnblogs_code"> <pre>const express = require('express'<span style="color: rgba(0, 0, 0, 1)">) const app</span>=<span style="color: rgba(0, 0, 0, 1)"> express()  app.use(</span>'/abc',express.static('./clock'<span style="color: rgba(0, 0, 0, 1)">))   app.listen(</span>80, () =&gt; console.log('express server running at http://127.0.0.1'))</pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/b0c59da2d7f0e99c037b8a19c85e1061.jpg" alt="node.js - 包、express"></p> <p>&nbsp;5.4</p> <p>今天最后的内容更新一个很实用的小工具，nodemon直接全局安装，他的作用就是我们平时改了一下代码，比如服务器必须重新断开重新连接，才会看到效果就会很麻烦，而有了这个工具后直接执行nodemon 文件名他就会检测到我们的代码修改情况自动去重新启动，就跟我们html的live一样</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-54502.htm">SpringBoot 整合 Kafka 以及 @KafkaListener 注解的使用</a></p>
+                                        <p>下一个：<a href="/news/article-55050.htm">普通人怎么考兽医证多少钱（考一个兽医证需要什么条件）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-39306.htm" title="猫咪三针疫苗需要多久打一次（猫咪三针疫苗必须打么）">猫咪三针疫苗需要多久打一次（猫咪三针疫苗必须打么）</a></li>
+                        <li class="py-2"><a href="/news/article-44756.htm" title="宠物店一年利润怎么样知乎（宠物店一年盈利）">宠物店一年利润怎么样知乎（宠物店一年盈利）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-12-clash-verge-rev-github.htm" title="「2月12日」最高速度20.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「2月12日」最高速度20.2M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33977.htm" title="常州宠颐生动物医院招聘电话（常州宠颐生美多格动物医院）">常州宠颐生动物医院招聘电话（常州宠颐生美多格动物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-55599.htm" title="怎么能开宠物店赚钱（怎么开宠物店利润多少）">怎么能开宠物店赚钱（怎么开宠物店利润多少）</a></li>
+                        <li class="py-2"><a href="/news/article-49214.htm" title="Go语言标准库log介绍">Go语言标准库log介绍</a></li>
+                        <li class="py-2"><a href="/news/article-52867.htm" title="家用小型饲料颗粒机500元左右能用吗（家用小型饲料颗粒机500元左右能用吗）">家用小型饲料颗粒机500元左右能用吗（家用小型饲料颗粒机500元左右能用吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-12-latest-clash-verge-rev-node.htm" title="「11月12日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月12日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-34452.htm" title="git下载安装教程">git下载安装教程</a></li>
+                        <li class="py-2"><a href="/news/article-52346.htm" title="动物医院科室分布 动物医院科室分布图">动物医院科室分布 动物医院科室分布图</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

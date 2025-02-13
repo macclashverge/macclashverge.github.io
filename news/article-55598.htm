@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-55598.htm" />
+    <title>spring boot2 (28)-cache缓存</title>
+        <meta name="description" content="数据库的数据是存储在硬盘上的，频繁访问性能较低。而缓存数据存储在内存中，访问性能比硬盘快了一个数量级。如果将一些需要频繁查询的热数据放到缓存中，可以大大减轻数据库的访问压力。  &lt;depende" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-55598.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="spring boot2 (28)-cache缓存" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/3ca310159d4417ec4a2d64b8e2ccf789.webp" />
+        <meta property="og:release_date" content="2025-02-13T03:08:05" />
+    <meta property="og:updated_time" content="2025-02-13T03:08:05" />
+        <meta property="og:description" content="数据库的数据是存储在硬盘上的，频繁访问性能较低。而缓存数据存储在内存中，访问性能比硬盘快了一个数量级。如果将一些需要频繁查询的热数据放到缓存中，可以大大减轻数据库的访问压力。  &lt;depende" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="spring boot2 (28)-cache缓存">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">spring boot2 (28)-cache缓存</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><span style="font-family:'Microsoft YaHei';"><span style="font-size:14px;">数据库的数据是存储在硬盘上的，频繁访问性能较低。而缓存数据存储在内存中，访问性能比硬盘快了一个数量级。如果将一些需要频繁查询的热数据放到缓存中，可以大大减轻数据库的访问压力。</span></span></p> </h1> <pre><code class="language-html">&lt;dependency&gt;     &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;     &lt;artifactId&gt;spring-boot-starter-cache&lt;/artifactId&gt; &lt;/dependency&gt;</code></pre> </h1> <p><span style="font-family:'Microsoft YaHei';"><span style="font-size:14px;">在配置类中添加以下注解</span></span></p> <pre><code class="language-java">@EnableCaching</code></pre> </h1> <p>出于方便，这里直接在控制层做缓存。</p> <pre><code class="language-java">	@GetMapping("/find") 	@Cacheable(cacheNames = "hello")  	public String find() { 		System.out.println("从数据库查询数据，并用return返回"); 		return "该数据会被缓存"; 	}</code></pre> <ul> <li>@Cacheable：指在执行find方法前，首先查找该方法是否有缓存，如果有则直接返回缓存，如果没有则执行方法。</li> <li>cacheNames：指定缓存的名称，不同缓存的数据是彼此隔离的。 </li> </ul> </h1> <p>上面cacheNames指定了缓存名称，但是每个方法由于传参不同，其return数据也会不同，所以一个方法中可能会有多个缓存。要在同一个cacheNames中区别不同的缓存，就需要使用key。修改前两行代码，给find方法传入了一个User，这是我自定义的类，其中有一个id参数。同时指定了key为"#user.id"，这是SpEL表达示，指使用user的id作为当前缓存的key。关于SpEL更多 语法可自行百度。</p> <pre><code class="language-java">@GetMapping("/find")	 @Cacheable(cacheNames = "hello",key = "#user.id")  public String find(User user) {<!-- --></code></pre> <ul> <li>现在访问http://localhost:8080/find?id=1，此时id参数会传入user，最终该缓存的key为1。</li> <li>然后访问http://localhost:8080/find?id=2，此缓存的key为2，与上面的1不一样，所以它们不是同一个缓存。</li> </ul> </h1> <pre><code class="language-java">	@GetMapping("/update") 	@CachePut(cacheNames = "hello", key = "#id")  	public String update(String id) { 		System.out.println("读取修改后的数据"); 		return "修改后的缓存数据"; 	}</code></pre> <ul> <li>@CachePut：无论是否存在缓存，它都会执行，而且用return数据刷新缓存。 </li> <li>cacheNames：指定要修改的key所属的cacheNames。 </li> <li>key：这里方法参数就是id，所以可以直接用#id。</li> </ul> <p>访问http://localhost:8080/update?id=1，此时key为1的缓存将被修改。之后再访问http://localhost:8080/find?id=1，都会得到修改后的数据，find方法中原有的数据被替换了。</p> </h1> <p>访问http://localhost:8080/delete?id=1，即可删除key为1的缓存，和上面一样的原理。</p> <pre><code class="language-java">	@GetMapping("/delete") 	@CacheEvict(cacheNames = "hello", key = "#id")  	public String delete(String id) { 		return "删除成功"; 	}</code></pre> </h1> <p>如果只想将id为1的查询写入缓存，而其他数据不需要缓存。可以添加condition缓存条件，如下。这里id参数是个字符串型，所以加了单引号，否则1就是整数，条件不成立。</p> <pre><code class="language-java">@Cacheable(cacheNames = "hello",key="#user.id",condition ="#user.id=='1'" ) </code></pre> <p>此时，只有访问http://localhost:8080/find?id=1才会使用缓存，如果id为其他值将不使用缓存。</p> </h1> <p>condition是在调用方法之前判断条件，决定是否缓存。unless是在调用方法之后判断条件，决定是否不缓存。</p> <pre><code class="language-java">	@GetMapping("/find") 	@Cacheable(cacheNames = "hello",unless="#result.id.contains('1')" )  	public User find(String id) { 		System.out.println("从数据库查询数据"); 		User user = new User(); 		user.setId(id); 		return user; 	}</code></pre> <ul> <li>unless：如果SpEL条件成立，则不缓存。 </li> <li>#result.id.contains：result指方法return的数据，id指return的user的id参数，contains指id的值是否包含'1'，如果包含则unless条件成立，不进行缓存。</li> </ul> </h1> <p>spring boot支持多种不同的缓存供应商。在默认情况下使用的是简单缓存，不建议在正式环境使用。我们可以配置一些更加强大的缓存，比如Hibernate的默认缓存EhCache等，而caffeine则是基于java8新出的一个高性能缓存，官方称其接近完美。下面就来介绍在spring boot中集成caffeine。</p> <pre><code class="language-html">		&lt;dependency&gt; 			&lt;groupId&gt;com.github.ben-manes.caffeine&lt;/groupId&gt; 			&lt;artifactId&gt;caffeine&lt;/artifactId&gt; 		&lt;/dependency&gt;</code></pre> </h1> <p><span style="font-size:14px;">在pom.xml中增加以上依赖，spring boot就会自动用caffeine替换默认的简单缓存，用法都是一样的。</span></p> </h1> <pre><code class="language-html">spring.cache.type=caffeine spring.cache.cache-names=hello,world spring.cache.caffeine.spec=maximumSize=1,expireAfterAccess=5s</code></pre> <ul> <li>spring.cache.type：指定使用哪个缓存供应商 </li> <li>spring.cache.cache-names：在启动时创建缓存名称，即前面的cacheNames，多个名称用逗号分隔。</li> <li>spring.cache.caffeine.spec：这是caffeine缓存的专用配置。 </li> <li>maximumSize=1：最大缓存数量，假如有缓存1，再写入缓存2时，就有2个缓存，超出最大数量，缓存1就会被清除。 </li> <li>expireAfterAccess=5s：缓存5秒，即缓存在5秒之内没有被使用，就会被清除。</li> </ul> <p>默认情况下，缓存的数据会一直保存在内存中，有些数据可能用一次后很长时间都不会再用，这样会有大量无用的数据长时间占用内存，通过配置properties可以及时清除不需要的缓存。</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55050.htm">普通人怎么考兽医证多少钱（考一个兽医证需要什么条件）</a></p>
+                                        <p>下一个：<a href="/news/article-55599.htm">怎么能开宠物店赚钱（怎么开宠物店利润多少）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-clash-verge-rev-node-github.htm" title="「1月30日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月30日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-clash-verge-rev-node-share.htm" title="「11月25日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月25日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-31599.htm" title="动物疫苗的正确使用方法有哪些视频（动物疫苗注射器视频）">动物疫苗的正确使用方法有哪些视频（动物疫苗注射器视频）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-free-node-subscribe-links.htm" title="「11月14日」最高速度22.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月14日」最高速度22.4M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-28754.htm" title="动物医院的英文单词有哪些怎么写的（动物医院 翻译）">动物医院的英文单词有哪些怎么写的（动物医院 翻译）</a></li>
+                        <li class="py-2"><a href="/news/article-21362.htm" title="天宫院解除隔离（天宫院解除隔离通知）">天宫院解除隔离（天宫院解除隔离通知）</a></li>
+                        <li class="py-2"><a href="/news/article-19064.htm" title="领养狗狗是怎么回事（领养狗的坏处）">领养狗狗是怎么回事（领养狗的坏处）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-node-share.htm" title="「11月19日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月19日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-38315.htm" title="上海宠物领养基地电话号码（上海宠物领养中心电话）">上海宠物领养基地电话号码（上海宠物领养中心电话）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-19-node-share-links.htm" title="「12月19日」最高速度18.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月19日」最高速度18.9M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
