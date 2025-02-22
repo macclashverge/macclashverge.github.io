@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-60739.htm" />
+    <title>vue &#8211; vue基础/vue核心内容（2）_在线工具</title>
+        <meta name="description" content="今天的内容书接上回，同样是vue的核心基础部分，今天偏向于理论性，特别是vue对于数据对象的监测那一块，刚开始琢磨了半天，这股劲一过，现在好理解多了 10.watch和computed对比 计算属性案" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-60739.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="vue &#8211; vue基础/vue核心内容（2）_在线工具" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/3ca310159d4417ec4a2d64b8e2ccf789.webp" />
+        <meta property="og:release_date" content="2025-02-22T07:09:43" />
+    <meta property="og:updated_time" content="2025-02-22T07:09:43" />
+        <meta property="og:description" content="今天的内容书接上回，同样是vue的核心基础部分，今天偏向于理论性，特别是vue对于数据对象的监测那一块，刚开始琢磨了半天，这股劲一过，现在好理解多了 10.watch和computed对比 计算属性案" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue &#8211; vue基础/vue核心内容（2）_在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">vue &#8211; vue基础/vue核心内容（2）_在线工具</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<p>今天的内容书接上回，同样是vue的核心基础部分，今天偏向于理论性，特别是vue对于数据对象的监测那一块，刚开始琢磨了半天，这股劲一过，现在好理解多了</p> <h2 id="10watch和computed对比">10.watch和computed对比</h2> <p>计算属性案例（watch来做）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/6b7a1937bcc7c2b0cff0fc0baad2182c.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>在增加一条需求输入姓后要反应一秒后再响应</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/b7be0ef24ec7d0d2ba73e09d48e0c16f.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>computed</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/d8bf662371bc37bcc0bcf4e1db4267a8.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><mark>区别</mark>  :</p> <ul> <li>computed能完成的功能，watch都可以完成</li> <li>watch可以完成的功能，computed不一定能完成，就比如watch这里可以异步操作，computed就不行，<u><strong>因为computed里面我们靠的就是那个返回值让他的getter返回值就会等于fullname这个计算属性，所以如果返回值给了定时器，那么我的fullname就没有得到返回值，但是watch不一样，watch是对值做操作，在定时器里面就已经完成了赋值的操作，不需要你返回给我</strong></u> </li> </ul> <p><mark>注意</mark>  :</p> <ul> <li>前面都说被vue所管理的函数最好别写箭头函数，但是这里的定时器必须写为箭头函数，因为如果是普通函数那么他的this就为window，定时器的this本身就是为window，但是如果这里是箭头函数，都知道，箭头函数的this是定义它位置的地方的this，所以就是监视这个属性里面的this就是vm实例</li> <li>被vue所管理的函数最好写成普通函数，<mark>不被vue所管理的函数（定时器、ajax回调、promise的回调）最好写成箭头函数</mark> </li> </ul> <h2 id="11绑定class样式">11.绑定class样式</h2> <ul> <li> <p>字符串写法，适用于：<mark>样式类名不确定，需要动态指定</mark></p> <p>注意一下这里的生成随机整数是怎么的写法</p> </li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/1349356fb412b7df9d97548cf97bf0b9.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <ul> <li> <p>数组写法：<mark>适用于：个数不确定，类名也不确定的时候</mark>，个数我以后 可能有一百个可能有几个，名字可能叫这个可能叫那个</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/58165d0d8d30957c1274a115d68049da.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> </li> <li> <p>对象写法：<mark>适用于个数确定，类名也确定</mark>，我只有这两个，也只叫这个名字</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/f1fa336b0ec348364ae12942d51c4a03.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> </li> <li> <p>绑定style样式（了解）这是对象写法，同样也有数组写法，就是fontsize写在这个对象，background写在那个对象，数组写法就是将两个对象结合起来【obj1，obj2】</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/d02f45c846e32fe13089d967b677586a.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> </li> </ul> <h2 id="12条件渲染">12.条件渲染</h2> <p>控制元素的隐藏显示</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/875056716a7f14a423a256cf011de5b4.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>全新指令语法：<mark>v-show、v-if</mark>他们两个都可以实现显示隐藏，v-show底层实现是display：none，v-if直接把元素都删没了，所以当我们需要频繁切换显示隐藏的时候建议v-show</p> <p>案例：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/583318d88db0a7600ae35b39298cc6f8.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/6b8ee0f992a0b38ada48ca8bbdc011f2.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><mark>v-else-if</mark>跟v-if是一组的判断，如果前面达成条件后面就不再做判断</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/7d7bc437f9aa1029905bfa02bfc7893b.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><mark>v-else</mark> 注意v-else后面就不跟条件了直接写上v-else，出了条件外的都显示他</p> <p><mark>注意</mark>v-if判断是一个整体，包括else if、else，中间不能写其他的来打断</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/df43c12481c70537c35282e0b3fe32d0.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><mark>v-if与template配合使用</mark></p> <p>我要完成这么一个界面当点击达到1的时候显示出来</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/afb321b8e509387feac820e0c161dc93.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>这种做法是不是有点冗余，每个都要去判断一下，所以就有一个标签template，<mark>只能配合v-if使用</mark>，它最大的好处就是不会影响页面标签布局</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/d01132068f2cad2428215a1c6a1abaf2.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/00f4483596b3f2216fc3910a12ff3ff1.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <h2 id="13列表渲染">13.列表渲染</h2> <p>全新<mark>指令语法v-for</mark></p> <ul> <li>遍历数组</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/0c6ef478de4503e8ba33d04722e2a6b8.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>首先用了v-for我们有多少数据，<strong>就自动会遍历出多少li</strong>，然后v-for每个li是必须<strong>配置一个:key的动态属性的</strong>，我们的遍历可以写多个参数，写多少个的时候<strong>前面表示这个对象，后面表示这个对象在数组里面的索引号</strong>，而我们的key就可以配置为p.id或者是index这个索引号</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/d802cc12d4e6058b6bc830359d499c30.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <ul> <li> <p>遍历对象</p> <p>遍历对象要注意，<mark>遍历的值和我们的数据是反的，前面是我们的数据，后面变成了值，而且遍历对象，key就为这个属性名，</mark></p> <p><mark>v-for除了可以用in 用 of也是一样的效果</mark></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/b9d81b0f72017f864072e23ccaab46d1.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> </li> <li> <p>遍历字符串</p> <p>字符串就是可以把每一个字符遍历出来，前面是值，后面是下标</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/42e687159286d2d5fb5a980ecfdd6adf.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> </li> <li> <p>遍历指定次数（不常用）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/8b7ad7536ccd47936a74d48aa3fce92d.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/20934aae83bef16a18abd7943fd79522.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> </li> </ul> <h3 id="131-key作用与原理面试">13.1 key作用与原理（面试）</h3> <p>首先要知道我们动态生成的key并不是拿在页面上来呈现的，可以看到最终生成的真实DOM是没有这个属性的，它是用来vue拿来用的</p> <p><strong>当我们用index作为key的值会出现的问题：</strong></p> <p>有一个需求当我们点击按钮会在上面新增条数据老六</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/28d4866de8b04b5ca643892be5897a61.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/428ce7c95ae7a8e7ba9df2b7a85e9b5e.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/367f0161645f34e9f402b8b538e6dbd9.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>是不是就出现问题了，分析一下下面这个图就知道问题在哪了</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/836fdd6a07a9891f7f93bbf3860f9e54.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><strong>这个就是我们前面所说的vue的一大优点，虚拟DOM加Diff算法，就在这里体现了。首先我们初始化的数据，打开网页vue会先在内存生成虚拟DOM，同时key是我们的index，然后正常将虚拟DOM转为真实DOM，转到页面上来了，我们正常在input框输入内容，这个时候我们去点击新增老六这个按钮，相当于让数据变成了我们的新数据样式，然后又会在内存生成虚拟DOM，这个时候由于是第二次生成了，所以Diff算法就来了，vue会拿我们新的虚拟dom和旧的虚拟dom进行比较，而比较的依据就是<mark>key</mark>，当我们比较第一条数据的时候，key对上了之后，先去比较文本发现文本不一样，那么就不能复用，就会以新的虚拟dom为准，接着回去比较input标签，注意这个时候比较input标签会发现是一样的，为什么，因为都是input标签，都是text格式，我们在里面输入的内容实在真实dom输入的跟虚拟dom没有关系，所以比较出来是一样的，既然一样我就可以去key=0，以前已经生成过真实dom了吧，那我就直接去拿来复用了，所以最终形成的结果就是，新增的文本就上我们旧的input，以此类推，所以就导致了我们最终呈现的效果有问题</strong></p> <p>这是用index作为key的问题一，还有一个问题就是效率变低了，为什么，因为我们原来本来可以复用的数据，他给我重新生成了真实dom肯定效率低了</p> <p><strong>当我们用id作为key时</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/0252d39e63a0ccbea093a570c5ddf40a.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>首先比较key=004发现没有，没有那就直接新增，后面的都发现有，而且数据也对的上那就直接复用</p> <p><strong>开发中如何选择key</strong></p> <ul> <li>最好是用每条数据的唯一标识（id、手机号、身份证号、学号等）</li> <li>如果不存在对数据的逆序添加、逆序删除等破坏顺序的操作，或者渲染列表仅用于展示（没有新增删除），使用index作为key还是没问题的，顺序添加删除使用它还是可以的</li> </ul> <h3 id="132-列表过滤">13.2 列表过滤</h3> <p>也就是模糊搜索，先完成能过滤的功能（<mark>注意数组和字符串的方法</mark>）</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/c0e9be28d9270e868bfc4a87d9261a14.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>这么做的话就会损坏原数据，我们的原数据是不能动的，因为要确保，不搜索了还能回去</p> <p>定义一个新数组，让新数组去接收搜索出来的值，同时原数组也没有改动所以可以一直搜索，不会像原来一样越搜数据越少的情况，同时要把遍历的v-for修改为新数组，但是现在就有一个问题新数组为空，那我们刚开始的时候就看不到列表了</p> <p><mark>这里有一个很重要的概念，字符串的indexOf方法对于空字符串的查找是找得到的，意思就是任何字符串.indexOf（''）都不会返回-1，都是有值的</mark></p> <p>所以只需要开启初始化就监视一下即可，这个时候keyword为空字符串，那么数据里面的每条数据都有空字符串，那就会把全部数据输出出来</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/1c3983b1165e8bebcc91bb5bf21ab05b.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><mark>计算属性实现</mark></p> <p>计算属性能实现的，watch肯定能实现，watch能实现的只要不涉及到异步任务，计算属性一般也能实现</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/5fc45970f13aa82c1f9d8ee18e62e6d1.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>就这一段代码即可实现，为什么直接就能渲染，以为watch默认是要先搜索再去执行handler，这里一来就会执行，一来就是空字符串，为什么不用自定义一个新的数组，因为计算属性就相当于一个新的数组了</p> <h3 id="133-列表排序">13.3 列表排序</h3> <p>关键点在于利用计算属性里面的任何一个依赖数据发生变动都会重新运算计算节点</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/ccd898e7ec1106655332200b0e94008f.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <ul> <li>数组排序参数是谁</li> <li>排序和过滤是密不可分的，我还需要在过滤出来的基础上排序，不是一点排序就回到了原数据列表</li> <li>之所以点击原顺序可以回去，关键点就在于计算属性里面每一个依赖数据发生变动，都会重新计算重新渲染，所以一点击原顺序sortType就变动了，重新根据关键字去过滤数组，得出来的满足不了排序的if就直接输出arr了</li> </ul> <h3 id="134-vue监测数据改变的原理">13.4 vue监测数据改变的原理</h3> <p>先看到一个数据更新时的问题</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/4cc197db5fdaa54c6eb339ed38a8b346.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>点击后没反应，vue管理工具也没有数据更新</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/90c570a14d41c4d6c90ad080b1fd9008.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <h4 id="1341-vue对象监测原理">13.4.1 vue对象监测原理</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/0d38e9b8e0f2de405b2a601617a5664d.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>先看一张图，这里有点绕，有点难以理解，我在那里捋了四五十分钟接近一个小时，vue的一个对象检测原理就是，我们说过我们的data数据最终会呈现在vm实例的_data上，vue对于对象数据的检测就是定义了一个构造函数，这个构造函数会把我们的数据的属性名全部拿过来然后做一个遍历，在遍历里面，是最重要的逻辑，用对象定义属性的方法，**对象为this，这里的this指的就是这个构造函数的实例，同时给他上面定义属性，当访问到这个构造函数实例的这个属性的时候就把obj对应的属性的值给到他（也就是data上面对应的值），其实这里就是做了一个数据代理，我们读取和写入虽然是在这个实例上面我就说_data上面吧,插值语法之所以能够直接写name是因为后面又给vm做了一个数据代理，其实vue的读写都是基于这个_data的，读通过_data来读，修改虽然是修改的_data但是会把val给到data数据本身。总结就是：vue对于对象数据的监测就是通过一个构造函数，目的是加工data来给_data赋值，真正的逻辑在于里面的defineProperty这个方法，真正的监测原理就是通过这里面的getter和setter来读和写我们的data，然后再setter作进一步的逻辑，既然是setter那就是值变化了，就回去重新解析模板，diff比较虚拟DOM看哪些能复用，再把我们修改的值渲染上去 **</p> <p>一句话总结：<mark>vue监测原理就靠这个setter</mark></p> <h4 id="1342-vueset的使用">13.4.2 vue.set（）的使用</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/2d3910bcf235c3bdc90db20e0a612a36.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>这个案例首先要注意一点，在vue里面如果<mark>值为undefined，并不会报错，只是没有文字显示出来而已，这里的age没有赋值，所以undefined，在页面上并不会报错，只是一片空白没有数据</mark></p> <p>一个需求，我如果想通过将它直接赋值让页面出现他的性别：</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/3a78fba1198153eaefd90b02a6ab77f8.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>可以看到页面并没有显示，而且我们的数据也有，但是是写死的并不是响应式的，我们之前研究过vue的监测原理靠的就是那个setter，这里没有给她做setter所以自然也不会映射到页面上来</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/1be3c40b32837e05245eff4dc8573274.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <ul> <li> <p><mark>Vue.set（）</mark>vue提供的的api，可以让我们在后面添加的数据，也能够完成响应式数据，也有属于自己的getter和setter</p> <p>三个参数：第一个参数往哪里添加这个属性，第二个参数属性名，第三个参数值</p> </li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/e761f1020a462030c4fe995a658726d1.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <ul> <li> <p>第二种写法：<mark>vm.$set(参数跟上面一样三个)</mark></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/d2ddadba8b5b241a91f4f1fddcb00cd4.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> </li> <li> <p><mark>局限性</mark></p> <p>该方法不能直接给data和vm添加属性</p> </li> </ul> <h4 id="1343-vue数组监测原理">13.4.3 vue数组监测原理</h4> <p>vue里面不能直接以数组索引去修改值</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/f7bea953ec53b21b5b06c89172368081.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/be22d42a3437596b25f796a190e346ba.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>可以看到我们数组的值都变了，但是vue监测不到，所以页面不会变，<mark>不能直接通过数组索引去修改值</mark></p> <p>在vue里面数组能被监测到的只能是可以修改数组本身的七种方法</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/fbc0096a41e558ecf5768ea3d442fa15.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/b8cf0cfaa63fdc9248513a0fc2f8360e.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>所以现在就可以对我们13.4那里的案例做出回应了</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/4cc81443483486f33d39cc4b20d849bb.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <p>问题：<strong>为什么vue知道我们使用了这些方法</strong></p> <p>因为vue对这些方法做出了包装，不是Array原来的那七个方法了，实现逻辑肯定还是原来那种只是添加了一些逻辑（方法完成后会去重新解析模板，重新diff虚拟DOM）</p> <p><mark>让数组被监测到方法二</mark>：</p> <p>Vue.set这个api也可以</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/7e3e5090792f1fa9f424a56c9321473d.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> <h4 id="1344-总结vue数据监测">13.4.4 总结vue数据监测</h4> <p>看下总结案例（如何实现性别在未添加之前为隐藏、修改数组里面的对象不需要数组的方法）</p> <ul> <li> <p>vue会监视data中所有层次的数据</p> </li> <li> <p>对象中通过setter实现监视，且要在定义data时就传入数据，如果是在之后添加的数据，需要Vue.set或者是vm.$set来实现监视</p> </li> <li> <p>数组中的数据通过包裹数组的七种方法实现</p> </li> <li> <p>vue数组中修改元素大多数要通过七种方法或者set两个api</p> <p>七种方法为变更方法，但是也有非变更方法如（<mark>filter、concat、slice这些会返回新数组的方法，可以让返回的新数组替换掉旧数组，同样可以受到监视，页面同样会被更改</mark>）</p> </li> <li> <p>最后注意一下set两个api不能给vm和data跟数据对象添加属性</p> </li> <li> <p><mark>数据劫持</mark>：就是前面说的对象监测原理，把一个完好的data数据变成了setter的方式，我如果要修改student的值，瞬间就被setter劫持到了，去做了其他解析模板等操作，这就叫数据劫持</p> </li> <li> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220507/91843516cab72be99eb16bcd0ed2f181.jpg" alt="vue - vue基础/vue核心内容（2）_在线工具"></p> </li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-60738.htm">Java学习笔记32. 数组的填充 Arrays.fill( ) 方法</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-58573.htm" title="快手开无货源网店是真的吗知乎（快手无货源店铺是怎么发货的）">快手开无货源网店是真的吗知乎（快手无货源店铺是怎么发货的）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-29-clash-verge-rev-node-share.htm" title="「11月29日」最高速度21.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月29日」最高速度21.7M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-31599.htm" title="动物疫苗的正确使用方法有哪些视频（动物疫苗注射器视频）">动物疫苗的正确使用方法有哪些视频（动物疫苗注射器视频）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-18-node-share.htm" title="「1月18日」最高速度18.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月18日」最高速度18.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-36848.htm" title="猫抓了一下有淡淡红痕没出血第二天结痂（猫抓了一下出了点血伤口有点红）">猫抓了一下有淡淡红痕没出血第二天结痂（猫抓了一下出了点血伤口有点红）</a></li>
+                        <li class="py-2"><a href="/news/article-36360.htm" title="小猫养多久才认家（小猫刚开始养多久能认识主人）">小猫养多久才认家（小猫刚开始养多久能认识主人）</a></li>
+                        <li class="py-2"><a href="/news/article-31112.htm" title="动物疫苗经营范围有哪些类型（动物疫苗经营许可）">动物疫苗经营范围有哪些类型（动物疫苗经营许可）</a></li>
+                        <li class="py-2"><a href="/news/article-47713.htm" title="java8 LocalDate LocalTime LocalDateTime ChronoUnit DateTimeFormatter TemporalAdjusters">java8 LocalDate LocalTime LocalDateTime ChronoUnit DateTimeFormatter TemporalAdjusters</a></li>
+                        <li class="py-2"><a href="/news/article-29216.htm" title="Postman正确使用姿势">Postman正确使用姿势</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-18-free-node-subscribe.htm" title="「2月18日」最高速度18.4M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「2月18日」最高速度18.4M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-60150.htm" />
+    <title>JavaScript从数组中计数/ par元素以下方法详解</title>
+        <meta name="description" content="我们需要编写一个函数来计算给定数字以下/上方的数组中有多少个元素。 以下是我们的数字数组- const&nbsp;array&nbsp;=&nbsp;[54,54,65,73,43,78,54,54," />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-60150.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="JavaScript从数组中计数/ par元素以下方法详解" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/8112995ae118bed0e4c8fe4bec8042d3.webp" />
+        <meta property="og:release_date" content="2025-02-21T09:17:58" />
+    <meta property="og:updated_time" content="2025-02-21T09:17:58" />
+        <meta property="og:description" content="我们需要编写一个函数来计算给定数字以下/上方的数组中有多少个元素。 以下是我们的数字数组- const&nbsp;array&nbsp;=&nbsp;[54,54,65,73,43,78,54,54," />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JavaScript从数组中计数/ par元素以下方法详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">JavaScript从数组中计数/ par元素以下方法详解</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<p>我们需要编写一个函数来计算给定数字以下/上方的数组中有多少个元素。</p> <p>以下是我们的数字数组-</p> <pre>const&nbsp;array&nbsp;=&nbsp;[54,54,65,73,43,78,54,54,76,3,23,78];</pre> <p>例如，如果数字为60，则答案应在数字下方五个元素-</p> <pre>54,54,43,3,23</pre> <p>和五个元素相加-</p> <pre>65,73,78,76,78</pre> <h2>示例</h2> <p>以下是代码-</p> <pre>const&nbsp;array&nbsp;=&nbsp;[54,54,65,73,43,78,54,54,76,3,23,78]; const&nbsp;belowParNumbers&nbsp;=&nbsp;(arr,&nbsp;num)&nbsp;=&gt;&nbsp;{ &nbsp;&nbsp;&nbsp;return&nbsp;arr.reduce((acc,&nbsp;val)&nbsp;=&gt;&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;legend&nbsp;=&nbsp;['par',&nbsp;'below']; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;isBelow&nbsp;=&nbsp;val&nbsp;&lt;&nbsp;num; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acc[legend[+isBelow]]++; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;acc; &nbsp;&nbsp;&nbsp;},&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;below:&nbsp;0, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;par:&nbsp;0 &nbsp;&nbsp;&nbsp;}); }; console.log(belowParNumbers(array,&nbsp;50)); console.log(belowParNumbers(array,&nbsp;60)); console.log(belowParNumbers(array,&nbsp;70));</pre> <p>输出结果</p> <p>这将在控制台中产生以下输出-</p> <pre>{&nbsp;below:&nbsp;3,&nbsp;par:&nbsp;9&nbsp;} {&nbsp;below:&nbsp;7,&nbsp;par:&nbsp;5&nbsp;} {&nbsp;below:&nbsp;8,&nbsp;par:&nbsp;4&nbsp;}</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-59572.htm">猫咪疫苗三针多少钱（猫咪的三针疫苗多少钱）</a></p>
+                                        <p>下一个：<a href="/news/article-60151.htm">多语言文本到音素转换工具phonemizer实践</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-1-18-node-share.htm" title="「1月18日」最高速度18.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月18日」最高速度18.7M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-free-high-speed-nodes.htm" title="「2月22日」最高速度22.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「2月22日」最高速度22.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-51809.htm" title="串联字符串的Java程序。">串联字符串的Java程序。</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-clash-verge-rev-node.htm" title="「12月7日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月7日」最高速度21.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-28-clash-verge-rev-node.htm" title="「12月28日」最高速度18.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月28日」最高速度18.1M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-44265.htm" title="动物疫苗的使用方法视频（动物疫苗的使用方法及注意事项）">动物疫苗的使用方法视频（动物疫苗的使用方法及注意事项）</a></li>
+                        <li class="py-2"><a href="/news/article-49215.htm" title="C语言操作符详解">C语言操作符详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-20-free-node-subscribe.htm" title="「1月20日」最高速度18.8M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月20日」最高速度18.8M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-35793.htm" title="宠物领养协议书范本大全最新版（宠物领养协议书范本大全最新版图片）">宠物领养协议书范本大全最新版（宠物领养协议书范本大全最新版图片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-23-clash-verge-rev-node-share.htm" title="「1月23日」最高速度18.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月23日」最高速度18.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
