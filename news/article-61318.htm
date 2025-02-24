@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-61318.htm" />
+    <title>idea集成docker实现springboot一键部署</title>
+        <meta name="description" content="1.idea安装docker插件 打开Preferences-&gt;Plugins-&gt;Marketplace 搜索安装docker  2.配置docker 打开Preferences-&gt;" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-61318.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="idea集成docker实现springboot一键部署" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/7e0322558614e071a53a148cf6f15512.webp" />
+        <meta property="og:release_date" content="2025-02-23T09:44:23" />
+    <meta property="og:updated_time" content="2025-02-23T09:44:23" />
+        <meta property="og:description" content="1.idea安装docker插件 打开Preferences-&gt;Plugins-&gt;Marketplace 搜索安装docker  2.配置docker 打开Preferences-&gt;" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="idea集成docker实现springboot一键部署">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">idea集成docker实现springboot一键部署</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h4> <a id="1ideadocker_0" rel="nofollow"></a>1.idea安装docker插件</h4> <p>打开Preferences-&gt;Plugins-&gt;Marketplace<br /> 搜索安装docker<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/0ff582e348d348cface1d9c62eb0e780.jpg" alt="idea集成docker实现springboot一键部署"></p> <h4> <a id="2docker_4" rel="nofollow"></a>2.配置docker</h4> <p>打开Preferences-&gt;Build,Execution,Deployment-&gt;Docker<br /> 添加docker服务<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/d4534bb67abdc647a2f99c5090a94846.jpg" alt="idea集成docker实现springboot一键部署"><br /> 若显示Connection successful，则表示添加成功<br /> docker如何开通远程可参照<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/sinat_31855011"  rel="nofollow">docker安装</a></p> <h4> <a id="3springbootpomdocker_10" rel="nofollow"></a>3.springboot项目pom添加docker打包插件</h4> <pre><code class="prism language-java">           <span class="token generics function"><span class="token punctuation">&lt;</span>plugin<span class="token punctuation">&gt;</span></span>                 <span class="token generics function"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">&gt;</span></span>com<span class="token punctuation">.</span>spotify<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">&gt;</span>                 <span class="token generics function"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">&gt;</span></span>docker<span class="token operator">-</span>maven<span class="token operator">-</span>plugin<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">&gt;</span>                 <span class="token generics function"><span class="token punctuation">&lt;</span>version<span class="token punctuation">&gt;</span></span><span class="token number">1.0</span><span class="token number">.0</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">&gt;</span>                 <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>将插件绑定在某个phase执行<span class="token operator">--</span><span class="token operator">&gt;</span>                 <span class="token generics function"><span class="token punctuation">&lt;</span>executions<span class="token punctuation">&gt;</span></span>                     <span class="token generics function"><span class="token punctuation">&lt;</span>execution<span class="token punctuation">&gt;</span></span>                         <span class="token generics function"><span class="token punctuation">&lt;</span>id<span class="token punctuation">&gt;</span></span>build<span class="token operator">-</span>image<span class="token operator">&lt;</span><span class="token operator">/</span>id<span class="token operator">&gt;</span>                         <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>将插件绑定在<span class="token keyword">package</span>这个phase上。也就是说，用户只需执行mvn <span class="token keyword">package</span> ，就会自动执行mvn docker<span class="token operator">:</span>build<span class="token operator">--</span><span class="token operator">&gt;</span>                         <span class="token generics function"><span class="token punctuation">&lt;</span>phase<span class="token punctuation">&gt;</span></span><span class="token keyword">package</span><span class="token operator">&lt;</span><span class="token operator">/</span>phase<span class="token operator">&gt;</span>                         <span class="token generics function"><span class="token punctuation">&lt;</span>goals<span class="token punctuation">&gt;</span></span>                             <span class="token generics function"><span class="token punctuation">&lt;</span>goal<span class="token punctuation">&gt;</span></span>build<span class="token operator">&lt;</span><span class="token operator">/</span>goal<span class="token operator">&gt;</span>                         <span class="token operator">&lt;</span><span class="token operator">/</span>goals<span class="token operator">&gt;</span>                     <span class="token operator">&lt;</span><span class="token operator">/</span>execution<span class="token operator">&gt;</span>                 <span class="token operator">&lt;</span><span class="token operator">/</span>executions<span class="token operator">&gt;</span>                 <span class="token generics function"><span class="token punctuation">&lt;</span>configuration<span class="token punctuation">&gt;</span></span>                     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>指定生成的镜像名<span class="token operator">--</span><span class="token operator">&gt;</span>                     <span class="token generics function"><span class="token punctuation">&lt;</span>imageName<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{<!-- --></span>project<span class="token punctuation">.</span>artifactId<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>imageName<span class="token operator">&gt;</span>                     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>指定标签<span class="token operator">--</span><span class="token operator">&gt;</span>                     <span class="token generics function"><span class="token punctuation">&lt;</span>imageTags<span class="token punctuation">&gt;</span></span>                         <span class="token generics function"><span class="token punctuation">&lt;</span>imageTag<span class="token punctuation">&gt;</span></span>latest<span class="token operator">&lt;</span><span class="token operator">/</span>imageTag<span class="token operator">&gt;</span>                     <span class="token operator">&lt;</span><span class="token operator">/</span>imageTags<span class="token operator">&gt;</span>                     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 指定 Dockerfile 路径 $<span class="token punctuation">{<!-- --></span>project<span class="token punctuation">.</span>basedir<span class="token punctuation">}</span>：项目根路径下<span class="token operator">--</span><span class="token operator">&gt;</span>                     <span class="token generics function"><span class="token punctuation">&lt;</span>dockerDirectory<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{<!-- --></span>project<span class="token punctuation">.</span>basedir<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>dockerDirectory<span class="token operator">&gt;</span>                     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>指定远程 docker api地址<span class="token operator">--</span><span class="token operator">&gt;</span>                     <span class="token generics function"><span class="token punctuation">&lt;</span>dockerHost<span class="token punctuation">&gt;</span></span>http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span><span class="token number">192.168</span><span class="token number">.31</span><span class="token number">.6</span><span class="token operator">:</span><span class="token number">2375</span><span class="token operator">&lt;</span><span class="token operator">/</span>dockerHost<span class="token operator">&gt;</span>                     <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 这里是复制 jar 包到 docker 容器指定目录配置 <span class="token operator">--</span><span class="token operator">&gt;</span>                     <span class="token generics function"><span class="token punctuation">&lt;</span>resources<span class="token punctuation">&gt;</span></span>                         <span class="token generics function"><span class="token punctuation">&lt;</span>resource<span class="token punctuation">&gt;</span></span>                             <span class="token generics function"><span class="token punctuation">&lt;</span>targetPath<span class="token punctuation">&gt;</span></span><span class="token operator">/</span><span class="token operator">&lt;</span><span class="token operator">/</span>targetPath<span class="token operator">&gt;</span>                             <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>jar 包所在的路径 此处配置的 即对应 target 目录<span class="token operator">--</span><span class="token operator">&gt;</span>                             <span class="token generics function"><span class="token punctuation">&lt;</span>directory<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{<!-- --></span>project<span class="token punctuation">.</span>build<span class="token punctuation">.</span>directory<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>directory<span class="token operator">&gt;</span>                              <span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> 需要包含的 jar包 ，这里对应的是 Dockerfile中添加的文件名　<span class="token operator">--</span><span class="token operator">&gt;</span>                             <span class="token generics function"><span class="token punctuation">&lt;</span>include<span class="token punctuation">&gt;</span></span>$<span class="token punctuation">{<!-- --></span>project<span class="token punctuation">.</span>build<span class="token punctuation">.</span>finalName<span class="token punctuation">}</span><span class="token punctuation">.</span>jar<span class="token operator">&lt;</span><span class="token operator">/</span>include<span class="token operator">&gt;</span>                         <span class="token operator">&lt;</span><span class="token operator">/</span>resource<span class="token operator">&gt;</span>                     <span class="token operator">&lt;</span><span class="token operator">/</span>resources<span class="token operator">&gt;</span>                 <span class="token operator">&lt;</span><span class="token operator">/</span>configuration<span class="token operator">&gt;</span>             <span class="token operator">&lt;</span><span class="token operator">/</span>plugin<span class="token operator">&gt;</span> </code></pre> <h4> <a id="4springbootDockerfilepom_52" rel="nofollow"></a>4.springboot项目创建Dockerfile文件（与pom文件同级）</h4> <pre><code class="prism language-java">#指定基础镜像，在其上进行定制，树莓派专用jdk FROM armhfbuild<span class="token operator">/</span>java MAINTAINER <span class="token string">"Edison"</span><span class="token operator">&lt;</span><span class="token number">631697494</span><span class="token annotation punctuation">@qq</span><span class="token punctuation">.</span>com<span class="token operator">&gt;</span>  #添加 target<span class="token operator">/</span>pi<span class="token operator">-</span>service<span class="token punctuation">.</span>jar 到容器里 ADD pi<span class="token operator">-</span>service<span class="token punctuation">.</span>jar app<span class="token punctuation">.</span>jar  #声明运行时容器提供服务端口，这只是一个声明，在运行时并不会因为这个声明应用就会开启这个端口的服务 EXPOSE <span class="token number">9999</span>  #指定容器启动程序及参数   <span class="token generics function"><span class="token punctuation">&lt;</span>ENTRYPOINT<span class="token punctuation">&gt;</span></span> <span class="token string">"&lt;CMD&gt;"</span> ENTRYPOINT <span class="token punctuation">[</span><span class="token string">"java"</span><span class="token punctuation">,</span><span class="token string">"-jar"</span><span class="token punctuation">,</span><span class="token string">"app.jar"</span><span class="token punctuation">]</span> </code></pre> <h4> <a id="5_68" rel="nofollow"></a>5.服务部署</h4> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/6ad092a0b528e2379ba24ce01304c25a.jpg" alt="idea集成docker实现springboot一键部署"><br /> 右击创建容器的时候，填入相应配置即可启动容器<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/dab962b7a47d10fdd792290e9b99116b.jpg" alt="idea集成docker实现springboot一键部署"><br /> 启动后可看到以下信息表示启动成功，可通过开放端口访问服务啦！<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230217/5320bb8433f637ec54d1f617bc2a4800.jpg" alt="idea集成docker实现springboot一键部署"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-60739.htm">vue &#8211; vue基础/vue核心内容（2）_在线工具</a></p>
+                                        <p>下一个：<a href="/news/article-61319.htm">北京农大动物医院哪个医生好些（北京农大动物医院最好的医生）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-34452.htm" title="git下载安装教程">git下载安装教程</a></li>
+                        <li class="py-2"><a href="/news/article-53952.htm" title="宠物领养协议文案怎么写啊（宠物领养协议免费下载）">宠物领养协议文案怎么写啊（宠物领养协议免费下载）</a></li>
+                        <li class="py-2"><a href="/news/article-57284.htm" title="宠物猫疫苗需要打几针,多少钱（宠物猫疫苗需要打几针,多少钱一针）">宠物猫疫苗需要打几针,多少钱（宠物猫疫苗需要打几针,多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-30173.htm" title="如何在58同城发布宠物领养信息（58同城宠物怎么发布信息）">如何在58同城发布宠物领养信息（58同城宠物怎么发布信息）</a></li>
+                        <li class="py-2"><a href="/news/article-36847.htm" title="适合初学者的C语言数据类型的讲解_C 语言">适合初学者的C语言数据类型的讲解_C 语言</a></li>
+                        <li class="py-2"><a href="/news/article-39306.htm" title="猫咪三针疫苗需要多久打一次（猫咪三针疫苗必须打么）">猫咪三针疫苗需要多久打一次（猫咪三针疫苗必须打么）</a></li>
+                        <li class="py-2"><a href="/news/article-48703.htm" title="济南在哪领养猫的地方（济南在哪可以领养猫）">济南在哪领养猫的地方（济南在哪可以领养猫）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-1-free-high-speed-nodes.htm" title="「12月1日」最高速度22.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月1日」最高速度22.3M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-30644.htm" title="宠物粮食店名称大全图片 宠物粮食店名称大全图片及价格">宠物粮食店名称大全图片 宠物粮食店名称大全图片及价格</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-clash-verge-rev-node-share.htm" title="「12月18日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「12月18日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
