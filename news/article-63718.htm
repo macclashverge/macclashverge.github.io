@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-63718.htm" />
+    <title>element UI 表格table多个数值进行排序筛选</title>
+        <meta name="description" content="效果图   1.表格html部分 &lt;el-table   v-loading="loading"   element-loading-text="加载数据中"   :data="tableDat" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-63718.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="element UI 表格table多个数值进行排序筛选" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/98db8d7b3ef6727cd217046f59646e3f.webp" />
+        <meta property="og:release_date" content="2025-02-27T05:55:48" />
+    <meta property="og:updated_time" content="2025-02-27T05:55:48" />
+        <meta property="og:description" content="效果图   1.表格html部分 &lt;el-table   v-loading="loading"   element-loading-text="加载数据中"   :data="tableDat" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="element UI 表格table多个数值进行排序筛选">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">element UI 表格table多个数值进行排序筛选</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="_0" rel="nofollow"></a>效果图</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230217/25f05a98dac33167a41973440dccba42.jpg" alt="element UI 表格table多个数值进行排序筛选"></p> <h3> <a id="1html_3" rel="nofollow"></a>1.表格html部分</h3> <pre><code>&lt;el-table   v-loading="loading"   element-loading-text="加载数据中"   :data="tableData"   border   //状态筛选   @filter-change="handleFilterChange"   //分数和时间筛选   @sort-change="changeTableSort"   :row-class-name="addRowClass"   //全选   @selection-change="handleSelectionChange" &gt; //此处放一部分 //分数 &lt;el-table-column    prop="score"    :resizable="false"    label="分数"    sortable="custom"    min-width="8%"&gt; &lt;/el-table-column&gt; //状态 &lt;el-table-column   prop="status_name"   column-key="status_name"   label="状态"   min-width="10%"   :resizable="false"   :filter-multiple="false"   :filters="[     { text: '待审核', value: '10' },     { text: '已通过', value: '20' },     // { text: '草稿箱', value: '50' },     { text: '已驳回', value: '30' },     { text: '已下架', value: '40' }   ]"   filter-placement="bottom-end"&gt; 	&lt;template slot-scope="scope"&gt; 	    &lt;el-tag 	      :type="scope.row.status_name == '待审核' ? 'primary' : ''" 	      :class="'aritcleState' + scope.row.status" 	      disable-transitions 	    &gt;{<!-- -->{ scope.row.status_name }} 	    &lt;/el-tag&gt; 	  &lt;/template&gt; 	&lt;/el-table-column&gt; //时间 &lt;el-table-column   prop="create_time"   :resizable="false"   label="提交时间"   sortable="custom"   min-width="11%"&gt; 	 &lt;template slot-scope="scope"&gt; 	   &lt;span&gt;{<!-- -->{ scope.row.create_time }}&lt;/span&gt; 	 &lt;/template&gt; 	&lt;/el-table-column&gt; &lt;/el-table&gt; </code></pre> <h3> <a id="2dom_66" rel="nofollow"></a>2.dom</h3> <pre><code>//状态筛选 handleFilterChange(value) { //判断筛选的字段 if (value.is_first) {     let firstVal = value.is_first.join(",");     this.firstStat = firstVal;     //请求     this.pageLoadList();   } }  //时间和分数筛选 changeTableSort({ column, prop, order }) { 	let sortSign = "";     let updataSign = "";     let sortArr = [];     let updataArr = [];     //分数     if (prop == "score") {     //降序      if (order == "descending") {        scoreSign = "DESC";        scoreArr = { score: scoreSign };        this.sortArrData = JSON.stringify(scoreArr);      } else {      //升序        scoreSign = "ASC";        scoreArr = { score: scoreSign };        this.sortArrData = JSON.stringify(scoreArr);      }      //请求      this.pageLoadList();    } else if (prop == "create_time") {  //时间    if (order == "descending") {        sortSign = "DESC";        sortArr = { create_time: sortSign };        this.sortArrData = JSON.stringify(sortArr);      } else {        sortSign = "ASC";        sortArr = { create_time: sortSign };        this.sortArrData = JSON.stringify(sortArr);      }      this.pageLoadList();    } } </code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-63114.htm">厦门宠物领养中心地址电话（厦门有没有宠物领养中心）</a></p>
+                                        <p>下一个：<a href="/news/article-63719.htm">厦门宠物免费领养网站 厦门宠物免费领养网站有哪些</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-45260.htm" title="有免费领养宠物的软件吗知乎推荐（有免费领养宠物的软件吗知乎推荐下载）">有免费领养宠物的软件吗知乎推荐（有免费领养宠物的软件吗知乎推荐下载）</a></li>
+                        <li class="py-2"><a href="/news/article-37335.htm" title="宠物寄养协议书范本免费版大全图（寄养宠物协议合同怎么写）">宠物寄养协议书范本免费版大全图（寄养宠物协议合同怎么写）</a></li>
+                        <li class="py-2"><a href="/news/article-52866.htm" title="福州宠物猫市场（福州宠物猫市场在哪里）">福州宠物猫市场（福州宠物猫市场在哪里）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-free-subscribe-node.htm" title="「1月13日」最高速度22.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月13日」最高速度22.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-27830.htm" title="动物疫苗注射工作注意事项及要求有哪些（动物疫苗注射方法）">动物疫苗注射工作注意事项及要求有哪些（动物疫苗注射方法）</a></li>
+                        <li class="py-2"><a href="/news/article-55049.htm" title="node.js &#8211; 包、express">node.js &#8211; 包、express</a></li>
+                        <li class="py-2"><a href="/news/article-57284.htm" title="宠物猫疫苗需要打几针,多少钱（宠物猫疫苗需要打几针,多少钱一针）">宠物猫疫苗需要打几针,多少钱（宠物猫疫苗需要打几针,多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-39801.htm" title="Java并发工具学习（八）——Semaphore和Condition">Java并发工具学习（八）——Semaphore和Condition</a></li>
+                        <li class="py-2"><a href="/news/article-58573.htm" title="快手开无货源网店是真的吗知乎（快手无货源店铺是怎么发货的）">快手开无货源网店是真的吗知乎（快手无货源店铺是怎么发货的）</a></li>
+                        <li class="py-2"><a href="/news/article-31599.htm" title="动物疫苗的正确使用方法有哪些视频（动物疫苗注射器视频）">动物疫苗的正确使用方法有哪些视频（动物疫苗注射器视频）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">81</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
