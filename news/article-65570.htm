@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-65570.htm" />
+    <title>解决：bash: /root/.bashrc: Permission denied</title>
+        <meta name="description" content="这是文件的权限问题： 可以查看一下文件权限： root@0d71811f7c01:/usr/local/src# ls -al  ~/ total 32 drwx------ 1 root root " />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-65570.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="解决：bash: /root/.bashrc: Permission denied" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/524b611093d9ec378fcfe94e5510b430.webp" />
+        <meta property="og:release_date" content="2025-03-02T09:35:30" />
+    <meta property="og:updated_time" content="2025-03-02T09:35:30" />
+        <meta property="og:description" content="这是文件的权限问题： 可以查看一下文件权限： root@0d71811f7c01:/usr/local/src# ls -al  ~/ total 32 drwx------ 1 root root " />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="解决：bash: /root/.bashrc: Permission denied">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">解决：bash: /root/.bashrc: Permission denied</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>这是文件的权限问题：</p> <p>可以查看一下文件权限：</p> <pre><code>root@0d71811f7c01:/usr/local/src# ls -al  ~/ total 32 drwx------ 1 root root 4096 Nov 17 23:34 . drwxr-xr-x 1 root root 4096 Nov 10 14:57 .. -rw------- 1 root root  523 Nov 17 23:34 .bash_history -rwSr-Sr-- 1 root root  570 Jan 31  2010 .bashrc drwx------ 3 root root 4096 Nov 17 15:25 .cache -rw-r--r-- 1 root root  126 Nov  3 14:57 .gitconfig -rw-r--r-- 1 root root  148 Aug 17  2015 .profile -rw-r--r-- 1 root root  165 Feb  2  2020 .wget-hsts </code></pre> <p>发现.bashrc文件没有执行的权限；</p> <p>于是操作如下：</p> <pre><code>chmod 766 ~/.bashrc root@0d71811f7c01:/usr/local/src# ls -al  ~/ total 32 drwx------ 1 root root 4096 Nov 17 23:34 . drwxr-xr-x 1 root root 4096 Nov 10 14:57 .. -rw------- 1 root root  523 Nov 17 23:34 .bash_history -rwxrw-rw- 1 root root  666 Nov 18 11:57 .bashrc drwx------ 3 root root 4096 Nov 17 15:25 .cache -rw-r--r-- 1 root root  126 Nov  3 14:57 .gitconfig -rw-r--r-- 1 root root  148 Aug 17  2015 .profile -rw-r--r-- 1 root root  165 Feb  2  2020 .wget-hsts  </code></pre> <p>这样.bashrc文件就有执行的权限；</p> <p>因为我是管理员，所以766只给管理员执行的权限，若你不是管理员你可以改为777直接了当，但是建议执行完之后最好还原为原来的权限，这样比较安全。</p> <p>&nbsp;</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-64948.htm">宠物医院猫咪疫苗价格（宠物医院猫咪疫苗价格表）</a></p>
+                                        <p>下一个：<a href="/news/article-65571.htm">1970年农历6月27日是什么星座（1970年六月二十七是什么星座）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-62517.htm" title="宠物领养软件有哪些好用（宠物领养软件有哪些好用的软件）">宠物领养软件有哪些好用（宠物领养软件有哪些好用的软件）</a></li>
+                        <li class="py-2"><a href="/news/article-25507.htm" title="做宠物手工零食赚钱吗 做宠物手工零食赚钱吗现在">做宠物手工零食赚钱吗 做宠物手工零食赚钱吗现在</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-30-clash-verge-rev-node-github.htm" title="「1月30日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月30日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-37336.htm" title="动物医院办理条件有哪些内容呢（动物医院办理条件有哪些内容呢英语）">动物医院办理条件有哪些内容呢（动物医院办理条件有哪些内容呢英语）</a></li>
+                        <li class="py-2"><a href="/news/article-33506.htm" title="动保疫苗厂家（动保疫苗龙头企业）">动保疫苗厂家（动保疫苗龙头企业）</a></li>
+                        <li class="py-2"><a href="/news/article-26437.htm" title="动物疫苗法律法规最新（动物疫苗法案）">动物疫苗法律法规最新（动物疫苗法案）</a></li>
+                        <li class="py-2"><a href="/news/article-30644.htm" title="宠物粮食店名称大全图片 宠物粮食店名称大全图片及价格">宠物粮食店名称大全图片 宠物粮食店名称大全图片及价格</a></li>
+                        <li class="py-2"><a href="/news/article-28289.htm" title="dellbios检测不到固态硬盘（dell识别不了固态硬盘）">dellbios检测不到固态硬盘（dell识别不了固态硬盘）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-2-clash-verge-rev-node-github.htm" title="「1月2日」最高速度21.8M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月2日」最高速度21.8M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-22-free-high-speed-nodes.htm" title="「2月22日」最高速度22.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「2月22日」最高速度22.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

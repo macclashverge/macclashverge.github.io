@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-64330.htm" />
+    <title>Redis4-缓存过期和删除策略</title>
+        <meta name="description" content="目录 为什么需要设置Redis的缓存过期？ 如何设置缓存过期 maxmemory配置项 不设置的场景 设置的场景 那么如何设置内存合理呢？根据业务进行判断 expire命令 expire的使用 缓存过" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-64330.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="Redis4-缓存过期和删除策略" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/3ca310159d4417ec4a2d64b8e2ccf789.webp" />
+        <meta property="og:release_date" content="2025-02-28T06:55:33" />
+    <meta property="og:updated_time" content="2025-02-28T06:55:33" />
+        <meta property="og:description" content="目录 为什么需要设置Redis的缓存过期？ 如何设置缓存过期 maxmemory配置项 不设置的场景 设置的场景 那么如何设置内存合理呢？根据业务进行判断 expire命令 expire的使用 缓存过" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Redis4-缓存过期和删除策略">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">Redis4-缓存过期和删除策略</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p id="main-toc"><strong>目录</strong></p> <p id="%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%AE%BE%E7%BD%AERedis%E7%9A%84%E7%BC%93%E5%AD%98%E8%BF%87%E6%9C%9F%EF%BC%9F-toc" style="margin-left:0px;"><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%AE%BE%E7%BD%AERedis%E7%9A%84%E7%BC%93%E5%AD%98%E8%BF%87%E6%9C%9F%EF%BC%9F" rel="nofollow">为什么需要设置Redis的缓存过期？</a></p> <p id="%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E8%BF%87%E6%9C%9F-toc" style="margin-left:0px;"><a href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98%E8%BF%87%E6%9C%9F" rel="nofollow">如何设置缓存过期</a></p> <p id="maxmemory%E9%85%8D%E7%BD%AE%E9%A1%B9-toc" style="margin-left:0px;"><a href="#maxmemory%E9%85%8D%E7%BD%AE%E9%A1%B9" rel="nofollow">maxmemory配置项</a></p> <p id="%E4%B8%8D%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%9C%BA%E6%99%AF-toc" style="margin-left:40px;"><a href="#%E4%B8%8D%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%9C%BA%E6%99%AF" rel="nofollow">不设置的场景</a></p> <p id="%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%9C%BA%E6%99%AF-toc" style="margin-left:40px;"><a href="#%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%9C%BA%E6%99%AF" rel="nofollow">设置的场景</a></p> <p id="%E9%82%A3%E4%B9%88%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E5%86%85%E5%AD%98%E5%90%88%E7%90%86%E5%91%A2%EF%BC%9F%E6%A0%B9%E6%8D%AE%E4%B8%9A%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%88%A4%E6%96%AD-toc" style="margin-left:80px;"><a href="#%E9%82%A3%E4%B9%88%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E5%86%85%E5%AD%98%E5%90%88%E7%90%86%E5%91%A2%EF%BC%9F%E6%A0%B9%E6%8D%AE%E4%B8%9A%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%88%A4%E6%96%AD" rel="nofollow">那么如何设置内存合理呢？根据业务进行判断</a></p> <p id="expire%E5%91%BD%E4%BB%A4-toc" style="margin-left:40px;"><a href="#expire%E5%91%BD%E4%BB%A4" rel="nofollow">expire命令</a></p> <p id="expire%E7%9A%84%E4%BD%BF%E7%94%A8-toc" style="margin-left:80px;"><a href="#expire%E7%9A%84%E4%BD%BF%E7%94%A8" rel="nofollow">expire的使用</a></p> <p id="%E7%BC%93%E5%AD%98%E8%BF%87%E6%9C%9F%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%3A-toc" style="margin-left:0px;"><a href="#%E7%BC%93%E5%AD%98%E8%BF%87%E6%9C%9F%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%3A" rel="nofollow">缓存过期的底层实现:</a></p> <p id="%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5-toc" style="margin-left:0px;"><a href="#%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5" rel="nofollow">删除策略</a></p> <p id="%E5%AE%9A%E6%97%B6%E5%88%A0%E9%99%A4%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89-toc" style="margin-left:40px;"><a href="#%E5%AE%9A%E6%97%B6%E5%88%A0%E9%99%A4%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" rel="nofollow">定时删除（了解）</a></p> <p id="%E2%80%BB%20%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%9A%8F%E6%9C%BA%E6%8A%BD%E5%8F%96%E9%83%A8%E5%88%86%E6%A3%80%E6%B5%8B%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%A8%E9%83%A8%EF%BC%9F-toc" style="margin-left:80px;"><a href="#%E2%80%BB%20%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%9A%8F%E6%9C%BA%E6%8A%BD%E5%8F%96%E9%83%A8%E5%88%86%E6%A3%80%E6%B5%8B%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%A8%E9%83%A8%EF%BC%9F" rel="nofollow">※ 为什么是随机抽取部分检测，而不是全部？</a></p> <p id="%E6%83%B0%E6%80%A7%E5%88%A0%E9%99%A4-toc" style="margin-left:40px;"><a href="#%E6%83%B0%E6%80%A7%E5%88%A0%E9%99%A4" rel="nofollow">惰性删除</a></p> <p id="%E4%B8%BB%E5%8A%A8%E5%88%A0%E9%99%A4%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89-toc" style="margin-left:40px;"><a href="#%E4%B8%BB%E5%8A%A8%E5%88%A0%E9%99%A4%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89" rel="nofollow">主动删除（重点）</a></p> <p id="maxmemory-policy%20%E9%85%8D%E7%BD%AE%E9%A1%B9-toc" style="margin-left:40px;"><a href="#maxmemory-policy%20%E9%85%8D%E7%BD%AE%E9%A1%B9" rel="nofollow">maxmemory-policy 配置项</a></p> <p id="LRU-toc" style="margin-left:80px;"><a href="#LRU" rel="nofollow">LRU</a></p> <p id="LFU-toc" style="margin-left:80px;"><a href="#LFU" rel="nofollow">LFU</a></p> <p id="random%20%E9%9A%8F%E6%9C%BA-toc" style="margin-left:80px;"><a href="#random%20%E9%9A%8F%E6%9C%BA" rel="nofollow">random 随机</a></p> <p id="ttl-toc" style="margin-left:80px;"><a href="#ttl" rel="nofollow">ttl</a></p> <p id="noenviction-toc" style="margin-left:80px;"><a href="#noenviction" rel="nofollow">noenviction</a></p> <p id="%E7%BC%93%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5%E7%9A%84%E9%80%89%E6%8B%A9-toc" style="margin-left:40px;"><a href="#%E7%BC%93%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5%E7%9A%84%E9%80%89%E6%8B%A9" rel="nofollow">缓存淘汰策略的选择</a></p> <p id="%E5%85%B6%E4%BB%96%E5%9C%BA%E6%99%AF%E5%AF%B9%E8%BF%87%E6%9C%9Fkey%E7%9A%84%E5%A4%84%E7%90%86-toc" style="margin-left:80px;"><a href="#%E5%85%B6%E4%BB%96%E5%9C%BA%E6%99%AF%E5%AF%B9%E8%BF%87%E6%9C%9Fkey%E7%9A%84%E5%A4%84%E7%90%86" rel="nofollow">其他场景对过期key的处理</a></p> </h1> <p>长期使用，key会不断增加，Redis作为缓存使用，物理内存也会满</p> <p>内存与硬盘交换（swap） 虚拟内存 ，频繁IO 性能急剧下降；</p> </h1> <p>在Redis 的配置文件中 MEMORY MANAGEMENT 模块的内容就是关于缓存过期设置的相关配置</p> <pre><code class="language-bash">############################## MEMORY MANAGEMENT ################################ redis配置的最大内存容量 当内存满了，需要配合maxmemory-policy策略进行处理 注意slave的输出缓冲区是不计算在maxmemory内的。所以为了防止主机内存使用完，建议设置的maxmemory需要更小一些 maxmemory 122000000   #内存容量超过maxmemory后的处理策略。默认为： 不删除noeviction #    volatile-lru：利用LRU算法移除设置过过期时间的key。 #    volatile-random：随机移除设置过过期时间的key。 #    volatile-ttl：移除即将过期的key，根据最近过期时间来删除（辅以TTL） #    allkeys-lru：利用LRU算法移除任何key。 #    allkeys-random：随机移除任何key。 #    noeviction：不移除任何key，只是返回一个写错误。 #上面的这些驱逐策略，如果redis没有合适的key驱逐，对于写命令，还是会返回错误。redis将不再接收写请求，只接收get请求。 写命令包括：set setnx  setex append incr decr rpush lpush rpushx  lpushx linsert lset rpoplpush sadd sinter sinterstore sunion sunionstore  sdiff sdiffstore zadd zincrby zunionstore zinterstore hset hsetnx hmset   hincrby incrby decrby getset mset msetnx exec sort。 # maxmemory-policy noeviction   # lru检测的样本数。使用lru或者ttl淘汰算法，从需要淘汰的列表中随机选择sample个key，选出闲置时间最长的key移除 # maxmemory-samples 5   # 是否开启salve的最大内存 # replica-ignore-maxmemory yes ............</code></pre> <p>下面我们详细分析下上面的配置项的应用场景：</p> </h1> <p>获得maxmemory 的Redis命令 :<strong> CONFIG GET maxmemory</strong></p> <h2 id="%E4%B8%8D%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%9C%BA%E6%99%AF">不设置的场景</h2> <p>Redis的key是固定的，不会增加</p> <p>Redis作为DB使用，保证数据的完整性，不能淘汰 ， 可以做集群，横向扩展</p> <p>缓存淘汰策略：禁止驱逐 （默认）noeviction</p> <h2 id="%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%9C%BA%E6%99%AF">设置的场景</h2> <p>Redis是作为缓存使用，不断增加Key</p> <p>maxmemory ： 默认为0 不限制</p> <p>问题：达到物理内存后性能急剧下架，甚至崩溃</p> <p>内存与硬盘交换（swap） 虚拟内存 ，频繁IO 性能急剧下降</p> <h3 id="%E9%82%A3%E4%B9%88%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E5%86%85%E5%AD%98%E5%90%88%E7%90%86%E5%91%A2%EF%BC%9F%E6%A0%B9%E6%8D%AE%E4%B8%9A%E5%8A%A1%E8%BF%9B%E8%A1%8C%E5%88%A4%E6%96%AD">那么如何设置内存合理呢？根据业务进行判断</h3> <p>1个Redis实例，保证系统运行 1 G ，剩下的就都可以设置Redis，一般设置为物理内存的3/4并且如果为slaver ： 留出一定的内存</p> <p>设置maxmemory后，当趋近maxmemory时，结合 maxmemory-policy 配置项设置 缓存淘汰策略，从内存中删除对象</p> <h2 id="expire%E5%91%BD%E4%BB%A4">expire命令</h2> <p>在Redis中可以使用expire命令设置一个键的存活时间(ttl: time to live)，过了这段时间，该键就会自动被删除。</p> <h3 id="expire%E7%9A%84%E4%BD%BF%E7%94%A8">expire的使用</h3> <p>expire命令的使用方法如下： expire key ttl(单位秒)</p> <pre><code class="language-bash">127.0.0.1:6379&gt; expire name 2 #2秒失效  (integer) 1  127.0.0.1:6379&gt; get name  (nil)  127.0.0.1:6379&gt; set name zhangfei  OK 127.0.0.1:6379&gt; ttl name # -1表示永久有效  (integer) -1</code></pre> </h1> <p>上文中提高 关于Redis的底层数据结构，redis 中存在数据库的概念</p> <pre><code class="language-cpp">typedef struct redisDb {      int id;             // id是数据库序号，为0-15（默认Redis有16个数据库）      long avg_ttl;       // 存储的数据库对象的平均ttl（time to live），用于统计      dict *dict;         // 存储数据库所有的key-value      dict *expires;      // 存储数据库所有key的过期时间      dict *blocking_keys;// blpop 存储阻塞key和客户端对象      dict *ready_keys;   // 阻塞后push 响应阻塞客户端 存储阻塞后push的key和客户端对象      dict *watched_keys; // 存储watch监控的的key和客户端对象  }</code></pre> <p>上面的代码是Redis 中关于数据库的结构体定义，这个结构体定义中除了 id 以外都是指向字典的指针，其中我们再看看 dict 和 expires。</p> <p><strong>dict：</strong> 用来维护一个 Redis 数据库中包含的所有 Key-Value 键值对，</p> <p><strong>expires：</strong>则用于维护一个 Redis 数据库中所有设置了失效时间的键(即key与失效时间的映射)。</p> <ul> <li>当我们使用 expire命令设置一个key的失效时间时，Redis 首先到 dict 这个字典表中查找要设置的key是否存在，如果存在就将这个key和失效时间添加到 expires 这个字典表。</li> <li>当我们使用 setex命令向系统插入数据时，Redis 首先将 Key 和 Value 添加到 dict 这个字典表中，然后将 Key 和失效时间添加到 expires 这个字典表中。</li> </ul> <p><span style="color:#fe2c24;"><strong>简单地总结来说就是，设置了失效时间的key和具体的失效时间全部都维护在 expires 这个字典表中。</strong></span></p> </h1> <p><strong>Redis的数据删除有定时删除、惰性删除和主动删除三种方式。</strong></p> <p><strong>Redis目前采用惰性删除+主动删除的方式。</strong></p> <h2 id="%E5%AE%9A%E6%97%B6%E5%88%A0%E9%99%A4%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89">定时删除（了解）</h2> <p>在设置键的过期时间的同时，创建一个定时器，让定时器在键的过期时间来临时，立即执行对键的删除操作。</p> <p>需要创建定时器，而且消耗CPU，一般不推荐使用。</p> <p>定期删除是指Redis默认每隔 100ms 就 随机抽取 一些设置了过期时间的key，检测这些key是否过期，如果过期了就将其删除。</p> <p>※ 100ms怎么来的？</p> <p>在Redis的配置文件redis.conf中有一个属性"hz"，默认为10，表示1s执行10次定期删除，即每隔100ms执行一次，可以修改这个配置值。</p> <p><img fetchpriority="high" decoding="async" alt="" height="190" src="http://img.555519.xyz/uploads3/20220901/ea27442ea9640238c4e55158deabdbe4.jpg"></p> <p>※ 随机抽取一些检测，一些是多少？</p> <p>同样是由redis.conf文件中的maxmemory-samples属性决定的，默认为5。</p> <p><img decoding="async" alt="" height="229" src="http://img.555519.xyz/uploads3/20220901/1933d591122d096adc47f34c4a02cd94.jpg"></p> <h3 id="%E2%80%BB%20%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%9A%8F%E6%9C%BA%E6%8A%BD%E5%8F%96%E9%83%A8%E5%88%86%E6%A3%80%E6%B5%8B%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%85%A8%E9%83%A8%EF%BC%9F">※ 为什么是随机抽取部分检测，而不是全部？</h3> <p>因为如果Redis里面有大量key都设置了过期时间，全部都去检测一遍的话CPU负载就会很高，会浪费大量的时间在检测上面，甚至直接导致redis挂掉。</p> <p>所有只会抽取一部分而不会全部检查。</p> <p>正因为定期删除只是随机抽取部分key来检测，这样的话就会出现大量已经过期的key并没有被删除，这就是为什么有时候大量的key明明已经过了失效时间，</p> <p>但是redis的内存还是被大量占用的原因 ，为了解决这个问题，Redis又引入了“惰性删除策略”。</p> <h2 id="%E6%83%B0%E6%80%A7%E5%88%A0%E9%99%A4">惰性删除</h2> <p>在key被访问时如果发现它已经失效，那么就删除它。</p> <p>调用expireIfNeeded函数，该函数的意义是：读取数据之前先检查一下它有没有失效，如果失效了就删除它。</p> <pre><code class="language-cpp">int expireIfNeeded(redisDb *db, robj *key) {      // 获取主键的失效时间 get当前时间-创建时间&gt;ttl      long long when = getExpire(db,key);      // 假如失效时间为负数，说明该主键未设置失效时间（失效时间默认为-1），直接返回0      if (when &lt; 0) return 0;      // 假如Redis服务器正在从RDB文件中加载数据，暂时不进行失效主键的删除，直接返回0      if (server.loading) return 0;      ...      // 如果以上条件都不满足，就将主键的失效时间与当前时间进行对比，如果发现指定的主键还未失效就直接返回0      if (mstime() &lt;= when) return 0;      // 如果发现主键确实已经失效了，那么首先更新关于失效主键的统计个数，然后将该主键失效的信息进行广播，最后将该主键从数据库中删除      server.stat_expiredkeys++;      propagateExpire(db,key);      return dbDelete(db,key);  }</code></pre> <p>"定期删除+惰性删除"就能保证过期的key最终一定会被删掉 ，但是只能保证最终一定会被删除，要是定期删除遗漏的大量过期key，我们在很长的一段时间内也没有再访问这些key，那么这些过期key不就一直会存在于内存中吗？不就会一直占着我们的内存吗？这样不还是会导致redis内存耗尽吗？由于存在这样的问题，所以redis又引入了“内存淘汰机制”来解决。也就是主动删除</p> <h2 id="%E4%B8%BB%E5%8A%A8%E5%88%A0%E9%99%A4%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89">主动删除（重点）</h2> <h2 id="maxmemory-policy%20%E9%85%8D%E7%BD%AE%E9%A1%B9">maxmemory-policy 配置项</h2> <p>Redis目前共提供了8种内存淘汰策略，含Redis 4.0版本之后又新增的两种LFU模式：volatile-lfu和allkeys-lfu。</p> <p><img decoding="async" alt="" height="425" src="http://img.555519.xyz/uploads3/20220901/04d540f04db63b881be36874da904ee3.jpg"></p> <h3 id="LRU">LRU</h3> <p>LRU (Least recently used) 最近最少使用，算法根据数据的历史访问记录来进行淘汰数据，</p> <p><strong>其核心思想是：如果数据最近被访问过，那么将来被访问的几率也更高”。</strong></p> <p>最常见的实现是使用一个链表保存缓存数据，</p> <p><strong>详细算法实现如下：</strong></p> <ol> <li>新数据插入到链表头部；</li> <li>每当缓存命中（即缓存数据被访问），则将数据移到链表头部；</li> <li>当链表满的时候，将链表尾部的数据丢弃。</li> <li>在Java中可以使用LinkHashMap（哈希链表）去实现LRU，头插法实现</li> </ol> <p><strong>Redis的LRU 数据淘汰机制</strong></p> <p>在服务器配置中保存了 lru 计数器 server.lrulock，会定时（redis 定时程序 serverCorn()）更新，</p> <p>server.lrulock 的值是根据 server.unixtime 计算出来的。</p> <p>另外，从 struct redisObject 中可以发现，每一个 redis 对象都会设置相应的 lru。</p> <p>可以想象的是，每一次访问数据的时候，会更新 redisObject.lru。</p> <p>LRU 数据淘汰机制是这样的：在数据集中随机挑选几个键值对，取出其中 lru 最大的键值对淘汰。不可能遍历key 用当前时间-最近访问 越大 说明 访问间隔时间越长</p> <p><strong>配置项值：</strong></p> <ul> <li>volatile-lru：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li> <li>allkeys-lru：从数据集（server.db[i].dict）中挑选最近最少使用的数据淘汰</li> </ul> <h3 id="LFU">LFU</h3> <p>LFU (Least frequently used) 最不经常使用，如果一个数据在最近一段时间内使用次数很少，那么在将来一段时间内被使用的可能性也很小。</p> <p><strong>配置项值：</strong></p> <ul> <li>volatile-lfu</li> <li>allkeys-lfu</li> </ul> <h3 id="random%20%E9%9A%8F%E6%9C%BA"><strong>random 随机</strong></h3> <p><strong>配置项值：</strong></p> <ul> <li>volatile-random： 从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li> <li>allkeys-random： 从数据集（server.db[i].dict）中任意选择数据淘汰</li> </ul> <h3 id="ttl"><strong>ttl</strong></h3> <p>TTL 数据淘汰机制：从过期时间的表中随机挑选几个键值对，取出其中 ttl 最小的键值对淘汰。</p> <p><strong>配置项值：</strong></p> <p>volatile-ttl： 从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</p> <h3 id="noenviction"><strong>noenviction</strong></h3> <p>禁止驱逐数据，不删除 默认</p> <h2 id="%E7%BC%93%E5%AD%98%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5%E7%9A%84%E9%80%89%E6%8B%A9">缓存淘汰策略的选择</h2> <ul> <li>allkeys-lru ： 在不确定时一般采用策略。 冷热数据交换</li> <li>volatile-lru ： 比allkeys-lru性能差 存 : 过期时间</li> <li>allkeys-random ： 希望请求符合平均分布(每个元素以相同的概率被访问)</li> <li>自己控制：volatile-ttl 缓存穿透</li> </ul> <h3 id="%E5%85%B6%E4%BB%96%E5%9C%BA%E6%99%AF%E5%AF%B9%E8%BF%87%E6%9C%9Fkey%E7%9A%84%E5%A4%84%E7%90%86">其他场景对过期key的处理</h3> <p>1、快照生成RDB文件时</p> <p>&nbsp; &nbsp; 过期的key不会被保存在RDB文件中。</p> <p>2、服务重启载入RDB文件时</p> <p>&nbsp; &nbsp; Master载入RDB时，文件中的未过期的键会被正常载入，过期键则会被忽略。Slave 载入RDB 时，文件中的所有键都会被载入，当主从同步时，再和Master保持一致。</p> <p>3、AOF 文件写入时</p> <p>&nbsp; &nbsp; 因为AOF保存的是执行过的Redis命令，所以如果redis还没有执行del，AOF文件中也不会保存del操作，当过期key被删除时，DEL 命令也会被同步到 AOF 文件中去。</p> <p>4、重写AOF文件时</p> <p>&nbsp; &nbsp; 执行 BGREWRITEAOF 时 ，过期的key不会被记录到 AOF 文件中。</p> <p>5、主从同步时</p> <p>&nbsp; &nbsp; Master 删除 过期 Key 之后，会向所有 Slave 服务器发送一个 DEL命令，Slave 收到通知之后，会删除这些 Key。</p> <p>&nbsp; &nbsp; Slave 在读取过期键时，不会做判断删除操作，而是继续返回该键对应的值，只有当Master 发送 DEL 通知，Slave才会删除过期键，</p> <p>这是统一、中心化的键删除策略，保证主从服务器的数据一致性。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-63719.htm">厦门宠物免费领养网站 厦门宠物免费领养网站有哪些</a></p>
+                                        <p>下一个：<a href="/news/article-64331.htm">开宠物店赔钱案例分享（开宠物店的坑）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-56720.htm" title="去宠物店给猫咪驱虫一次多少钱（去宠物店给猫咪驱虫多少钱?）">去宠物店给猫咪驱虫一次多少钱（去宠物店给猫咪驱虫多少钱?）</a></li>
+                        <li class="py-2"><a href="/news/article-46737.htm" title="怎么开宠物店需要些什么（怎么何能开一家宠物店）">怎么开宠物店需要些什么（怎么何能开一家宠物店）</a></li>
+                        <li class="py-2"><a href="/news/article-61319.htm" title="北京农大动物医院哪个医生好些（北京农大动物医院最好的医生）">北京农大动物医院哪个医生好些（北京农大动物医院最好的医生）</a></li>
+                        <li class="py-2"><a href="/news/article-37336.htm" title="动物医院办理条件有哪些内容呢（动物医院办理条件有哪些内容呢英语）">动物医院办理条件有哪些内容呢（动物医院办理条件有哪些内容呢英语）</a></li>
+                        <li class="py-2"><a href="/news/article-47216.htm" title="实现一个大文件上传和断点续传">实现一个大文件上传和断点续传</a></li>
+                        <li class="py-2"><a href="/news/article-39801.htm" title="Java并发工具学习（八）——Semaphore和Condition">Java并发工具学习（八）——Semaphore和Condition</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-clash-verge-rev-node-share.htm" title="「11月25日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月25日」最高速度18.6M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-33977.htm" title="常州宠颐生动物医院招聘电话（常州宠颐生美多格动物医院）">常州宠颐生动物医院招聘电话（常州宠颐生美多格动物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-23648.htm" title="动物疫苗接种的目的是什么 动物疫苗接种的目的是什么呢">动物疫苗接种的目的是什么 动物疫苗接种的目的是什么呢</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-10-node-share-links.htm" title="「11月10日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接">「11月10日」最高速度18.5M/S，2024年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">28</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
