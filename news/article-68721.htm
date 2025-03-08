@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-68721.htm" />
+    <title>JavaScript如何将数组与值是数组的对象合并方法详解</title>
+        <meta name="description" content="假设我们有一个数组和一个像这样的对象- const&nbsp;arr&nbsp;=&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5]; const&nbsp;obj&n" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-68721.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="JavaScript如何将数组与值是数组的对象合并方法详解" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/3e6bb54fe1e3ef66c9617747ea908680.webp" />
+        <meta property="og:release_date" content="2025-03-07T06:34:07" />
+    <meta property="og:updated_time" content="2025-03-07T06:34:07" />
+        <meta property="og:description" content="假设我们有一个数组和一个像这样的对象- const&nbsp;arr&nbsp;=&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5]; const&nbsp;obj&n" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="JavaScript如何将数组与值是数组的对象合并方法详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">JavaScript如何将数组与值是数组的对象合并方法详解</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<p>假设我们有一个数组和一个像这样的对象-</p> <pre>const&nbsp;arr&nbsp;=&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5]; const&nbsp;obj&nbsp;=&nbsp;{ &nbsp;&nbsp;&nbsp;group1:&nbsp;["Ram",&nbsp;"Mohan",&nbsp;"Shyam"], &nbsp;&nbsp;&nbsp;group2:&nbsp;["Jai",&nbsp;"Dinesh"], };</pre> <p>我们需要压缩数组和对象，以便将数组中的值分配给使用对象中的值进行键控的新对象。</p> <p>像这样-</p> <pre>const&nbsp;output&nbsp;=&nbsp;{ &nbsp;&nbsp;&nbsp;group1:&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Ram":&nbsp;1, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Mohan":&nbsp;2, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Shyam":&nbsp;3 &nbsp;&nbsp;&nbsp;}, &nbsp;&nbsp;&nbsp;group2:&nbsp;{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Jai":&nbsp;4, &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Dinesh":&nbsp;5 &nbsp;&nbsp;&nbsp;} };</pre> <p>我们将遍历每个数组项，同时将值分配给新对象的键。</p> <h2>示例</h2> <p>以下是代码-</p> <pre>const&nbsp;arr&nbsp;=&nbsp;[1,&nbsp;2,&nbsp;3,&nbsp;4,&nbsp;5]; const&nbsp;obj&nbsp;=&nbsp;{ &nbsp;&nbsp;&nbsp;group1:&nbsp;["Ram",&nbsp;"Mohan",&nbsp;"Shyam"], &nbsp;&nbsp;&nbsp;group2:&nbsp;["Jai",&nbsp;"Dinesh"], }; const&nbsp;zipObject&nbsp;=&nbsp;(arr,&nbsp;obj)&nbsp;=&gt;&nbsp;{ &nbsp;&nbsp;&nbsp;const&nbsp;res&nbsp;=&nbsp;{}; &nbsp;&nbsp;&nbsp;for(let&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;arr.length;&nbsp;i++){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(obj['group1'][i]){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!res['group1']){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res['group1']&nbsp;=&nbsp;{}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res['group1'][obj['group1'][i]]&nbsp;=&nbsp;arr[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!res['group2']){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res['group2']&nbsp;=&nbsp;{}; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res['group2'][obj['group2'][i&nbsp;-&nbsp;obj['group1'].length]]&nbsp;= &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arr[i]; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}; &nbsp;&nbsp;&nbsp;}; &nbsp;&nbsp;&nbsp;return&nbsp;res; }; console.log(zipObject(arr,&nbsp;obj));</pre> <p>输出结果</p> <p>这将在控制台中产生以下输出-</p> <pre>{ &nbsp;&nbsp;&nbsp;group1:&nbsp;{&nbsp;Ram:&nbsp;1,&nbsp;Mohan:&nbsp;2,&nbsp;Shyam:&nbsp;3&nbsp;}, &nbsp;&nbsp;&nbsp;group2:&nbsp;{&nbsp;Jai:&nbsp;4,&nbsp;Dinesh:&nbsp;5&nbsp;} }</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-68078.htm">Halo 开源项目学习评论与点赞</a></p>
+                                        <p>下一个：<a href="/news/article-68722.htm">动物打完疫苗可以洗澡吗 动物打完疫苗可以洗澡吗</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-49718.htm" title="JavaScript怎么比较数组元素是否相等">JavaScript怎么比较数组元素是否相等</a></li>
+                        <li class="py-2"><a href="/news/article-43275.htm" title="宠物粮品牌推荐 宠物粮品牌推荐知乎">宠物粮品牌推荐 宠物粮品牌推荐知乎</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-7-clash-verge-rev-windows.htm" title="「3月7日」最高速度22.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月7日」最高速度22.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-46248.htm" title="如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行">如何使用Iintelij IDEA将maven项目打包成war包，并将war包放到tomcat上运行</a></li>
+                        <li class="py-2"><a href="/news/article-49719.htm" title="宠物免费领养中心官网查询电话（宠物免费领养）">宠物免费领养中心官网查询电话（宠物免费领养）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-node-share-links.htm" title="「1月27日」最高速度18.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月27日」最高速度18.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-40291.htm" title="三国杀武将翻面有什么用（三国杀中武将翻面什么意思）">三国杀武将翻面有什么用（三国杀中武将翻面什么意思）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-free-subscribe-node.htm" title="「1月13日」最高速度22.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月13日」最高速度22.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-36359.htm" title="小型颗粒饲料机视频（小型颗粒饲料机视频大全）">小型颗粒饲料机视频（小型颗粒饲料机视频大全）</a></li>
+                        <li class="py-2"><a href="/news/article-37831.htm" title="C#实现DataTable转TXT、CSV文件_C#教程_">C#实现DataTable转TXT、CSV文件_C#教程_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">24</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
