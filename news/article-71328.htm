@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-71328.htm" />
+    <title>高薪程序员&amp;面试题精讲系列17之Java代码中如果有太多if语句该如何优化？</title>
+        <meta name="description" content="一. 今日题目 我们在面试时，面试官会从各个方面考察我们到底有没有参与过项目，既会考察我们对某个技能的掌握和理解情况，也会考察我们的编程习惯和技巧。比如，有这么一道面试题：  如果你的项目代码中，有大" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-71328.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="高薪程序员&amp;面试题精讲系列17之Java代码中如果有太多if语句该如何优化？" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/0509efdd5bf5ad9ea1b70ad09162c9e0.webp" />
+        <meta property="og:release_date" content="2025-03-11T07:45:54" />
+    <meta property="og:updated_time" content="2025-03-11T07:45:54" />
+        <meta property="og:description" content="一. 今日题目 我们在面试时，面试官会从各个方面考察我们到底有没有参与过项目，既会考察我们对某个技能的掌握和理解情况，也会考察我们的编程习惯和技巧。比如，有这么一道面试题：  如果你的项目代码中，有大" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="高薪程序员&amp;面试题精讲系列17之Java代码中如果有太多if语句该如何优化？">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">高薪程序员&amp;面试题精讲系列17之Java代码中如果有太多if语句该如何优化？</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <h2 id="NxkJ5">一. 今日题目</h2> <p id="u9250c598">我们在面试时，面试官会从各个方面考察我们到底有没有参与过项目，既会考察我们对某个技能的掌握和理解情况，也会考察我们的编程习惯和技巧。比如，有这么一道面试题：</p> <blockquote> <p id="u81f5f081"><span style="color:#fe2c24;"><strong>如果你的项目代码中，有大量的if/else语句，你有什么优化解决方案?</strong></span></p> </blockquote> <h2 id="2a6c598b">二. 题目剖析</h2> <p id="u69f71d37">我们在平时开发写的代码中，if-else判断语句基本是必不可少的。当我们只有一两层判断语句嵌套的时候其实还好，但是当我们过度地、不必要地使用 if...else语句，就会对代码的可读性、可扩展性造成负面影响。另外如果判断语句越来越多，后期进行项目维护也会比较困难，对于后面接手项目的人来说，也是一个很头疼的问题。</p> <p id="ue15db78c">所以去除代码中过多的if...else语句，就是对程序员软件重构、设计模式、面向对象设计、架构模式、数据结构等多方面技术综合运用能力的反映了。所以我们的代码中要合理使用 if...else，既不能没有，也不能过度。这些对某个技术的综合、合理地运用，都需要程我们序员在工作中不断的摸索总结。</p> <p id="u78a47d82">这也是这道面试题的考察目的！</p> <h2 id="d5909f2f">三. 存在问题</h2> <h3 id="HI5S9">1. 示例代码</h3> <p id="u84e78c47"><strong>壹哥</strong> 先给各位展示如下一段代码，请回忆一下，在你之前的项目中，有没有如下风格的代码，在一个类或方法中，有</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-70669.htm">兽用疫苗查询网站 兽用疫苗查询网站官网</a></p>
+                                        <p>下一个：<a href="/news/article-71329.htm">win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-58572.htm" title="echarts图表实现自适应缩放(vue用法也一致)">echarts图表实现自适应缩放(vue用法也一致)</a></li>
+                        <li class="py-2"><a href="/news/article-39307.htm" title="中国宠物粮食公司排行榜前十名（中国宠物粮食公司排行榜前十名有哪些）">中国宠物粮食公司排行榜前十名（中国宠物粮食公司排行榜前十名有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-63718.htm" title="element UI 表格table多个数值进行排序筛选">element UI 表格table多个数值进行排序筛选</a></li>
+                        <li class="py-2"><a href="/news/article-56161.htm" title="动物医院的设备叫什么 动物医院的设备叫什么名字">动物医院的设备叫什么 动物医院的设备叫什么名字</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-high-speed-nodes.htm" title="「3月6日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月6日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-48704.htm" title="猫亲近人有什么寓意（猫 亲近）">猫亲近人有什么寓意（猫 亲近）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-15-clash-verge-rev-github.htm" title="「1月15日」最高速度21.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「1月15日」最高速度21.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-39801.htm" title="Java并发工具学习（八）——Semaphore和Condition">Java并发工具学习（八）——Semaphore和Condition</a></li>
+                        <li class="py-2"><a href="/news/article-63114.htm" title="厦门宠物领养中心地址电话（厦门有没有宠物领养中心）">厦门宠物领养中心地址电话（厦门有没有宠物领养中心）</a></li>
+                        <li class="py-2"><a href="/news/article-45260.htm" title="有免费领养宠物的软件吗知乎推荐（有免费领养宠物的软件吗知乎推荐下载）">有免费领养宠物的软件吗知乎推荐（有免费领养宠物的软件吗知乎推荐下载）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
