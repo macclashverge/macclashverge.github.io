@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-71979.htm" />
+    <title>LInux初学者 必学 三种配置网卡IP地址的方式（非常详细）</title>
+        <meta name="description" content="本文讲解Linux图形化、shell、命令三种方式配置IP地址静态网卡信息 基础   文章目录 目录 一、IP基础 二、三种网卡配置方式 1.图形化界面 2.nmtui：在shell终端开启文本图形化" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-71979.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="LInux初学者 必学 三种配置网卡IP地址的方式（非常详细）" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/98db8d7b3ef6727cd217046f59646e3f.webp" />
+        <meta property="og:release_date" content="2025-03-12T06:06:40" />
+    <meta property="og:updated_time" content="2025-03-12T06:06:40" />
+        <meta property="og:description" content="本文讲解Linux图形化、shell、命令三种方式配置IP地址静态网卡信息 基础   文章目录 目录 一、IP基础 二、三种网卡配置方式 1.图形化界面 2.nmtui：在shell终端开启文本图形化" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="LInux初学者 必学 三种配置网卡IP地址的方式（非常详细）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">LInux初学者 必学 三种配置网卡IP地址的方式（非常详细）</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <blockquote> <h2 id="%E5%BC%B1%E6%99%BA%E9%80%89%E6%8B%A9%E5%AE%89%E9%80%B8%EF%BC%8C%E5%BC%BA%E8%80%85%E9%80%89%E6%8B%A9%E6%B0%B8%E5%BE%80%E5%90%91%E5%89%8D%E3%80%82%E6%9C%AC%E6%96%87%E8%AE%B2%E8%A7%A3Linux%E5%9B%BE%E5%BD%A2%E5%8C%96%E3%80%81shell%E3%80%81%E5%91%BD%E4%BB%A4%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%E9%85%8D%E7%BD%AEIP%E5%9C%B0%E5%9D%80%E9%9D%99%E6%80%81%E7%BD%91%E5%8D%A1%E4%BF%A1%E6%81%AF">本文讲解Linux<span style="color:#fe2c24;">图形化、shell、命令</span>三种方式配置IP地址静态网卡信息</h2> <h2 id="%E5%9F%BA%E7%A1%80"><span style="color:#fe2c24;">基础</span></h2> </blockquote> <div> <h3 id="%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95"><strong>文章目录</strong></h3> <p id="main-toc"><span style="color:#38d8f0;"><strong>目录</strong></span></p> <p id="%E4%B8%80%E3%80%81IP%E5%9F%BA%E7%A1%80-toc" style="margin-left:0px;"><strong><a href="#%E4%B8%80%E3%80%81IP%E5%9F%BA%E7%A1%80" rel="nofollow"><span style="color:#38d8f0;">一、IP基础</span></a></strong></p> <p id="%E4%BA%8C%E3%80%81%E4%B8%89%E7%A7%8D%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F-toc" style="margin-left:0px;"><strong><a href="#%E4%BA%8C%E3%80%81%E4%B8%89%E7%A7%8D%E7%BD%91%E5%8D%A1%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F" rel="nofollow"><span style="color:#38d8f0;">二、三种网卡配置方式</span></a></strong></p> <p id="1.%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2-toc" style="margin-left:40px;"><strong><a href="#1.%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2" rel="nofollow"><span style="color:#38d8f0;">1.图形化界面</span></a></strong></p> <p id="2.nmtui%EF%BC%9A%E5%9C%A8shell%E7%BB%88%E7%AB%AF%E5%BC%80%E5%90%AF%E6%96%87%E6%9C%AC%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2-toc" style="margin-left:40px;"><strong><a href="#2.nmtui%EF%BC%9A%E5%9C%A8shell%E7%BB%88%E7%AB%AF%E5%BC%80%E5%90%AF%E6%96%87%E6%9C%AC%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2" rel="nofollow"><span style="color:#38d8f0;">2.nmtui：在shell终端开启文本图形化界面</span></a></strong></p> <p id="3.%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E8%AE%B0%E5%BE%97%E4%B8%80%E5%BC%80%E5%A7%8B%E8%BF%9B%E5%85%A5%E7%AE%A1%E7%90%86%E5%91%98%C2%A0%20su%20root%20%E8%BF%99%E9%87%8C%E6%88%91%E5%BF%98%E8%AE%B0%E4%BA%86%E6%8F%90%E6%9D%83%EF%BC%89-toc" style="margin-left:40px;"><strong><a href="#3.%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E8%AE%B0%E5%BE%97%E4%B8%80%E5%BC%80%E5%A7%8B%E8%BF%9B%E5%85%A5%E7%AE%A1%E7%90%86%E5%91%98%C2%A0%20su%20root%20%E8%BF%99%E9%87%8C%E6%88%91%E5%BF%98%E8%AE%B0%E4%BA%86%E6%8F%90%E6%9D%83%EF%BC%89" rel="nofollow"><span style="color:#38d8f0;">3.配置文件的方式（记得一开始进入管理员&nbsp; su root 这里我忘记了提权）</span></a></strong></p> <p id="%E6%80%BB%E7%BB%93-toc" style="margin-left:0px;"><strong><a href="#%E6%80%BB%E7%BB%93" rel="nofollow"><span style="color:#38d8f0;">总结</span></a></strong></p> </div> <hr/> </h1> <hr/> </h1> <p><strong><span style="color:#fe2c24;">&nbsp;IP地址：32位二进制</span>数组成的一个数字序列，<span style="color:#fe2c24;">Internet范围内唯一</span></strong></p> <p><strong><span style="color:#fe2c24;">◆ &nbsp;IP地址组成：网络号和主机号。<br /> ◆ IP地址管理机构只需分配网络号。<br /> ◆ &nbsp;主机号由单位自行分配。<br /> ◆ &nbsp;子网掩码：32位，</span></strong><br /><strong><span style="color:#fe2c24;">分离IP地址中的网络号和主机号</span></strong></p> <p><span style="color:#fe2c24;"><strong>cmd：一种命令提示符</strong></span>，怎么打开呢，<strong>win+r</strong>输入<strong>cmd</strong>就可以调出cmd来了&nbsp; 或者在开始输入cmd即可</p> <p><img fetchpriority="high" decoding="async" alt="" height="237" src="http://img.555519.xyz/uploads/20221117/00edb51d6735b86cc77d3d2f4121190e.jpg"><img decoding="async" alt="" height="617" src="http://img.555519.xyz/uploads/20221117/c9c61089ca278911df64ae4806341199.jpg"></p> <p><strong><span style="color:#0d0016;">那在</span><span style="color:#fe2c24;">window</span><span style="color:#0d0016;">下我们一般用</span><span style="color:#fe2c24;">ipconfig</span><span style="color:#0d0016;">或者</span><span style="color:#fe2c24;">ipconfig/all</span><span style="color:#0d0016;">获取ip、网关、dns、网卡的一些信息。</span></strong><img decoding="async" alt="" height="392" src="http://img.555519.xyz/uploads/20221117/58623c3b8a4ed5deb1bc31b31c71817c.jpg"></p> <p><strong>那我们的Linux怎么获取IP的信息呢，我们一般用<span style="color:#fe2c24;">ifcfg、ip addr（ip a</span><strong>）</strong>命令</strong></p> <p><span style="color:#fe2c24;"><strong>（1）ifcfg命令</strong></span></p> <p><img loading="lazy" decoding="async" alt="" height="292" src="http://img.555519.xyz/uploads/20221117/686534dfc1fa145cbe9009278108b2f5.jpg"></p> <p><span style="color:#fe2c24;"><strong>&nbsp;（2）ip addr（ip a）命令</strong></span></p> <p><img loading="lazy" decoding="async" alt="" height="209" src="http://img.555519.xyz/uploads/20221117/e58c200b7010c73528a1ea1a40a27b42.jpg"></p> <p><strong>可能就会有同学问了这我也看不懂啊，不懂就问，lo是什么东西 eno16777736又是什么鬼 ，没关系我来讲解</strong></p> <p><strong><span style="color:#fe2c24;">lo</span>：其实就是一个本地回环地址&nbsp; 你们也应该看到了127.0.0.1.如果连本地回环地址都不知道的话去百度 bing去吧</strong></p> <p><strong><span style="color:#fe2c24;">eno16777736</span>：是网卡的名称</strong></p> <p><span style="color:#fe2c24;"><strong>&nbsp;inet：</strong></span><span style="color:#0d0016;">网络</span></p> <p><span style="color:#0d0016;">那么我们的网卡的IP地址就是 192.168.100.3/24&nbsp; &nbsp; &nbsp;24表示的是c类地址。</span></p> <p><span style="color:#fe2c24;"><strong>ping命令：</strong></span><span style="color:#0d0016;">测试网络的连通性、</span>检测是否与主机连通。<span style="color:#0d0016;">&nbsp; 命令格式</span><strong><span style="color:#fe2c24;">ping + ip地址</span></strong></p> <p><img loading="lazy" decoding="async" alt="" height="166" src="http://img.555519.xyz/uploads/20221117/11da9b208408d320ede69741cddaa4f0.jpg"></p> <p><span style="color:#fe2c24;"><strong>注意：Linux的ping命令下会一直返回值，记得按住Ctrl+C键停止</strong></span></p> <p><img loading="lazy" decoding="async" alt="" height="253" src="http://img.555519.xyz/uploads/20221117/034bb986189e3e6fd9a52eb6563526f9.jpg"></p> <p><span style="color:#fe2c24;"><strong>&nbsp;注意：如果ping完之后没有返回信息那可能你的网络就有问题了</strong></span></p> <p><img loading="lazy" decoding="async" alt="" height="159" src="http://img.555519.xyz/uploads/20221117/17106e3efddadc4ae66801cbf180abad.jpg"></p> </h1> <h2 id="1.%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2"><a id="1_20" rel="nofollow"></a><span style="color:#fe2c24;">1.图形化界面</span></h2> <p><img loading="lazy" decoding="async" alt="" height="408" src="http://img.555519.xyz/uploads/20221117/c5d2cd62e7e5b20908e0feda35209a6c.jpg"><code class="language-c"></code></p> <p><span style="color:#fe2c24;"><strong><code class="language-c">在桌面环境下利用图形界面配置网络信息</code></strong></span></p> <p><span style="color:#0d0016;"><strong><code class="language-c">（1）打开</code></strong></span><strong><span style="color:#fe2c24;"><code class="language-c">有线</code></span></strong><span style="color:#0d0016;"><strong><code class="language-c">，打开</code></strong></span><strong><span style="color:#fe2c24;"><code class="language-c">网络设置，看下面图解一步一步跟着就好。</code></span></strong></p> <p><img loading="lazy" decoding="async" alt="" height="367" src="http://img.555519.xyz/uploads/20221117/fbd0ba5ff9c290a6e73b1a1493a35711.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="330" src="http://img.555519.xyz/uploads/20221117/1a7d50148b51b11662b013e817241563.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="510" src="http://img.555519.xyz/uploads/20221117/2430cdfe21aa2d466b404f1923c306c7.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="518" src="http://img.555519.xyz/uploads/20221117/4202d5f5dae476ba9984deeae96e8e1e.jpg"><span style="color:#fe2c24;"><strong>这里改成手动</strong></span></p> <p><img loading="lazy" decoding="async" alt="" height="504" src="http://img.555519.xyz/uploads/20221117/a0b07100df0a0d6379c3ce6f221ae65e.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="541" src="http://img.555519.xyz/uploads/20221117/ee835d8f4ab94a728ece417dec710da2.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="280" src="http://img.555519.xyz/uploads/20221117/5cd3f7c8b71bce8ef1a8acec1c04eb3c.jpg"></p> <p>&nbsp;关掉有线在打开（因为设置了新的IP地址这里需要刷新一下）重新获取一下ip地址，接下来我们测试一下。</p> <p><img loading="lazy" decoding="async" alt="" height="454" src="http://img.555519.xyz/uploads/20221117/fa5553ef41c46e054816aaa37ba1de20.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="164" src="http://img.555519.xyz/uploads/20221117/ef7fbfbc347fe4dd0574ca6f0c3a0ede.jpg"></p> <p><strong>成功</strong></p> <h2 id="2.nmtui%EF%BC%9A%E5%9C%A8shell%E7%BB%88%E7%AB%AF%E5%BC%80%E5%90%AF%E6%96%87%E6%9C%AC%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2"><a id="2_34" rel="nofollow"></a><span style="color:#fe2c24;">2.nmtui</span>：在shell终端开启文本图形化界面</h2> <p><img loading="lazy" decoding="async" alt="" height="98" src="http://img.555519.xyz/uploads/20221117/1f535379750ea0059529ffbc47c8c1f1.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="298" src="http://img.555519.xyz/uploads/20221117/d9fa3ed3dca0b87974fcf5d508751945.jpg">（注意进入界面以后<strong><span style="color:#fe2c24;">上下左右键</span></strong>可以选择<strong><span style="color:#fe2c24;"> Enter</span></strong>确定）</p> <p>1点击<span style="color:#fe2c24;"><strong>edit a connection</strong></span></p> <p><span style="color:#fe2c24;"><strong>edit a connection</strong></span>：增加、编辑和删除一个网络连接。<br /><strong><span style="color:#fe2c24;">activate a connection</span></strong>：启用或禁用一个网络连接</p> <p><img loading="lazy" decoding="async" alt="" height="289" src="http://img.555519.xyz/uploads/20221117/47e47ebb99948e6713f19b24c587d77b.jpg"></p> <p>&nbsp;2.点击<span style="color:#fe2c24;"><strong>en1677736</strong></span>(网卡名称)</p> <p><img loading="lazy" decoding="async" alt="" height="299" src="http://img.555519.xyz/uploads/20221117/81ae75bc644e88645a861c903e8693ee.jpg"></p> <p><strong><span style="color:#fe2c24;">Profile name</span></strong>：网卡名称</p> <p><strong><span style="color:#fe2c24;">Device</span></strong>：有设备的意思 这里指<strong><span style="color:#fe2c24;">mac地址</span></strong></p> <p>3.点击<span style="color:#fe2c24;"><strong>IPv4，输入你想要的IP地址</strong></span></p> <p><strong><span style="color:#fe2c24;">Automatic：自动的</span></strong></p> <p><span style="color:#fe2c24;"><strong>Addresses：IP地址</strong></span></p> <p><span style="color:#fe2c24;"><strong>Gateway：网关</strong></span></p> <p><span style="color:#fe2c24;"><strong>DNS server：DNS服务器,可填可不填。</strong></span></p> <p><img loading="lazy" decoding="async" alt="" height="489" src="http://img.555519.xyz/uploads/20221117/c5bdac8114da9feeb6b4e9ba63f5c0fa.jpg">（注意IP地址后面一定要写 /24）</p> <p>&nbsp;4.找到下面ok，quit退出就好了</p> <p>5.再次进入nmtui命令 启用网络</p> <p><img loading="lazy" decoding="async" alt="" height="280" src="http://img.555519.xyz/uploads/20221117/acdcd00ffcacde14333ed5a268e41058.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="305" src="http://img.555519.xyz/uploads/20221117/338aebe877c3246ded2e021d518d6e5c.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="286" src="http://img.555519.xyz/uploads/20221117/ed6ae2c2f3658b0944665cb368abcabd.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="504" src="http://img.555519.xyz/uploads/20221117/a724514bc5ba768848915196ea973c7b.jpg">（最后确定一下 是不是 192.168.100.6 ping一下（这里我就不ping了）</p> <hr/> <h2 id="3.%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F%EF%BC%88%E8%AE%B0%E5%BE%97%E4%B8%80%E5%BC%80%E5%A7%8B%E8%BF%9B%E5%85%A5%E7%AE%A1%E7%90%86%E5%91%98%C2%A0%20su%20root%20%E8%BF%99%E9%87%8C%E6%88%91%E5%BF%98%E8%AE%B0%E4%BA%86%E6%8F%90%E6%9D%83%EF%BC%89"><span style="color:#fe2c24;">3.配置文件的方式（记得一开始进入管理员&nbsp; su root 这里我忘记了提</span></h2> <h2><span style="color:#fe2c24;">权）</span></h2> <p><strong><span style="color:#fe2c24;">学了这么多配置方式，这都不是Linux的风范，也是不是我的风范。所谓读懂了Linux配置文件就读懂了Linux</span></strong></p> <p><strong><span style="color:#fe2c24;">那我们的&nbsp; Linux网络配置文件路径：/etc/sysconfig/network-scripts/</span></strong></p> <p><span style="color:#fe2c24;"><strong>命令详解</strong></span></p> <pre><code>[xwn@localhost 桌面]$ cd /etc/sysconfig/network-scripts/（进入网卡的配置文件） [xwn@localhost network-scripts]$ ls（显示文件下面的内容） ifcfg-eno16777736  ifdown-ppp       ifup-eth     ifup-sit ifcfg-lo           ifdown-routes    ifup-ippp    ifup-Team ifdown             ifdown-sit       ifup-ipv6    ifup-TeamPort ifdown-bnep        ifdown-Team      ifup-isdn    ifup-tunnel ifdown-eth         ifdown-TeamPort  ifup-plip    ifup-wireless ifdown-ippp        ifdown-tunnel    ifup-plusb   init.ipv6-global ifdown-ipv6        ifup             ifup-post    network-functions ifdown-isdn        ifup-aliases     ifup-ppp     network-functions-ipv6 ifdown-post        ifup-bnep        ifup-routes  route-eno16777736 [xwn@localhost network-scripts]$ ip a （找到需要配置的网卡 eno1677736） 1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN      link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00     inet 127.0.0.1/8 scope host lo        valid_lft forever preferred_lft forever     inet6 ::1/128 scope host         valid_lft forever preferred_lft forever 2: eno16777736: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state UP qlen 1000     link/ether 00:0c:29:f7:c6:cf brd ff:ff:ff:ff:ff:ff     inet 192.168.20.10/24 brd 192.168.20.255 scope global eno16777736        valid_lft forever preferred_lft forever     inet6 fe80::20c:29ff:fef7:c6cf/64 scope link         valid_lft forever preferred_lft forever [xwn@localhost network-scripts]$ vi ifcfg-eno16777736   （编辑配置文件 ifcfg-eno16777736）  BOOTPROTO=static(静态网卡) 在最下面添加 IPADDR=（输入你自己的IP地址） NETMASK= （子网掩码） GATEWAY=（网关） DNS=（dns服务器）  保存退出：wq  重启网卡即可（任选一种命令） [xwn@localhost 桌面]$systemctl  restart network  [xwn@localhost 桌面]$service  network restart</code></pre> <p>图解：</p> <p><img loading="lazy" decoding="async" alt="" height="282" src="http://img.555519.xyz/uploads/20221117/c1a2873fea427d1aaea8dd768dd1a656.jpg"></p> <hr/> <p><img loading="lazy" decoding="async" alt="" height="504" src="http://img.555519.xyz/uploads/20221117/50851e99c585618d9aa37d4cffc79f62.jpg"></p> <p><strong>进入后稍微普及一下vi命令的概念（后面我会出关于vi怎么使用，记得看我的文章）</strong></p> <p><strong><span style="color:#fe2c24;">i:编辑</span></strong></p> <p><strong><span style="color:#fe2c24;">Esc:退出编辑</span></strong></p> <p><span style="color:#fe2c24;"><strong>q：退出不保存</strong></span></p> <p><span style="color:#fe2c24;"><strong>q！：强行退出不保存</strong></span></p> <p><span style="color:#fe2c24;"><strong>wq：保存并退出</strong></span></p> <p><span style="color:#fe2c24;"><strong>wq！：强行</strong></span><span style="color:#fe2c24;"><strong>保存并退出</strong></span></p> <p><img loading="lazy" decoding="async" alt="" height="492" src="http://img.555519.xyz/uploads/20221117/e594a805769d09d0b804ac1d9be7755e.jpg"></p> <p>&nbsp;进去之后<span style="color:#fe2c24;"><strong>i</strong></span>编写&nbsp; &nbsp; 把<span style="color:#fe2c24;"><strong>dhcp</strong></span>改成<span style="color:#fe2c24;"><strong>static/none</strong></span><strong>ONBOOT=yes</strong><span style="color:#fe2c24;"><strong>下面输入我输入的内容</strong></span></p> <p><span style="color:#fe2c24;"><strong>我解释一下什么意思</strong></span></p> <p><span style="color:#fe2c24;"><strong>dhcp：自动获取</strong></span></p> <p><strong><span style="color:#fe2c24;">static/none ：静态ip地址</span></strong></p> <p><strong><span style="color:#fe2c24;">IPADDR：ip地址</span></strong></p> <p><strong><span style="color:#fe2c24;">NETMASK：子网掩码</span></strong></p> <p><strong><span style="color:#fe2c24;">GATEWAY：网关地址</span></strong></p> <p><strong><span style="color:#fe2c24;">DNS：dns服务器地址</span></strong></p> <p><span style="color:#fe2c24;"><strong>ONBOOT=yes&nbsp; 可启动</strong></span></p> <p><strong><span style="color:#fe2c24;">编写好后按 ESC&nbsp; &nbsp; 在按 ：&nbsp; 输入 ：wq或者wq！</span></strong></p> <p><img loading="lazy" decoding="async" alt="" height="503" src="http://img.555519.xyz/uploads/20221117/2a636ad594ec7aceb4a9bd922de96d58.jpg"></p> <p>&nbsp;最后记得重启网卡命令：systemctl&nbsp; restart&nbsp; network /service network restart</p> <p><img loading="lazy" decoding="async" alt="" height="21" src="http://img.555519.xyz/uploads/20221117/218567174e8946d1b64c38a3efb87c7b.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="30" src="http://img.555519.xyz/uploads/20221117/c78503df92e5a57491257f5751ca98cd.jpg"></p> </h1> <p><span style="color:#fe2c24;"><strong>以上就是今天要讲的内容，多去理解一下，好好的学习一下，不难，有问题评论我。</strong></span></p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-71329.htm">win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本</a></p>
+                                        <p>下一个：<a href="/news/article-71981.htm">动物疫苗市场分析报告（动物疫苗发展前景）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-36156.htm" title="动物疫苗管理工作总结范文模板（重大动物疫苗工作简报）">动物疫苗管理工作总结范文模板（重大动物疫苗工作简报）</a></li>
+                        <li class="py-2"><a href="/news/article-43275.htm" title="宠物粮品牌推荐 宠物粮品牌推荐知乎">宠物粮品牌推荐 宠物粮品牌推荐知乎</a></li>
+                        <li class="py-2"><a href="/news/article-44757.htm" title="宠物粮行业分析报告模板 宠物粮行业分析报告模板范文">宠物粮行业分析报告模板 宠物粮行业分析报告模板范文</a></li>
+                        <li class="py-2"><a href="/news/article-56160.htm" title="Python－常用模块有哪些">Python－常用模块有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-49718.htm" title="JavaScript怎么比较数组元素是否相等">JavaScript怎么比较数组元素是否相等</a></li>
+                        <li class="py-2"><a href="/news/article-73298.htm" title="动物医院社会实践报告总结（动物医院实践心得2000）">动物医院社会实践报告总结（动物医院实践心得2000）</a></li>
+                        <li class="py-2"><a href="/news/article-39802.htm" title="再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧">再谈JavaScript中bind、call、apply三个方法的区别与使用方式_javascript技巧</a></li>
+                        <li class="py-2"><a href="/news/article-60738.htm" title="Java学习笔记32. 数组的填充 Arrays.fill( ) 方法">Java学习笔记32. 数组的填充 Arrays.fill( ) 方法</a></li>
+                        <li class="py-2"><a href="/news/article-66801.htm" title="广州宠物领养公众号叫什么 广州宠物领养公众号叫什么名字">广州宠物领养公众号叫什么 广州宠物领养公众号叫什么名字</a></li>
+                        <li class="py-2"><a href="/news/article-48198.htm" title="vscode for c/c++（ACM配置）">vscode for c/c++（ACM配置）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">42</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
