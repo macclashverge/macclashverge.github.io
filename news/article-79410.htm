@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-79410.htm" />
+    <title>redis笔记补充 &#8211; wang03</title>
+        <meta name="description" content="这篇文章是redis入门笔记的补充。  1.info命令 用来显示服务的信息。 info命令可以跟下面的选项:  server: 关于 Redis 服务器的一些信息 clients: 客户端连接部分 " />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-79410.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="redis笔记补充 &#8211; wang03" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/42945f82071c193671dcd5a30f5495dd.webp" />
+        <meta property="og:release_date" content="2025-03-23T08:20:48" />
+    <meta property="og:updated_time" content="2025-03-23T08:20:48" />
+        <meta property="og:description" content="这篇文章是redis入门笔记的补充。  1.info命令 用来显示服务的信息。 info命令可以跟下面的选项:  server: 关于 Redis 服务器的一些信息 clients: 客户端连接部分 " />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="redis笔记补充 &#8211; wang03">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">redis笔记补充 &#8211; wang03</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				</h1> <blockquote> <p>这篇文章是<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.cnblogs.com/wbo112/p/16001594.html"  target="_blank" rel="nofollow">redis入门笔记</a>的补充。</p> </blockquote> <h3 id="1info命令">1.<code>info</code>命令</h3> <p>用来显示服务的信息。</p> <p><code>info</code>命令可以跟下面的选项:</p> <ul> <li><code>server</code>: 关于 Redis 服务器的一些信息</li> <li><code>clients</code>: 客户端连接部分</li> <li><code>memory</code>: 内存消耗相关信息</li> <li><code>persistence</code>: RDB和AOF相关信息</li> <li><code>stats</code>: 一些统计</li> <li><code>replication</code>: 主/副本复制信息</li> <li><code>cpu</code>: CPU消耗统计</li> <li><code>commandstats</code>: Redis 命令统计</li> <li><code>delatencystats</code>: Redis 命令延迟百分位分布统计</li> <li><code>cluster</code>: Redis 集群部分</li> <li><code>modules</code>: 模块部分</li> <li><code>keyspace</code>: Redis数据库相关的统计信息</li> <li><code>errorstats</code>: Redis 错误统计</li> </ul> <blockquote> <p>如<code>info keyspace</code>就能查看redis每个库中存储的key的信息。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/f94ffc0cc82cb81130e0248e37c517b5.jpg" alt="redis笔记补充 - wang03 "></p> </blockquote> <p>同时<code>info</code>也可以跟下面的一些选项</p> <ul> <li><code>all</code>:返回所有部分（不包括模块生成的部分）</li> <li><code>default</code>:仅返回默认的部分集</li> <li><code>everything</code>:包括所有和模块</li> </ul> <p><strong>如果单纯是<code>info</code>命令的话，等价于<code>info default</code>。</strong></p> <p>具体的信息大家可以查看官方文档部分的介绍：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://redis.io/commands/info/"  target="_blank" rel="nofollow">https://redis.io/commands/info/</a></p> <h3 id="2memory-stats命令">2.<code>memory stats</code>命令</h3> <p>用来显示服务的内存使用的相关情况。</p> <ul> <li> <p><code>peak.allocated</code>: Redis 消耗的峰值内存（以字节为单位）（参见 INFO 的<code>used_memory_peak</code>）</p> </li> <li> <p><code>total.allocated</code>: Redis 使用其分配器分配的总字节数（参见 INFO 的<code>used_memory</code>）</p> </li> <li> <p><code>startup.allocated</code>: Redis 在启动时消耗的初始内存量（以字节为单位）（参见 INFO 的<code>used_memory_startup</code>）</p> </li> <li> <p><code>replication.backlog</code>: 复制积压缓存区的字节大小（参见INFO的<code>repl_backlog_active</code>）</p> </li> <li> <p><code>clients.slaves</code>: 所有副本开销的总大小（以字节为单位）（输出和查询缓冲区、连接上下文）</p> </li> <li> <p><code>clients.normal</code>: 所有客户端开销（输出和查询缓冲区、连接上下文）的总大小（以字节为单位）</p> </li> <li> <p><code>aof.buffer</code>: AOF 相关缓冲区的总大小（以字节为单位）</p> </li> <li> <p><code>lua.caches</code>: Lua 脚本缓存开销的总大小（以字节为单位）</p> </li> <li> <p><code>dbXXX</code>: 对于服务器的每个数据库，主字典和过期字典（分别为<code>overhead.hashtable.main</code>和<code>overhead.hashtable.expires</code>）的开销以字节为单位报告</p> </li> <li> <p><code>overhead.total</code>: 所有开销的总和，即<code>startup.allocated</code>、<code>replication.backlog</code>、<code>clients.slaves</code>、<code>clients.normal</code>、<code>aof.buffer</code> 以及用于管理 Redis 键空间的内部数据结构的总和（参见 INFO 的 used_memory_overhead）</p> </li> <li> <p><code>keys.count</code>: 整个redis实例key的个数</p> </li> <li> <p><code>keys.bytes-per-key</code>: 每个key平均字节数，<strong>net memory usage</strong>(<code>total.allocated</code> 减去<code>startup.allocated</code>)与<code>keys.count</code>的比值</p> </li> <li> <p><code>dataset.bytes</code>: Redis 实例中数据占用的总字节数，计算方法<code>total.allocated</code>减去<code>overhead.total</code></p> </li> <li> <p><code>dataset.percentage</code>: Redis 数据消耗内存占总内存的百分比</p> </li> <li> <p><code>peak.percentage</code>: 当前内存消耗占峰值内存消耗的百分比</p> </li> <li> <p><code>fragmentation</code>: 同<code>INFO</code>的<code>mem_fragmentation_ratio</code></p> <blockquote> <p>中文官方文档链接:<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.redis.com.cn/commands/memory-stats.html"  target="_blank" rel="nofollow">https://www.redis.com.cn/commands/memory-stats.html</a></p> </blockquote> </li> </ul> <h3 id="3debug-object命令">3.<code>debug object</code>命令</h3> <p>可以用来显示关于key的一些调试信息</p> <p><code>debug object [key]</code></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/7ff683cc00137eeedccc30a50fb06812.jpg" alt="redis笔记补充 - wang03 "></p> <h3 id="4lua脚本">4.<code>lua</code>脚本</h3> <p>格式：<code>eval [script] [numkeys] key ... arg ...</code></p> <p>如<code>eval "return 'hello world'" 0 "hello world"</code></p> <blockquote> <p>这里<code>return</code>关键字主要用来返回命令执行的结果。如果我们不需要命令直接的结果，那就不需要写<code>return</code>。</p> </blockquote> <hr/> <p>直接在脚本中通过调用<code>redis.call()</code>函数或者<code>redis.pcall()</code>函数执行Redis命令</p> <p>如<code>eval "return redis.call('set',KEYS[1],ARGV[1])" 1 "message" "hello world"</code></p> <blockquote> <p>这里有2个地方需要注意：</p> <ul> <li>数组下标是从1开始</li> <li><code>KEYS</code>,<code>ARGV</code>都必须大写</li> </ul> </blockquote> <p><code>redis.call()</code>函数和<code>redis.pcall()</code>函数都可以用于执行Redis命令，它们之间唯一不同的就是处理错误的方式。前者在执行命令出错时会引发一个Lua错误，迫使EVAL命令向调用者返回一个错误；而后者则会将错误包裹起来，并返回一个表示错误的Lua表格.</p> <hr/> <p>值转换:</p> <p>Redis服务器中有两种不同的环境：一种是Redis命令执行器所处的环境，而另一种则是Lua解释器所处的环境。因为这两种环境</p> <p>使用的是不同的输入和输出，所以在这两种环境之间传递值将引发相应的转换操作：</p> <p>1）当Lua脚本通过redis.call()函数或者redis.pcall()函数执行Redis命令时，传入的Lua值将被转换成Redis协议值；</p> <p>2）当redis.call()函数或者redis.pcall()函数执行完Redis命令时，命令返回的Redis协议值将被转换成Lua值。</p> <p>3）当Lua脚本执行完毕并向EVAL命令的调用者返回结果时，Lua值将被转换为Redis协议值。</p> <p><strong>将Redis协议值转换成Lua值的规则</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/245ba068eed03a5077aecd21b5a38080.jpg" alt="redis笔记补充 - wang03 "></p> <p><strong>将Lua值转换为Redis协议值的规则</strong></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/d2af49613759823928617677e5c6c6bf.jpg" alt="redis笔记补充 - wang03 "></p> <hr/> <p><strong>全局变量保护</strong></p> <p>为了防止预定义的Lua环境被污染，Redis只允许用户在Lua脚本中创建局部变量而不允许创建全局变量，尝试在脚本中创建全局变量将引发一个错误。</p> <hr/> <p>通过lua脚本删除redis中多个key</p> <p>在redis中没有通过正则去删除多个key的方法，所以我们可以通过lua脚本的方式去删除多个key。</p> <p>首先看下lua脚本中关于数组遍历的方法。</p> <pre><code class="language-lua">arr = {"a","b","c"} for i = 1, #arr do     print(arr[i]) end</code></pre> <p>将上面的内容存储到新建的名为a.lua文件中。执行<code>lua a.lua</code>就可以分别打印a、b、c.</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/794f2646278a933fdff19e88e794a517.jpg" alt="redis笔记补充 - wang03 "></p> <p>下面我们看看如果删除多个key。做法还是通过<code>keys</code>命令查到多个符合要求的key，再通过遍历数组的方式删除。</p> <p>比如我们要删除所有<code>a</code>开头的key，就可以使用下面的命令。</p> <pre><code class="language-redis">eval "local ks=redis.call('keys',KEYS[1]) for i = 1, #ks do   redis.call('del',ks[i]) end " 1  "a*"</code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/2a9b49e56b4456e3bef82cb742a880b5.jpg" alt="redis笔记补充 - wang03 "></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-79409.htm">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-8-free-node-subscribe.htm" title="「2月8日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「2月8日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-73298.htm" title="动物医院社会实践报告总结（动物医院实践心得2000）">动物医院社会实践报告总结（动物医院实践心得2000）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-10-free-clash-verge-rev-node.htm" title="「2月10日」最高速度19.4M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「2月10日」最高速度19.4M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-16-clash-verge-rev-node-share.htm" title="「2月16日」最高速度20.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「2月16日」最高速度20.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-61318.htm" title="idea集成docker实现springboot一键部署">idea集成docker实现springboot一键部署</a></li>
+                        <li class="py-2"><a href="/news/article-46736.htm" title="兰州哪里卖电脑的多些（兰州电脑批发）">兰州哪里卖电脑的多些（兰州电脑批发）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-20-node-share-links.htm" title="「2月20日」最高速度18.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「2月20日」最高速度18.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-77357.htm" title="狗粮品牌大全排行榜最新（狗粮排名前十品牌价格）">狗粮品牌大全排行榜最新（狗粮排名前十品牌价格）</a></li>
+                        <li class="py-2"><a href="/news/article-57852.htm" title="一片枫叶的拼音怎么写的啊怎么组词（一片枫叶怎么说）">一片枫叶的拼音怎么写的啊怎么组词（一片枫叶怎么说）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-17-node-share.htm" title="「2月17日」最高速度18M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「2月17日」最高速度18M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">68</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
