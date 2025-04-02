@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-84326.htm" />
+    <title>在Java中从控制台读取输入的方法</title>
+        <meta name="description" content="让我们看一些从Java控制台读取输入的方法- 示例 import&nbsp;java.util.Scanner; public&nbsp;class&nbsp;Demo{ &nbsp;&nbsp;&n" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-84326.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="在Java中从控制台读取输入的方法" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/fce5bb61468529a88f54ec8873664d82.webp" />
+        <meta property="og:release_date" content="2025-03-30T09:31:03" />
+    <meta property="og:updated_time" content="2025-03-30T09:31:03" />
+        <meta property="og:description" content="让我们看一些从Java控制台读取输入的方法- 示例 import&nbsp;java.util.Scanner; public&nbsp;class&nbsp;Demo{ &nbsp;&nbsp;&n" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="在Java中从控制台读取输入的方法">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">在Java中从控制台读取输入的方法</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<p>让我们看一些从Java控制台读取输入的方法-</p> <h2>示例</h2> <pre>import&nbsp;java.util.Scanner; public&nbsp;class&nbsp;Demo{ &nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String&nbsp;args[]){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scanner&nbsp;my_scan&nbsp;=&nbsp;new&nbsp;Scanner(System.in); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;my_str&nbsp;=&nbsp;my_scan.nextLine(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("The&nbsp;string&nbsp;is&nbsp;"+my_str); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;my_val&nbsp;=&nbsp;my_scan.nextInt(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("The&nbsp;integer&nbsp;is&nbsp;"+my_val); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float&nbsp;my_float&nbsp;=&nbsp;my_scan.nextFloat(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("The&nbsp;float&nbsp;value&nbsp;is&nbsp;"+my_float); &nbsp;&nbsp;&nbsp;} }</pre> <p>输出结果</p> <pre>The&nbsp;string&nbsp;is&nbsp;Joe The&nbsp;integer&nbsp;is&nbsp;56 The&nbsp;float&nbsp;value&nbsp;is&nbsp;78.99</pre> <p>&nbsp; &nbsp; 一个名为Demo的类包含主函数。创建了Scanner类的一个实例，并使用nextLine函数读取字符串输入的每一行。定义一个整数值，并使用nextInt从标准输入控制台读取它。类似地，nextFloat函数用于从标准输入控制台读取浮点类型的输入。它们显示在控制台上。</p> <p>示例</p> <pre>import&nbsp;java.io.BufferedReader; import&nbsp;java.io.IOException; import&nbsp;java.io.InputStreamReader; public&nbsp;class&nbsp;Demo{ &nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String[]&nbsp;args)&nbsp;throws&nbsp;IOException{ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BufferedReader&nbsp;my_reader&nbsp;=&nbsp;new&nbsp;BufferedReader(new&nbsp;InputStreamReader(System.in)); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;my_name&nbsp;=&nbsp;my_reader.readLine(); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("The&nbsp;name&nbsp;is&nbsp;"); &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(my_name); &nbsp;&nbsp;&nbsp;} }</pre> <p>输出结果</p> <pre>The&nbsp;name&nbsp;is Joe</pre> <p>&nbsp; &nbsp;一个名为Demo的类包含主函数。这里创建了缓冲读取器的一个实例。定义了字符串类型的数据，并使用readLine函数读取字符串的每一行。输入来自标准输入，相关消息显示在控制台上。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-83608.htm">宠物领养app有哪些软件好用（宠物领养app有哪些软件好用的）</a></p>
+                                        <p>下一个：<a href="/news/article-84328.htm">动物医院手续流程及费用（动物医院手续流程及费用表）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-70007.htm" title="小狗小猫身上的跳蚤怎么去除（小狗小猫身上有跳蚤怎么办）">小狗小猫身上的跳蚤怎么去除（小狗小猫身上有跳蚤怎么办）</a></li>
+                        <li class="py-2"><a href="/news/article-68721.htm" title="JavaScript如何将数组与值是数组的对象合并方法详解">JavaScript如何将数组与值是数组的对象合并方法详解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-31-latest-clash-verge-rev-node.htm" title="「3月31日」最高速度21.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月31日」最高速度21.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-79409.htm" title="spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL">spark1.6.1和2.4读取csv文件，转为为DataFrame和使用SQL</a></li>
+                        <li class="py-2"><a href="/news/article-86472.htm" title="小孩不知道是不是被猫抓伤需要***吗（不确定小孩是不是被猫抓了能打狂犬疫苗）">小孩不知道是不是被猫抓伤需要***吗（不确定小孩是不是被猫抓了能打狂犬疫苗）</a></li>
+                        <li class="py-2"><a href="/news/article-66801.htm" title="广州宠物领养公众号叫什么 广州宠物领养公众号叫什么名字">广州宠物领养公众号叫什么 广州宠物领养公众号叫什么名字</a></li>
+                        <li class="py-2"><a href="/news/article-80092.htm" title="宠物粮加工需要多少钱一吨呢 宠物粮加工需要多少钱一吨呢图片">宠物粮加工需要多少钱一吨呢 宠物粮加工需要多少钱一吨呢图片</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-clash-verge-rev-nodes.htm" title="「3月16日」最高速度21M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月16日」最高速度21M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-68077.htm" title="右值引用，移动语义，完美转发">右值引用，移动语义，完美转发</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-14-clash-verge-rev-github.htm" title="「3月14日」最高速度19.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月14日」最高速度19.6M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">5</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
