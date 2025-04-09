@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-91618.htm" />
+    <title>快速了解Spring，简明Spring使用流程 &#8211; FITA _在线工具</title>
+        <meta name="description" content="前言：  注意题目，这篇文章说的是操作，也就是重在应用，更多的是一个入门的或者说一篇概览，所以大佬们多多担待，不涉及底层分析和很多的源码，所以如果看官想看以上两者的可以划走了，有时间又不懒的话，可能以" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-91618.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="快速了解Spring，简明Spring使用流程 &#8211; FITA _在线工具" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/b6dd3b94a88c5b276bff2a57ef497e80.webp" />
+        <meta property="og:release_date" content="2025-04-09T09:16:08" />
+    <meta property="og:updated_time" content="2025-04-09T09:16:08" />
+        <meta property="og:description" content="前言：  注意题目，这篇文章说的是操作，也就是重在应用，更多的是一个入门的或者说一篇概览，所以大佬们多多担待，不涉及底层分析和很多的源码，所以如果看官想看以上两者的可以划走了，有时间又不懒的话，可能以" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="快速了解Spring，简明Spring使用流程 &#8211; FITA _在线工具">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">快速了解Spring，简明Spring使用流程 &#8211; FITA _在线工具</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<h3 id="前言">前言：</h3> <ul> <li>注意题目，这篇文章说的是操作，也就是重在应用，更多的是一个入门的或者说一篇概览，所以大佬们多多担待，不涉及底层分析和很多的源码，所以如果看官想看以上两者的可以划走了，有时间又不懒的话，可能以后会写个源码实现+分析的哈哈</li> <li>spring存在的意义:一言以蔽之：解耦，为简化开发而生。程序员只需专注于业务代码实现，不必关心底层实现，并将程序员从大量机械重复的工作类似创建对象、数据库取出数据、导jar包等解脱出来，同时提高了程序的可靠性，大量避免因程序员管理对象不当等造成的问题。</li> <li>spring优点：<br /> 轻量；支持场景广泛；面向接口；面向切面；整合其他优秀框架</li> </ul> <h2 id="spring概览">Spring概览</h2> <p>本文将从IOC;AOP;（这两者都是一种编程思想）;spring整合MyBatis框架;事务这四个最重要的层面展开<br /> 而用框架，不管是spring还是其他的，说白了就是上环境，上依赖</p> <h2 id="spring-依赖">spring 依赖</h2> <details> <summary>点击查看代码</summary> <pre><code>    &lt;dependency&gt;       &lt;groupId&gt;org.springframework&lt;/groupId&gt;       &lt;artifactId&gt;spring-context&lt;/artifactId&gt;       &lt;version&gt;5.2.5.RELEASE&lt;/version&gt;     &lt;/dependency&gt; </code></pre> </details> <h2 id="ioc">IOC</h2> <h3 id="含义">含义</h3> <p>控制反转，即将对象的创建权限和对象之间的依赖关系交给spring框架的容器<br /> 其实我的理解就像是做饭：<br /> 每次做饭都要买菜，择菜切菜，准备好佐料然后才是上锅炒，有时候没电气了还要先缴费，吃完了还得收拾桌子。<br /> 想想要是每次做都只管炒菜，其他的不管，爽不爽？spring就是干这个的，保证电气水充足，佐料都有，，买菜择菜洗菜就好比是根据产品经理的需求创建业务对象（注意不是写实体类），而这个也就是IOC，<br /> 接着话茬，吃完饭或者正在吃的要加量，就是后期运维，收拾碗筷就是产品下架了。<br /> 好了，有了我的抛砖，相信初学者会很容易理解。</p> <h3 id="正传反转">正传反转</h3> <p>正转:由程序员进行对象的创建和依赖注入称为正转.程序员说了算.<br /> 反转：交由spring框架，也就是IOC</p> <h3 id="两种创建方式">两种创建方式</h3> <h4 id="一xml方式">一、xml方式</h4> <h4 id="创建实体类对象">创建实体类对象</h4> <pre><code>&lt;bean id="stu" class="com.huijixu.bean.Students"&gt;&lt;/bean&gt; </code></pre> <h4 id="give-values">give values</h4> <ul> <li>manner1<br /> 实体类必须提供setter（）方法<br /> 这里插嘴：如果该类在数据库里有主键，最好有主键的构造器和没有主键的构造器各搞一个。</li> </ul> <pre><code>&lt;property name="" value=""&gt;&lt;/property&gt; </code></pre> <ul> <li>manner2<br /> 实体类必须提供该类相应成员变量的构造方法</li> </ul> <pre><code>&lt;constructor-arg name="" value=""&gt;&lt;/constructor-arg&gt; </code></pre> <p>还有按照下标的，意义不大也不常用，大家有兴趣可以自行查找很简单</p> <ul> <li>manner3</li> </ul> <h4 id="引用类型的自动注入">引用类型的自动注入</h4> <ul> <li>byName<br /> 按照成员变量的名字让spring去找，一般规范按照驼峰命名法</li> </ul> <pre><code>&lt;property name="myname" value=""&gt;&lt;/property&gt; </code></pre> <ul> <li>byType<br /> 按照类型寻找在spring里和配置文件中同源的实体类注入，可与byName配合使用，比如上文byName 如果是在<code>&lt;bean id="Students" class="..."&gt;&lt;/bean&gt;</code>内的，那就是找是Students类的前提下，xml中对象名名称为myname的对象自动引用注入</li> </ul> <h4 id="二注解方式">二、注解方式</h4> <p>这种方式在中小项目中常用，本人认为注解比xml整洁美观</p> <ul> <li> <p>在spring的配置文件<code>applicationContext.xml</code>中一定要添加包扫描，不添加包扫描spring就不知道去哪里找你写的注解，</p> </li> <li> <p>注解创建对象<br /><code>@Component</code> ：实体类<br /><code>@Service</code> （k可以添加事务管理）：ServiceImple实现类<br /><code>@Controller</code>：控制类<br /><code>@Repository</code>：数据访问层实现类对象创建</p> </li> <li> <p>注解给对象赋值<br /><code>@Value</code>：八种基本类型+String<br /><code>@Autowired</code>：一般用于service层实现类中对于dao层实现类的对象引用类型注入<br /><code>@Qualifier</code>("名称") 当应用类型有别名时，它和@Autowried成套使用</p> </li> </ul> <h3 id="配置文件拆分">配置文件拆分</h3> <ul> <li>原因：</li> </ul> <p>当项目体量逐步增大时，合理拆分易于缩小问题代码范围，通知在开发过程中易于成员间避免出现类似“幻读”的情况</p> <ul> <li>拆分策略：</li> </ul> <p>按功能模块：<br /> book；users；lead；<br /> 按层：<code>mapper 、service、 controller</code><br /> 本人习惯于后者，因为这样可以和三层架构保持统一</p> <ul> <li>组合策略（以按层拆为例）：<br /> 一种直接在spring配置文件在中单写一个，再所拆分的配置文件import进来<br /> 分批导入：</li> </ul> <pre><code> &lt;import resource="applicationContest_service.xml"&gt;&lt;/import&gt; &lt;import resource="applicationContest_mapper.xml"&gt;&lt;/import&gt; .... </code></pre> <p>一次性：</p> <pre><code>&lt;import resource="applicationContest_*.xml"&gt;&lt;/import&gt; </code></pre> <h3 id="要注意的几点">要注意的几点</h3> <h4 id="路径问题">路径问题</h4> <ul> <li>spring.xml 创建业务对象<br /><code>&lt;bean id="someService"class="com.huijixu.s01.SomeServiceImpl"&gt;&lt;/bean&gt;</code><br /> 这里的class一定是Copy Reference,部分初学者要么手写出错，要不路径用的是/分隔导致错误</li> <li>SqlMapperConfig.xml标签一定注意顺序，错了不识别，具体顺序看jar里的说明来就行</li> </ul> <h4 id="命名规范">命名规范</h4> <p>强烈建议新手cv！！</p> <ul> <li>xml文件id名&amp;接口方法名必须一致</li> <li>字段名&amp;实体类成员变量名一致（可以不一致）</li> <li>成员变量名和sql语句中#{}内的名字一定要必须要一致</li> <li>接口名&amp;对应实现类名必须一致（三层架构七大规范之一）</li> </ul> <h4 id="起别名重复代码提取">起别名（重复代码提取）</h4> <p>class，pom.xml,sql语句中，经常会出现大量重复的代码片段，而又不能在抽取细分，而这些又是轻易不会改变的，这时候就可以起别名（或者叫做全局变量）</p> <h4 id="开发的顺序">开发的顺序</h4> <p>建立SQL表 --&gt;搭建环境（pom文件，各种基础配置文件）--&gt;<br /> 构建实体类--&gt;mapper--&gt;service--&gt;controller--&gt;<br /> 测试--&gt;前后端绑定--&gt;测试</p> <p>这是本人的习惯顺序，有条理可以让开发有条不紊，即使出错了也有检查的大致判断，更是程序员基本素养</p> <h4 id="良好的单元测试习惯">良好的单元测试习惯</h4> <p>写完一个功能，测一个功能，没毛病了再下一个，不然各个功能模块的bug一起报，不好调试</p> <h2 id="aop">AOP</h2> <ul> <li>在完成一项业务功能时，对那些重复用到的代码，抽取出来单独开发，然后随用随取，就是AOP，有些类似小项目中自定义的工具类</li> <li>还是用做饭的例子，炒菜的过程中的翻炒；或者说切菜时候的一下一下的切，这些重复的动作，而又是每个炒一道菜（完成一个业务功能）所必须的，就可以理解为AOP，实际开发中，日志，权限，缓存，提交事务等等这些公共通用的就是AOP</li> <li>其实原生的AOP实现是比较麻烦的，所以spring就把aspectJ整合进来了，用AspectJ实现AOP这种编程思想</li> </ul> <h3 id="spring原生aop带来的优点">spring原生AOP带来的优点</h3> <p>一言以蔽之：上接口使开发更美好</p> <h3 id="springaop几种常见的通知类型">springAOP几种常见的通知类型</h3> <ul> <li><code>@Before</code></li> <li> <code>@After</code><br /> 上面两者见名知义：分别在目标方法之前和之后调用</li> <li> <code>Around</code><br /> 拦截目标方法，可以访问并且修改目标方法的返回值</li> <li> <code>Throws</code><br /> 目标方法抛异常时使用，常用于事务回滚</li> </ul> <h3 id="aop优秀框架aspectj">AOP优秀框架：AspectJ</h3> <ul> <li>产生原因：比原生AOP更容易使用</li> <li>两个核心概念：通知和切入点。前者解决何时切入；后者解决在哪切入</li> <li>几个术语：<br /> 1.切面aspect:公共部分，用时动态织入<br /> 2.连接点joinpoint；目标方法 ，链接业务功能与Buffer功能<br /> 3.切入点pointcut：由一个及以上个连接点构成，包，类，方法都可以是切入点，但是final方法不可以作为切入点！！<br /> 4.目标对象target：被加Buffer的对象，就是写主业务逻辑的有关对象，比如图书管理系统中，UsersServiceImpl就是一个target</li> </ul> <h4 id="所需依赖">所需依赖</h4> <pre><code>&lt;dependency&gt;       &lt;groupId&gt;org.springframework&lt;/groupId&gt;       &lt;artifactId&gt;spring-aspects&lt;/artifactId&gt;       &lt;version&gt;5.2.5.RELEASE&lt;/version&gt;     &lt;/dependency&gt; </code></pre> <h4 id="aspectj切入点表达式execution访问权限--方法返回值--方法的声明参数-异常类型">AspectJ切入点表达式:<code>execution（访问权限  方法返回值  方法的声明（参数） 异常类型）</code><br /> </h4> <ul> <li> <code>*</code>标识任意</li> <li> <code>..</code>标识所有<br /> -e.g.: <code>execution( * com.huijixu.service.impl..*(..))</code> 表示以任意访问权限任意返回值类型在com.huijixu.service.impl包下的任意class的任意方法名的任意参数的目标方法为切入点</li> </ul> <h4 id="aspectj通知advice">AspectJ通知:<code>advice</code><br /> </h4> <h5 id="前置通知before">前置通知<code>@Before</code><br /> </h5> <ul> <li>方法规范 <ul> <li>方法访问权限是public</li> <li>方法的返回值是void</li> <li>名称自定义</li> <li>方法没有参数,如果有也只能是JoinPoint类型</li> <li>必须使用@Before注解来声明切入的时机是前切功能和切入点</li> <li>参数:value  指定切入点表达式</li> </ul> </li> </ul> <h5 id="后置通知afterreturning">后置通知<code>@AfterReturning</code><br /> </h5> <ul> <li>方法规范 <ul> <li>访问权限是public</li> <li>2)方法没有返回值void</li> <li>3)方法名称自定义</li> <li>4)方法有参数(也可以没有参数,如果目标方法没有返回值,则可以写无参的方法,但一般会写有参,这样可以处理无参可以处理有参),这个切面方法的参数就是目标方法的返回值</li> <li>5)使用@AfterReturning注解表明是后置通知</li> </ul> </li> </ul> <h5 id="环绕通知around">环绕通知<code>@Around</code><br /> </h5> <ul> <li>方法规范 <ul> <li>访问权限是public</li> <li>切面方法有返回值,此返回值就是目标方法的返回值</li> <li>方法名称自定义</li> <li>方法有参数,此参数就是目标方法</li> <li>回避异常Throwable</li> <li>使用@Around注解声明是环绕通知</li> <li>参数: value:指定切入点表达式</li> </ul> </li> </ul> <h5 id="最终通知after">最终通知<code>@After</code><br /> </h5> <ul> <li>方法规范 <ul> <li>访问权限是public</li> <li>方法没有返回值</li> <li>方法名称自定义<br /> * 方法没有参数,如果有也只能是JoinPoint<br /> * 使用@After注解表明是最终通知<br /> * 参数: value:指定切入点表达式</li> </ul> </li> </ul> <h2 id="ssm整合的步骤">SSM整合的步骤</h2> <p>1)建表<br /> 2)新建项目,选择quickstart模板<br /> 3)修改目录<br /> 4)修改pom.xml文件,添加相关的依赖，spring依赖已经在前文贴出，下面是mybatis，mysql ,jdbc依赖</p> <details> <summary>点击查看代码</summary> <pre><code>&lt;!--jdbc --&gt; &lt;dependency&gt;       &lt;groupId&gt;org.springframework&lt;/groupId&gt;       &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;       &lt;version&gt;5.2.5.RELEASE&lt;/version&gt;     &lt;/dependency&gt; 	&lt;!--myBaits --&gt; &lt;dependency&gt;       &lt;groupId&gt;org.mybatis&lt;/groupId&gt;       &lt;artifactId&gt;mybatis&lt;/artifactId&gt;       &lt;version&gt;3.5.6&lt;/version&gt;     &lt;/dependency&gt; 	&lt;!--mysql驱动 --&gt; 	 &lt;dependency&gt;       &lt;groupId&gt;mysql&lt;/groupId&gt;       &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;       &lt;version&gt;8.0.28&lt;/version&gt;     &lt;/dependency&gt; 	 &lt;!--alibaba druid 连接池--&gt;     &lt;dependency&gt;       &lt;groupId&gt;com.alibaba&lt;/groupId&gt;       &lt;artifactId&gt;druid&lt;/artifactId&gt;       &lt;version&gt;1.1.12&lt;/version&gt;     &lt;/dependency&gt; 	&lt;!--mybatis集成spring --&gt; 	&lt;dependency&gt;       &lt;groupId&gt;org.mybatis&lt;/groupId&gt;       &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;       &lt;version&gt;1.3.1&lt;/version&gt;     &lt;/dependency&gt; </code></pre> </details> <p>5)添加MyBatis相应的模板，下面贴出自用的SqlMapperConfig.xml &amp; XXXMapper.xml模板供大家使用</p> <details> <summary>点击查看代码</summary> <p>```</p> <p><configuration></p> <pre><code>&lt;!--读取属性文件中数据库的配置--&gt; &lt;properties resource="db.properties"&gt;&lt;/properties&gt; &lt;!--设置日志输出语句,显示相应操作的sql语名--&gt; &lt;settings&gt;     &lt;setting name="logImpl" value="STDOUT_LOGGING"/&gt; &lt;/settings&gt; &lt;typeAliases&gt;     &lt;package name="com.bjpowernode.pojo"&gt;&lt;/package&gt; &lt;/typeAliases&gt; &lt;environments default="development"&gt;     &lt;environment id="development"&gt;         &lt;transactionManager type="JDBC"/&gt;         &lt;dataSource type="POOLED"&gt;             &lt;property name="driver" value="com.mysql.jdbc.Driver"/&gt;             &lt;property name="url"                       value="jdbc:mysql://localhost:3308/ssm?useSSL=false&amp;amp;serverTimezone=UTC&amp;amp;allowPublicKeyRetrieval=true"/&gt;             &lt;property name="username" value="root"/&gt;             &lt;property name="password" value="123456"/&gt;         &lt;/dataSource&gt;     &lt;/environment&gt; &lt;/environments&gt; &lt;mappers&gt;     &lt;package name="mapper文件所在的包名"&gt;&lt;/package&gt; &lt;/mappers&gt; </code></pre> <p></configuration><br /> ```<br /> </details> <details> <summary>点击查看代码</summary> <pre><code> &lt;!-- XXXMapper.xml模板--&gt; &lt;?xml version="1.0" encoding="UTF-8" ?&gt; &lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"         "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt; &lt;mapper namespace="com.xxxxx.mapper.interface"&gt;  &lt;!-- 就是接口的完全限定名，注意新手一定要右键 -&gt; copy reference -&gt; cv 防止不必要的错误--&gt;  &lt;/mapper&gt; </code></pre> </details> <p>6)添加MyBatis核心配置文件SqlMapConfig.xml,并拷贝jdbc.propertiest属性文件到resources目录下<br /> 同样给大家给书出。jdbc.properties,部分朋友可能会因为spring版本问题会报更新的错，虽然不影响使用但是影响美观哈哈，所以我的驱动加了'cj.'</p> <details> <summary>点击查看代码</summary> <p>```<br /> jdbc.driverClassName=com.mysql.cj.jdbc.Driver<br /> jdbc.url=jdbc:mysql://localhost:3306/ssm?useUnicode=true&amp;characterEncoding=utf8<br /> jdbc.username=yours mysql username<br /> jdbc.password= yours password<br /> ```<br /> </details> <p>7)添加applicationContext_mapper.xml<br /> 8)添加applicationContext_service.xml<br /> 9)添加实体类<br /> 10)添加mapper包,添加xxxMapper接口和xxxxMapper.xml文件并开发  (注意几个配套问题：文件名，方法名。。。)<br /> 11)添加service包,添加xxxService接口和xxxxServiceImpl实现类<br /> 12)添加测试类进行功能测试</p> <h2 id="事务">事务</h2> <p>大白话就是，我不成，你也别想成，两个关联动作同时失败或者成功。保证数据的唯一性，一致性，原子性，隔离性；</p> <h3 id="依赖">依赖</h3> <details> <summary>点击查看代码</summary> <pre><code> &lt;dependency&gt;       &lt;groupId&gt;org.springframework&lt;/groupId&gt;       &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;       &lt;version&gt;5.2.5.RELEASE&lt;/version&gt;     &lt;/dependency&gt; </code></pre> </details> <h4 id="记住一句话项目中的所有事务必须添加到业务逻辑层上">记住一句话，项目中的所有事务,必须添加到业务逻辑层上.</h4> <h3 id="事务隔离级别">事务隔离级别</h3> <ul> <li>mysql默认隔离级别为<code>REPETABLE_READ</code>：可重复读，这里简单提一嘴就是他可以解决脏读，不可重复读，但存在幻读</li> <li>未提交读(Read Uncommitted)：允许脏读，也就是可能读取到其他会话中未提交事务修改的数据</li> <li>提交读(Read Committed)：只能读取到已经提交的数据。Oracle等多数数据库默认都是该级别 (不重复读)</li> <li>可重复读(Repeated Read)：可重复读。在同一个事务内的查询都是事务开始时刻一致的，InnoDB默认级别。在SQL标准中，该隔离级别消除了不可重复读，但是还存在幻象读，但是innoDB解决了幻读</li> <li>串行读(Serializable)：完全串行化的读，每次读都需要获得表级共享锁，读写相互都会阻塞</li> <li>使用数据库默认的隔离级别isolation = Isolation.DEFAULT</li> </ul> <h3 id="spring事务的传播特性">Spring事务的传播特性</h3> <h4 id="存在的意义">存在的意义</h4> <p>多个事务之间的合并,互斥等都可以通过设置事务的传播特性来解决</p> <h4 id="常用特性">常用特性</h4> <ul> <li>PAGATION_REQUIRED：必被包含事务(增删改必用)</li> <li>PAGATION_REQUIRES_NEW：自己新开事务，不管之前是否有事务</li> <li>OPAGATION_SUPPORTS：支持事务，如果加入的方法有事务，则支持事务，如果没有，不单开事务</li> <li>OPAGATION_NEVER：不能运行中事务中，如果包在事务中，抛异常</li> <li>OPAGATION_NOT_SUPPORTED：不支持事务，运行在非事务的环境</li> </ul> <h4 id="下面贴一张网上找的图总结的不错">下面贴一张网上找的图，总结的不错</h4> <p>其中B是嵌套在A中的事务<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220428/a6e3d756e197db7bfe2c584f1f4f4a39.jpg" alt="快速了解Spring，简明Spring使用流程 - FITA _在线工具"></p> <h3 id="事务声明方式">事务声明方式</h3> <h4 id="xml文件声明步骤">xml文件声明步骤</h4> <ul> <li>1)在applicationContext_service.xml文件中添加事务管理器<br /><code>ean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"&gt;     &lt;!--因为事务必须关联数据库处理,所以要配置数据源--&gt;     &lt;property name="dataSource" ref="dataSource"&gt;&lt;/property&gt;  &lt;/bean&gt;</code> </li> <li>2)在applicationContext_service.xml文件中添加事务的注解驱动<br /><code> &lt;tx:annotation-driven transaction-manager="transactionManager"&gt;&lt;/tx:annotation-driven&gt;</code> </li> <li>3)在业务逻辑的实现类上添加注解@Transactional(propagation = Propagation.REQUIRED)<br /> REQUIRED表示增删改操作时必须添加的事务传播特性</li> </ul> <p>下面以curd给出配置事物的代码</p> <details> <summary>点击查看代码</summary> <p>```</p> <p>    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"><property name="dataSource" ref="dataSource"></property></bean></p> <pre><code>&lt;!--配置事务切面--&gt; &lt;tx:advice id="myadvice" transaction-manager="transactionManager"&gt;     &lt;tx:attributes&gt;         &lt;tx:method name="*select*" read-only="true"/&gt;         &lt;tx:method name="*find*" read-only="true"/&gt;         &lt;tx:method name="*search*" read-only="true"/&gt;         &lt;tx:method name="*get*" read-only="true"/&gt;         &lt;tx:method name="*insert*" propagation="REQUIRED" no-rollback-for="ArithmeticException"/&gt;         &lt;tx:method name="*add*" propagation="REQUIRED"/&gt;         &lt;tx:method name="*save*" propagation="REQUIRED" no-rollback-for="ArithmeticException"/&gt;         &lt;tx:method name="*set*" propagation="REQUIRED"/&gt;         &lt;tx:method name="*update*" propagation="REQUIRED"/&gt;         &lt;tx:method name="*change*" propagation="REQUIRED"/&gt;         &lt;tx:method name="*modify*" propagation="REQUIRED"/&gt;         &lt;tx:method name="*delete*" propagation="REQUIRED"/&gt;         &lt;tx:method name="*remove*" propagation="REQUIRED"/&gt;         &lt;tx:method name="*drop*" propagation="REQUIRED"/&gt;         &lt;tx:method name="*clear*" propagation="REQUIRED"/&gt;         &lt;tx:method name="*" propagation="SUPPORTS"/&gt;     &lt;/tx:attributes&gt; &lt;/tx:advice&gt; &lt;!--绑定切面和切入点--&gt; &lt;aop:config&gt;     &lt;aop:pointcut id="mycut" expression="execution(* com.bjpowernode.service.impl.*.*(..))"&gt;&lt;/aop:pointcut&gt;     &lt;aop:advisor  advice-ref="myadvice" pointcut-ref="mycut"&gt;&lt;/aop:advisor&gt; &lt;/aop:config&gt; </code></pre> </details> <p>```</p> <h4 id="注解-transactional">注解 <code>@Transactional</code><br /> </h4> <p>@Transactional(propagation = Propagation.REQUIRED,//事务的传播特性<br /> noRollbackForClassName = "ArithmeticException", //指定发生什么异常不回滚,使用的是异常的名称<br /> noRollbackFor = ArithmeticException.class,//指定发生什么异常不回滚,使用的是异常的类型<br /> rollbackForClassName = "",//指定发生什么异常必须回滚<br /> rollbackFor = ArithmeticException.class,//指定发生什么异常必须回滚<br /> timeout = -1, //连接超时设置,默认值是-1,表示永不超时<br /> readOnly = false, //默认是false,如果是查询操作,必须设置为true.<br /> isolation = Isolation.DEFAULT//使用数据库自已的隔离级别</p> <p>有写错的地方希望大佬们海涵指出！！</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-91237.htm">中国兽药十大名牌厂家排名河南（河南兽药销量排名）</a></p>
+                                        <p>下一个：<a href="/news/article-91620.htm">猫驱虫多少钱一只（猫驱虫大概多少钱一次）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-free-node-subscribe.htm" title="「3月21日」最高速度20.8M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月21日」最高速度20.8M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-66178.htm" title="宠物医院收费表（宠物医院收费表格模板）">宠物医院收费表（宠物医院收费表格模板）</a></li>
+                        <li class="py-2"><a href="/news/article-91236.htm" title="动物打防疫针的作用（动物打疫苗）">动物打防疫针的作用（动物打疫苗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-free-clash-verge-rev-node.htm" title="「3月8日」最高速度22.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月8日」最高速度22.1M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-83604.htm" title="宠物免费领养中心软件（宠物免费领养平台下载）">宠物免费领养中心软件（宠物免费领养平台下载）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-18-free-subscribe-node.htm" title="「3月18日」最高速度18.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月18日」最高速度18.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-81497.htm" title="上海动物疫苗控制中心 上海动物疫苗控制中心官网">上海动物疫苗控制中心 上海动物疫苗控制中心官网</a></li>
+                        <li class="py-2"><a href="/news/article-89379.htm" title="Go后端项目服务器一站式部署笔记(Gin+MySQL+Nginx)">Go后端项目服务器一站式部署笔记(Gin+MySQL+Nginx)</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-29-clash-verge-rev-windows.htm" title="「3月29日」最高速度20.4M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月29日」最高速度20.4M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-82190.htm" title="动物活疫苗对人的伤害有哪些呢英语（动物活疫苗对人的伤害有哪些呢英语怎么说）">动物活疫苗对人的伤害有哪些呢英语（动物活疫苗对人的伤害有哪些呢英语怎么说）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
