@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-96107.htm" />
+    <title>VUE3 之 全局 Mixin 与 自定义属性合并策略 &#8211; 这个系列的教程通俗易懂，适合新手</title>
+        <meta name="description" content="1. 概述 老话说的好：心态决定命运，好心态才能有好的命运。 言归正传，今天我们来聊聊 VUE 中的全局 Mixin 与 自定义属性合并策略。 2. Mixin 的使用 2.1 全局 Mixin &n" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-96107.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="VUE3 之 全局 Mixin 与 自定义属性合并策略 &#8211; 这个系列的教程通俗易懂，适合新手" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/0509efdd5bf5ad9ea1b70ad09162c9e0.webp" />
+        <meta property="og:release_date" content="2025-04-15T05:59:31" />
+    <meta property="og:updated_time" content="2025-04-15T05:59:31" />
+        <meta property="og:description" content="1. 概述 老话说的好：心态决定命运，好心态才能有好的命运。 言归正传，今天我们来聊聊 VUE 中的全局 Mixin 与 自定义属性合并策略。 2. Mixin 的使用 2.1 全局 Mixin &n" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="VUE3 之 全局 Mixin 与 自定义属性合并策略 &#8211; 这个系列的教程通俗易懂，适合新手">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">VUE3 之 全局 Mixin 与 自定义属性合并策略 &#8211; 这个系列的教程通俗易懂，适合新手</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<p><span style="font-size: 18pt"><strong>1. 概述</strong></span></p> <p>老话说的好：心态决定命运，好心态才能有好的命运。</p> <p>言归正传，今天我们来聊聊 VUE 中的全局 Mixin 与 自定义属性合并策略。</p> <p><span style="font-size: 18pt"><strong>2. Mixin 的使用</strong></span></p> <p><span style="font-size: 14pt"><strong>2.1 全局 Mixin</strong></span></p> <p>&nbsp;之前咱们介绍的 Mixin 用法，是局部 Mixin，需要在组件和子组件中使用&nbsp;mixins:[myMixin] 去引入 Mixin，下面我们介绍 全局 Mixin。</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(255, 0, 0, 1)">id</span><span style="color: rgba(0, 0, 255, 1)">="myDiv"</span><span style="color: rgba(0, 0, 255, 1)">&gt;&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">body</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">     const app</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> Vue.createApp({         data(){</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">return</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> {                 num :</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">1</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">             }         },          created() {             console.info(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">created</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">);         },          methods : {             myAdd() {                 console.info(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">myAdd</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">);             }         },          template:`</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">button @click</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">"</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">myAdd</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">"</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">增加</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">button&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">{{num}}</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">sub</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">-</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">com</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">        `     });     app.mixin({         data(){</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 255, 1)">return</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> {                 num :</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">2</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">,                 count :</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">1</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">             }         },         created() {             console.info(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">myMixin created</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">);         },         methods : {             myAdd() {                 console.info(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">myMixin myAdd</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">);             }         },     });      app.component(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">sub-com</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">'</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">, {         template: `</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">{{count}}</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">&lt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">/</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">div&gt;</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">        `     });      const vm</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">=</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)"> app.mount(</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">"</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">#myDiv</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">"</span><span style="background-color: rgba(245, 245, 245, 1); color: rgba(0, 0, 0, 1)">);</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">script</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span></pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/e7de72b2644470dfb577036ae2c22314.jpg" alt="VUE3 之 全局 Mixin 与 自定义属性合并策略 - 这个系列的教程通俗易懂，适合新手"></p> <p>&nbsp;使用 app.mixin 声明的 Mixin 就是全局 Mixin，全局 Mixin 不需要在组件或子组件中使用&nbsp;mixins:[myMixin] 去引入 Mixin，效果和局部 Mixin 一样。</p> <p><span style="font-size: 14pt"><strong>2.2 自定义属性的使用</strong></span></p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">    const myMixin = {         num : 2     }          const app = Vue.createApp({         num : 1,          mixins:[myMixin],          template:`</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>{{this.$options.num}}<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 0, 1)">         `     });</span></pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/217ccdc516b2b7c119b01974e1964db1.jpg" alt="VUE3 之 全局 Mixin 与 自定义属性合并策略 - 这个系列的教程通俗易懂，适合新手"></p> <p>这个例子中的 num 就是自定义属性，渲染时使用 {{this.$options.num}} 得到自定义属性。</p> <p>自定义属性，不写在 data 里，组件中的自定义属性优先级高于 Mixin 中的自定义属性。</p> <p><span style="font-size: 14pt"><strong>2.3 自定义属性合并策略</strong></span></p> <p>自定义属性的优先级可以调整，我们来看下面的例子</p> <div class="cnblogs_code"> <pre><span style="color: rgba(0, 0, 0, 1)">    const myMixin = {         num : 2     }          const app = Vue.createApp({         num : 1,           mixins:[myMixin],          template:`</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span>{{this.$options.num}}<span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 255, 1)">&lt;/</span><span style="color: rgba(128, 0, 0, 1)">div</span><span style="color: rgba(0, 0, 255, 1)">&gt;</span><span style="color: rgba(0, 0, 0, 1)">         `     });      app.config.optionMergeStrategies.num = (mixinValue, appValue) =&gt; {         return mixinValue || appValue; // 意思是先使用 mixinValue，如果 mixinValue 不存在，再使用 appValue     }</span></pre> </div> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/484609c9b1856519a4573b5a970a8df9.jpg" alt="VUE3 之 全局 Mixin 与 自定义属性合并策略 - 这个系列的教程通俗易懂，适合新手"></p> <p>&nbsp;这个例子中，我们使用&nbsp;app.config.optionMergeStrategies.num，对自定义属性 num 的优先级进行了调整。</p> <p><span style="font-size: 18pt"><strong>3. 综述</strong></span></p> <p>今天聊了一下 VUE3 中的全局 Mixin 与 自定义属性合并策略，希望可以对大家的工作有所帮助，下一节我们继续讲 Vue 中的高级语法，敬请期待</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-95363.htm">动物疫苗的概念是什么意思（动物疫苗概念股有哪些）</a></p>
+                                        <p>下一个：<a href="/news/article-96110.htm">Java-NIO之Channel（通道）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-76009.htm" title="宠物粮食品牌上市公司有哪些公司 宠物粮食品牌上市公司有哪些公司名称">宠物粮食品牌上市公司有哪些公司 宠物粮食品牌上市公司有哪些公司名称</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-30-latest-clash-verge-rev-node.htm" title="「3月30日」最高速度19.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月30日」最高速度19.5M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-73298.htm" title="动物医院社会实践报告总结（动物医院实践心得2000）">动物医院社会实践报告总结（动物医院实践心得2000）</a></li>
+                        <li class="py-2"><a href="/news/article-85045.htm" title="2021年国考公务员报名时间（2021国考公务员报名时间和考试时间）">2021年国考公务员报名时间（2021国考公务员报名时间和考试时间）</a></li>
+                        <li class="py-2"><a href="/news/article-78048.htm" title="宠物的领养协议是有法律保护的吗为什么呢 宠物的领养协议是有法律保护的吗为什么呢">宠物的领养协议是有法律保护的吗为什么呢 宠物的领养协议是有法律保护的吗为什么呢</a></li>
+                        <li class="py-2"><a href="/news/article-81497.htm" title="上海动物疫苗控制中心 上海动物疫苗控制中心官网">上海动物疫苗控制中心 上海动物疫苗控制中心官网</a></li>
+                        <li class="py-2"><a href="/news/article-66178.htm" title="宠物医院收费表（宠物医院收费表格模板）">宠物医院收费表（宠物医院收费表格模板）</a></li>
+                        <li class="py-2"><a href="/news/article-68721.htm" title="JavaScript如何将数组与值是数组的对象合并方法详解">JavaScript如何将数组与值是数组的对象合并方法详解</a></li>
+                        <li class="py-2"><a href="/news/article-90125.htm" title="东北农大动物医院价目表大全最新（东北农大兽医院）">东北农大动物医院价目表大全最新（东北农大兽医院）</a></li>
+                        <li class="py-2"><a href="/news/article-85770.htm" title="宠物粮食专卖店电话多少啊（宠物粮基地）">宠物粮食专卖店电话多少啊（宠物粮基地）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

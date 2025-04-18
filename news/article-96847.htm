@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-96847.htm" />
+    <title>虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）</title>
+        <meta name="description" content="虚拟机搭建负载均衡，mysql主从复制和读写分离（一、搭建虚拟机） 虚拟机搭建负载均衡，mysql主从复制和读写分离（二、克隆虚拟机） 虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-96847.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/190525aecbd3bb83b41175acb64184b6.webp" />
+        <meta property="og:release_date" content="2025-04-16T08:36:40" />
+    <meta property="og:updated_time" content="2025-04-16T08:36:40" />
+        <meta property="og:description" content="虚拟机搭建负载均衡，mysql主从复制和读写分离（一、搭建虚拟机） 虚拟机搭建负载均衡，mysql主从复制和读写分离（二、克隆虚拟机） 虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lmp5023/article/details/126392576?spm=1001.2014.3001.5501"  title="虚拟机搭建负载均衡，mysql主从复制和读写分离（一、搭建虚拟机）" rel="nofollow">虚拟机搭建负载均衡，mysql主从复制和读写分离（一、搭建虚拟机）</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lmp5023/article/details/126393577?spm=1001.2014.3001.5501"  title="虚拟机搭建负载均衡，mysql主从复制和读写分离（二、克隆虚拟机）" rel="nofollow">虚拟机搭建负载均衡，mysql主从复制和读写分离（二、克隆虚拟机）</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lmp5023/article/details/126406340?spm=1001.2014.3001.5501"  title="虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）" rel="nofollow">虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lmp5023/article/details/126406681?spm=1001.2014.3001.5501"  title="虚拟机搭建负载均衡，mysql主从复制和读写分离（四、搭建主从复制和读写分离）" rel="nofollow">虚拟机搭建负载均衡，mysql主从复制和读写分离（四、搭建主从复制和读写分离）</a></p> <p style="text-align:justify;">1.上传项目</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小编分别在三台虚拟机上下载了thinkphp6框架，模拟线上项目。</p> <p style="text-align:justify;">2.添加站点<img fetchpriority="high" decoding="async" alt="" height="786" src="http://img.555519.xyz/uploads3/20220901/379b4554ba81f80263d4352183d20170.jpg"></p> <p style="text-align:center;">&nbsp;图4-1</p> <p style="margin-left:.0001pt;text-align:center;">图4-1<img decoding="async" alt="" height="570" src="http://img.555519.xyz/uploads3/20220901/d156d2bf22ed23b75ab806c4532d2a2f.jpg"></p> <p style="text-align:center;">图4-2<img decoding="async" alt="" height="205" src="http://img.555519.xyz/uploads3/20220901/62c5341a20eef64af9b05a7f7f1e637c.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-3</p> <p style="margin-left:.0001pt;text-align:justify;">3.在配置文件中添加这两句话：</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;upstream ces &nbsp;{<!-- --></p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#server 服务ip地址:端口号 weight表示权值，权值越大，被分配的几率越大;</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server 192.168.121.112:80 weight=1;</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server 192.168.121.113:80 weight=1;</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p> <p style="margin-left:.0001pt;text-align:justify;"> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location ~ / {<!-- --></p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass http://ces;</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<img loading="lazy" decoding="async" alt="" height="528" src="http://img.555519.xyz/uploads3/20220901/4b21dd01af282bdb148b3a5760c9c642.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-4</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;负载均衡就是用户访问192.168.121.111这台虚拟机的时候，这台虚拟机根据nginx设置的权重把请求转发到其他虚拟机上面去，代理参数，轮询方法可以查下其他文章，这里先不用管。</p> <p style="margin-left:.0001pt;text-align:justify;">4.配置完成后，需要到192.168.121.112和192.168.121.113两台虚拟机上面的/www/server/panel/vhost/nginx目录删除0.default.conf文件，不然访问的是暂未设置网站的默认页面<img loading="lazy" decoding="async" alt="" height="237" src="http://img.555519.xyz/uploads3/20220901/aef3544d1be0fa901b8c9f030dfcd203.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-5</p> <p style="margin-left:.0001pt;text-align:justify;">5.览器输入192.168.121.111，可以看到转发到了不同虚拟机，到此负载均衡搭建完成。</p> <p class="img-center"><img loading="lazy" decoding="async" alt="" height="126" src="http://img.555519.xyz/uploads3/20220901/08686aff48a83521958e6cf61bf78922.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-6</p> <p style="margin-left:.0001pt;text-align:center;"><img loading="lazy" decoding="async" alt="" height="119" src="http://img.555519.xyz/uploads3/20220901/4b921e410c31d3d36ad64711e0466226.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-7</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-96846.htm">win11系统如何添加pdf虚拟打印机</a></p>
+                                        <p>下一个：<a href="/news/article-97559.htm">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-14-clash-verge-rev-nodes.htm" title="「4月14日」最高速度20.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「4月14日」最高速度20.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-76009.htm" title="宠物粮食品牌上市公司有哪些公司 宠物粮食品牌上市公司有哪些公司名称">宠物粮食品牌上市公司有哪些公司 宠物粮食品牌上市公司有哪些公司名称</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-11-clash-verge-rev-node-share.htm" title="「3月11日」最高速度19.4M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月11日」最高速度19.4M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-76674.htm" title="新型地摊暴利产品（新型地摊暴利产品硬币戎指）">新型地摊暴利产品（新型地摊暴利产品硬币戎指）</a></li>
+                        <li class="py-2"><a href="/news/article-97560.htm" title="宠物粮食市场报告分析论文（宠物粮食市场份额）">宠物粮食市场报告分析论文（宠物粮食市场份额）</a></li>
+                        <li class="py-2"><a href="/news/article-68721.htm" title="JavaScript如何将数组与值是数组的对象合并方法详解">JavaScript如何将数组与值是数组的对象合并方法详解</a></li>
+                        <li class="py-2"><a href="/news/article-82904.htm" title="Nuxt3 rc.11 填坑 配置 element-plus">Nuxt3 rc.11 填坑 配置 element-plus</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-clash-verge-rev-github.htm" title="「3月12日」最高速度19M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月12日」最高速度19M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-12-clash-verge-rev-node-github.htm" title="「4月12日」最高速度19.8M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「4月12日」最高速度19.8M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-17-free-clash-verge-rev-node.htm" title="「3月17日」最高速度21.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月17日」最高速度21.3M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">48</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
