@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-104362.htm" />
+    <title>Hbase架构与存储组件结构与功能</title>
+        <meta name="description" content="文章目录  HBase宏观架构   Master RegionServer Region HDFS ZooKeeper   Region   WAL（预写日志）   关闭/打开WAL 延迟（异步）同步" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-104362.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="Hbase架构与存储组件结构与功能" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/a49b75a1c550abaebb2014152162f32f.webp" />
+        <meta property="og:release_date" content="2025-04-26T07:38:25" />
+    <meta property="og:updated_time" content="2025-04-26T07:38:25" />
+        <meta property="og:description" content="文章目录  HBase宏观架构   Master RegionServer Region HDFS ZooKeeper   Region   WAL（预写日志）   关闭/打开WAL 延迟（异步）同步" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Hbase架构与存储组件结构与功能">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">Hbase架构与存储组件结构与功能</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <div class="toc"> <h3>文章目录</h3> <ul> <li>HBase宏观架构</li> <li> <ul> <li>Master</li> <li>RegionServer</li> <li>Region</li> <li>HDFS</li> <li>ZooKeeper</li> </ul> </li> <li>Region</li> <li> <ul> <li>WAL（预写日志）</li> <li> <ul> <li>关闭/打开WAL</li> <li>延迟（异步）同步写入WAL</li> <li>WAL滚动</li> <li>WAL文件归档</li> </ul> </li> <li>Store</li> <li> <ul> <li>MemStore</li> </ul> </li> </ul> </li> <li>HFile</li> <li> <ul> <li>Data</li> <li> <ul> <li>BlockType（块类型）</li> <li>KeyValue类（Cell）</li> </ul> </li> </ul> </li> <li>HBase实现增删改成</li> <li> <ul> <li>真正删除发生的时候</li> </ul> </li> </ul> </div> <hr/> </h1> <blockquote> <p>架构图<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220904/e67218ea55879c989333130bdfc1524b.jpg" alt="Hbase架构与存储组件结构与功能"></p> </blockquote> <h2>Master</h2> <p>负责启动的时候分配Region到具体的RegionServer，执行各种管理操作，如：Region的分割与合并、创建表、修改列族配置等操作。</p> <h2>RegionServer</h2> <p>存在一个或多个Region，所有的数据是存储在Region上的。Region所有数据存取都是调用HDFS的客户端实现的。</p> <h2>Region</h2> <p>表的一部分数据。HBase是一个会自动分片的数据库。一个Region就相当于关系型数据库中分区表的一个分区。</p> <h2>HDFS</h2> <p>HBase并不直接跟服务器的硬盘交互，而是跟HDFS交互，HDFS是真正承载数据的载体。</p> <h2>ZooKeeper</h2> <p>HBase中组件的高可用是基于ZooKeeper实现，以及元数据一般都是存储在ZooKeeper上的。</p> </h1> <p>一个RegionServer会存在一个或多个Region。</p> <p>Region相当于一个数据分片，每个Region都有起始rowkey和结束rowkey，代表它所存储的Row范围。</p> <blockquote> <p>架构图<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220904/fefa5d46f7544400b518cf7461a8c666.jpg" alt="Hbase架构与存储组件结构与功能"></p> </blockquote> <h2>WAL（预写日志）</h2> <p>WAL（Write-Ahead Log），当操作到达Region的时候，HBase会<code>先将操作写入WAL中</code>，在把数据放到<code>基于内存实现的MemStore</code>中，等到数据达到一定的数量时才刷写（flush）到最终存储的HFile中。当遇到故障的时候可以根据WAL恢复数据。</p> <p>操作类型有：Put、Append、Increment、Delete。当操作到达时会立即被写入WAL中，写入调用的是HDFS客户端接口写入HDFS的。</p> <h3>关闭/打开WAL</h3> <p>WAL模式默认是开启的，可以通过调用下列语句关闭WAL。</p> <pre><code class="prism language-java"><span class="token class-name">Meutaion</span><span class="token punctuation">.</span><span class="token function">setDurability</span><span class="token punctuation">(</span><span class="token class-name">Durability</span><span class="token punctuation">.</span>SKIP_WAL<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <p>还可以关闭/开启指定操作类型的WAL。这样虽然可以让数据操作更快一点，当服务器宕机时，会导致数据丢失。</p> <h3>延迟（异步）同步写入WAL</h3> <p>通过异步写入WAL，可以让数据操作更快一点，但是也会导致部分数据丢失。<br /> WAL异步写入，调用方法</p> <pre><code class="prism language-java"><span class="token class-name">Meutaion</span><span class="token punctuation">.</span><span class="token function">setDurability</span><span class="token punctuation">(</span><span class="token class-name">Durability</span><span class="token punctuation">.</span>ASYNC_WAL<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre> <h3>WAL滚动</h3> <p>WAL是一个环状的滚动日志结构，因为这种结构可以写入效果最高，而且可以保证空间不会持续变大。</p> <p>WAL的检查间隔由hbase.regionserver.logroll.period定义，默认值1小时。检查的内容是把当前WAL中的操作跟实际持久化到HDFS上的操作比较，看哪些操作已经别持久化了，被持久化的操作就会被移动到.oldlogs文件夹内（也存储在HDFS上）。</p> <p>一个WAL实例包含多个WAL文件。WAL文件的最大数量通过hbase.regionserver.maxlogs定义，默认值32。</p> <p>触发滚动的条件：</p> <ol> <li>当WAL文件所在的快（Block）快要满了。</li> <li>当WAL所占空间大于或等于某个阀值，计算公司<code>hbase.regionserver.hlog.blocksize * hbase.regionserver.logroll.multiplier</code>。</li> </ol> <p>hbase.regionserver.hlog.blocksize：存储系统块（Block）大小，一般是HDFS的块大小即可，不设定HBase会自己去尝试获取这个参数的值。</p> <p>hbase.regionserver.logroll.multiplier：默认0.95，如果WAL文件所占空间大于或等于95%的块大小，则这个WAL文件就会被归档到.oldlogs文件夹中。</p> <h3>WAL文件归档</h3> <p>WAL文件被创建出来后会被放在/hbase/.log下，一旦WAL文件被归档，则会被移动到/hbase/.oldlogs文件夹下。</p> <p>Master会负责定期地清理.oldlogs文件夹，条件是”当这个WAL不需要作为用来恢复数据的备份“时候。判断条件是”没有任何引用指向这个WAL文件“，才会被系统彻底删除。</p> <ol> <li>TTL进程：该进程会保证WAL文件一直存活直到hbase.master.logcleaner.ttl定义的超时时间（默认10分钟）为止。</li> <li>备份（replication）机制：如果开启了HBase的备份机制，那么HBase要保证备份集群已经完全不需要这个WAL文件了，才会删除这个WAL文件。<br /> 备份：是把一个集群的数据实时备份到另外一个集群，如果就一个集群就不需要考虑这个因素。</li> </ol> <h2>Store</h2> <p>一个Region可能包含多个Store实例。一个Store对应一个列族的数据，Store内部含有MemStore和HFile这两个组件。</p> <p>每个Store只有一个MemStore实例，多个HFile实例。当MemStore满了之后HBase就会在HDFS上生成一个新的HFile，然后把MemStore中的内容写到HFile中。</p> <h3>MemStore</h3> <p>数据被写入WAL之后就会被加载到MemStore中，当MemStore的大小增加到超过一定阀值的时候就会被刷写到HDFS上，以HFile形式被持久化起来。</p> <p>设计MemStore的原因有以下几点</p> <ol> <li>由于HDFS上的文件是不可修改的，为了让数据顺序存储从而提高读取效率，HBase使用了LSM树结果来存储数据。<br /> MemStore会将数据整理成LSM树，最后在刷写到HFile上。<br /> 读取操作是先BlockCache，在读取MemStore+HFile。</li> <li>优化数据的存储。如：一个数据添加后立马就删除，这样在刷写的时候就可以直接不把这个数据写到HDFS上。</li> </ol> </h1> <p>HFile是数据存储的实际载体，创建的所有标、列等数据都存储在HFile里面。</p> <p>HFile是由一个一个的块组成的。在HBase中一个块的大小默认是64KB，由列族上的BLOCKSIZE属性定义。</p> <blockquote> <p>架构图<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220904/9542eabc9b5a6700fa756cf647a1d8f9.jpg" alt="Hbase架构与存储组件结构与功能"></p> </blockquote> <ol> <li>Data： 数据块。每个HFile中有多个Data块。存储HBase表中的数据。（可选）</li> <li>Meta：元数据块。Meta块只有在文件关闭时才写入，Meta块存储该Hfile文件的元信息。（可选）</li> <li>FileInfo：文件信息。在文件关闭时写入，存储的是这个文件的信息，如：最后一个Key（Last Key）、平均的Key长度（Avg Key Len）等。（必选）</li> <li>DataIndex：存储Data块索引信息的文件块。索引信息即Data块的偏移值（offset），有Data块就有DataIndex。（可选）</li> <li>MetaIndex：存储Meta块索引信息的文件块。有Meta才有MetaIndex。</li> <li>Trailer：存储FileInfo、DataIndex、MetaIndex块的偏移值。（必选）</li> </ol> <h2>Data</h2> <p>Data数据块的第一位存储的是块的elixir，后面存储多个Cell（KeyValue键值对）。</p> <h3>BlockType（块类型）</h3> <ol> <li>DATA（数据）</li> <li>ENCODE_DATA(数据编码格式)</li> <li>LEAF_INDEX(叶索引)</li> <li>BLOOM_CHUNK(BLOOM块)</li> <li>META（元数据）</li> <li>INTERMEDIATE_INDEX(中间索引)</li> <li>ROOT_INDEX（根索引）</li> <li>GENERAL_BLOOM_META（通用BLOOM元数据）</li> <li>DELETE_FAMILY_BLOOM_META（删除族BLOOM元数据）</li> <li>TRAILER</li> <li>INDEX_V1</li> </ol> <h3>KeyValue类（Cell）</h3> <ol> <li>KeyLen 键长读</li> <li>ValueLen 值长度</li> <li>RowLen 行长度</li> <li>Row：行</li> <li>CF LEN：（Column Family，列族)长度</li> <li>CF：（Column Family，列族)</li> <li>Col: (Column，列)</li> <li>Time Stamp: 时间戳</li> <li>Key Type： 键类型<br /> 10.Value： 具体值</li> </ol> </h1> <p>因HBase是持久化到HDFS的，所有不支持修改。</p> <ol> <li>新增一个单元格的时候，HBae在HDFS新增一条数据。</li> <li>修改一个单元格的时候，HBase在HDFS新增一条数据，只是版本好比之间的大。</li> <li>删除一个单元格的时候，Hbase在HDFS新增一条数据，这条数据没有value，类型为DELETE。</li> </ol> <h2>真正删除发生的时候</h2> <p>通过Minor Compaction 和 Major Compaction合并实现删除数据</p> <ol> <li>Minor Compaction: 将Store中多个HFile合并为一个HFile。在这个过程中达到TTL的数据会被移除，但是被手动删除的数据不会被移除，触发频率高。</li> <li>Major Compaction: 合并Store中所有HFile为一个HFile。在这个过程中手动删除的数据会被真正地移除。同时被删除的还有单元格内超过MaxVersion的版本数据，触发频率低，默认为7天一次，且消耗性能较大。</li> </ol> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-104361.htm">Firefox中的HTML5输入类型“数字”</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-71979.htm" title="LInux初学者 必学 三种配置网卡IP地址的方式（非常详细）">LInux初学者 必学 三种配置网卡IP地址的方式（非常详细）</a></li>
+                        <li class="py-2"><a href="/news/article-73967.htm" title="vue 封装图片路径">vue 封装图片路径</a></li>
+                        <li class="py-2"><a href="/news/article-83608.htm" title="宠物领养app有哪些软件好用（宠物领养app有哪些软件好用的）">宠物领养app有哪些软件好用（宠物领养app有哪些软件好用的）</a></li>
+                        <li class="py-2"><a href="/news/article-72634.htm" title="C++的命名空间">C++的命名空间</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-6-free-high-speed-nodes.htm" title="「3月6日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「3月6日」最高速度20M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-66178.htm" title="宠物医院收费表（宠物医院收费表格模板）">宠物医院收费表（宠物医院收费表格模板）</a></li>
+                        <li class="py-2"><a href="/news/article-103543.htm" title="中国知名兽药（中国知名兽药公司排名）">中国知名兽药（中国知名兽药公司排名）</a></li>
+                        <li class="py-2"><a href="/news/article-94136.htm" title="动物医院需要什么手续才能开药（动物医院需要什么手续才能开药品）">动物医院需要什么手续才能开药（动物医院需要什么手续才能开药品）</a></li>
+                        <li class="py-2"><a href="/news/article-82905.htm" title="猫猫3针疫苗多少钱（猫三针疫苗价格）">猫猫3针疫苗多少钱（猫三针疫苗价格）</a></li>
+                        <li class="py-2"><a href="/news/article-96847.htm" title="虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）">虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">70</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">88</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
