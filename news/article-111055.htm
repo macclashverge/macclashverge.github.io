@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://macclashverge.github.io/news/article-111055.htm" />
+    <title>springboot base64_base64转码</title>
+        <meta name="description" content="注意事项：  标准base64是一种编码转换，不是加密方法，过程可逆； 标准base64的64个可打印字符由52个大小写英文字母和10个数字（0-9）以及 / 和 + 组成； base64为了方便把含" />
+        <link rel="icon" href="/assets/website/img/macclashverge/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="Mac Clash Verge节点订阅官网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://macclashverge.github.io/news/article-111055.htm" />
+    <meta property="og:site_name" content="Mac Clash Verge节点订阅官网" />
+    <meta property="og:title" content="springboot base64_base64转码" />
+    <meta property="og:image" content="https://macclashverge.github.io/uploads/20240903-2/7e0322558614e071a53a148cf6f15512.webp" />
+        <meta property="og:release_date" content="2025-05-04T09:26:55" />
+    <meta property="og:updated_time" content="2025-05-04T09:26:55" />
+        <meta property="og:description" content="注意事项：  标准base64是一种编码转换，不是加密方法，过程可逆； 标准base64的64个可打印字符由52个大小写英文字母和10个数字（0-9）以及 / 和 + 组成； base64为了方便把含" />
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="springboot base64_base64转码">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/vendor.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/website/css/macclashverge/style.css">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0EZKX3Y28"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0EZKX3Y28');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body class="homepage" data-page="detail">
+        <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                        <span>Mac Clash Verge</span>
+                        </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/free-nodes/">免费节点</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/client.htm">客户端</a>
+                        </li>
+                                                <li class="nav-item">
+                            <a class="nav-link" href="/news/">新闻资讯</a>
+                        </li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="page-title mt-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex flex-wrap flex-column justify-content-between align-items-center mt-5">
+                    <h1 class="display-5 fw-bold">springboot base64_base64转码</h1>
+                    <nav class="breadcrumb">
+                        <a class="breadcrumb-item" href="/">首页</a>
+                        <a class="breadcrumb-item" href="/news/">新闻资讯</a>
+                        <span class="breadcrumb-item active" aria-current="page">正文</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="faqs py-5 my-5 py-5 text-dark">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="FreeClashVerge免费节点官网" data-url="https://freeclashverge.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="htmledit_views"> <p>注意事项：</p> <ul> <li>标准base64是一种编码转换，不是加密方法，过程可逆；</li> <li>标准base64的64个可打印字符由52个大小写英文字母和10个数字（0-9）以及 / 和 + 组成；</li> <li>base64为了方便把含有不可见字符串的信息用可见字符串表示出来；</li> </ul> <p>代码如下：</p> <div class="has"> <pre class="has"><code>import</code></pre> </div> <p>运行结果：</p> <div class="has"> <pre class="has"><code>编码后</code></pre> </div> <p><b>java8可以直接使用Base64，转换原理如下：</b></p> <ol> <li>将二进制数据每三个字节分为一组，每个字节占8bit，那么共有24个二进制位。</li> <li>将上面的24个二进制位每6个一组，共分为4组。</li> <li>在每组前添加2个0，每组由6个变为8个二进制位，总共32个二进制位，也就是四个字节。</li> <li>根据base64编码对照表将每个字节转化成对应的可打印字符</li> </ol> <p>转化实例如下图：</p> <div style="text-align:center;"><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/d9b8279da23413cf47c4cd1175a3b962.jpg" alt="springboot base64_base64转码"></div> <p>标准base64的64个可打印字符由52个大小写英文字母和10个数字（0-9）以及 / 和 + 组成，编码对照表如下：</p> <div style="text-align:center;"><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/d7789c7473990d03704077e2b2fc949e.jpg" alt="springboot base64_base64转码"></div> <p>base64是将二进制每三个字节转为4个字节，会有不足三个字节的情况，处理如下：</p> <ol> <li>两个字节：两个字节共16个二进制位，依旧按照规则进行分组。此时总共16个二进制位，每6个一组，则第三组缺少2位，用0补齐，得到三个Base64编码，第四组完全没有数据则用“=”补上。因此，如下图中“BC”转换之后为“QKM=”；</li> <li>一个字节：一个字节共8个二进制位，依旧按照规则进行分组。此时共8个二进制位，每6个一组，则第二组缺少4位，用0补齐，得到两个Base64编码，而后面两组没有对应数据，都用“=”补上。因此，如下图中“A”转换之后为“QQ==”</li> </ol> <div style="text-align:center;"><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/e7e82c873bae4eef3a752a9925d550da.jpg" alt="springboot base64_base64转码"></div> <p>参考连接：base64编码 - 豁然高 - 博客园</p> </div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-111053.htm">springboot项目 Feign调用时，@RequestBody 接受字符串(String),json字符串多出引号</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-101175.htm" title="中牧股份宠物疫苗怎么样（中牧疫苗生物官网）">中牧股份宠物疫苗怎么样（中牧疫苗生物官网）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-14-clash-verge-rev-nodes.htm" title="「4月14日」最高速度20.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「4月14日」最高速度20.9M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                        <li class="py-2"><a href="/news/article-102737.htm" title="宠物粮品牌起名字大全集图片及价格（宠物粮品牌名称）">宠物粮品牌起名字大全集图片及价格（宠物粮品牌名称）</a></li>
+                        <li class="py-2"><a href="/news/article-107685.htm" title="动物医院的仪器设备是什么 动物医院的仪器设备是什么东西">动物医院的仪器设备是什么 动物医院的仪器设备是什么东西</a></li>
+                        <li class="py-2"><a href="/news/article-108513.htm" title="Objective-C 基础教程第九章,内存管理">Objective-C 基础教程第九章,内存管理</a></li>
+                        <li class="py-2"><a href="/news/article-102735.htm" title="vue3 toRef() 函数">vue3 toRef() 函数</a></li>
+                        <li class="py-2"><a href="/news/article-97559.htm" title="Go1.18 新特性之多模块Multi-Module工作区模式_Golang">Go1.18 新特性之多模块Multi-Module工作区模式_Golang</a></li>
+                        <li class="py-2"><a href="/news/article-88638.htm" title="合肥宠物领养贴吧 合肥宠物领养贴吧论坛">合肥宠物领养贴吧 合肥宠物领养贴吧论坛</a></li>
+                        <li class="py-2"><a href="/news/article-93093.htm" title="自家的猫抓出血（自家的猫抓出血了要打针吗）">自家的猫抓出血（自家的猫抓出血了要打针吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-25-clash-verge-rev-node-github.htm" title="「4月25日」最高速度21M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接">「4月25日」最高速度21M/S，2025年Mac Clash Verge每天更新免费机场订阅节点链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">13</span> <a href="/date/2025-05/" title="2025-05 归档">2025-05</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">82</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <footer id="footer" class="bg-black border-top" data-bs-theme="dark">
+        <div class="border-top py-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/website/js/frontend/macclashverge/jquery.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/plugins.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/SmoothScroll.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/9.4.1/swiper-bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/macclashverge/script.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script><script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
