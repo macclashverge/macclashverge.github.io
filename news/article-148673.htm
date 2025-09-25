@@ -65,7 +65,7 @@
         <nav class="navbar navbar-expand-lg text-uppercase fs-6 p-3 border-bottom fixed-top bg-white">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-                        <span>Mac Clash Verge</span>
+                        <span>Mac Clash Verge 节点实时更新</span>
                         </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -115,7 +115,7 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-md-9">
-                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node免费节点站" data-url="https://clashnode.github.io">
                 <div class="xcblog-blog-detail xcblog-blog-detail-defined">
                     <p>全面掌握VPS Clash：从零构建高效代理网络的终极指南</p>  <p>引言<br /> 在数字化浪潮席卷全球的今天，网络自由与数据安全已成为现代互联网用户的核心诉求。随着网络监管日益严格和地域限制不断增多，越来越多技术爱好者选择通过VPS自主搭建代理服务器来实现无障碍、安全稳定的网络访问。在众多代理工具中，Clash凭借其跨平台支持、多协议兼容与高度可定制性脱颖而出。本文将带您深入探索VPS与Clash的完美结合，从基础概念到实战配置，为您提供一份详尽的指南，助您打造专属的高性能代理网络。</p>  <p>一、理解技术基石：VPS与Clash的核心概念<br /> VPS（Virtual Private Server，虚拟专用服务器）是一种通过虚拟化技术将物理服务器划分为多个独立运行环境的技术方案。与共享主机相比，VPS不仅提供专属操作系统和完全独立的计算资源，还赋予用户完整的控制权限。这种架构既保障了性能的稳定性，又大幅提升了数据安全性，成为搭建自建代理服务的理想选择。</p>  <p>Clash则是一款开源代理客户端，支持Windows、macOS、Linux等多平台运行。其核心优势在于支持Vmess、Shadowsocks、Trojan等多种主流代理协议，并提供基于规则的智能路由、流量监控等高级功能。通过将Clash部署在VPS上，用户可以实现：突破地域限制访问全球内容、加密传输保护隐私数据、根据需求自定义流量规则等多重目标。</p>  <p>二、VPS Clash的独特优势解析<br /> 1. 资源独占性与性能保障<br /> VPS提供的独享CPU、内存和带宽资源，确保代理服务不会因其他用户的活动而受到影响。特别在高峰时段，这种资源保障显得尤为重要。</p>  <ol> <li><p>完全的控制自由度<br /> 从系统层面的防火墙配置到应用层的代理规则设置，用户拥有完全自主权。这意味着可以根据具体需求优化系统参数，实现性能最大化。</p></li> <li><p>增强的隐私保护能力<br /> 通过自建代理服务，用户数据不再经过第三方运营商，有效避免了数据泄露风险。结合Clash的加密传输特性，可构建端到端的安全通信通道。</p></li> <li><p>成本效益与灵活性<br /> 相比商业VPN服务，自建VPS代理长期使用成本更低，且能够根据实际需求灵活调整配置方案，避免为不需要的功能付费。</p></li> </ol>  <p>三、实战部署：逐步构建VPS代理系统<br /> 1. VPS服务商选择策略<br /> 推荐选择国际信誉良好的服务商，如DigitalOcean、Linode或Vultr。选择时应综合考虑以下因素： - 数据中心地理位置：根据目标用户群体选择邻近区域 - 网络带宽质量：提供中国用户访问时需特别关注网络线路优化 - 价格与资源配置：新手建议选择1GB内存起步配置 - 支付方式与售后服务：支持支付宝/微信支付的服务商更为便利</p>  <ol> <li>系统初始化配置<br /> 创建Ubuntu 20.04实例后，首先进行安全加固： ```bash</li> </ol>    <p>sudo apt update &amp;&amp; sudo apt upgrade -y sudo apt install -y git curl wget</p>  <h1>配置防火墙  <p>sudo ufw allow 22/tcp sudo ufw allow 443/tcp sudo ufw enable ```</p>  <ol> <li>环境准备与Clash安装<br /> 通过以下步骤完成基础环境搭建： ```bash</li> </ol>  <h1>安装Node.js运行环境  <p>curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash - sudo apt install -y nodejs</p>  <h1>验证安装版本  <p>node -v npm -v</p>  <h1>获取Clash源代码  <p>git clone https://github.com/Dreamacro/clash.git cd clash &amp;&amp; npm install ```</p>  <ol> <li>深度配置实战<br /> 创建配置文件config.yaml，以下为示例配置： ```yaml</li> </ol>  <h1>监听端口与模式设置  <p>port: 7890 socks-port: 7891 redir-port: 7892 mode: Rule</p>  <h1>代理服务器配置  <p>proxies:   - name: "主代理节点"     type: vmess     server: your<em>server</em>ip     port: 443     uuid: your<em>uuid</em>here     alterId: 64     cipher: auto     tls: true</p>  <h1>规则分组策略  <p>proxy-groups:   - name: "自动选择"     type: url-test     proxies: ["主代理节点"]     url: "http://www.gstatic.com/generate_204"     interval: 300</p>  <h1>规则系统  <p>rules:   - DOMAIN-SUFFIX,google.com,自动选择   - IP-CIDR,192.168.1.0/24,DIRECT   - GEOIP,CN,DIRECT   - MATCH,自动选择 ```</p>  <ol> <li>服务化部署与管理<br /> 创建systemd服务实现开机自启： ```bash</li> </ol>  <h1>创建服务文件  <p>sudo tee /etc/systemd/system/clash.service &lt;&lt;EOF [Unit] Description=Clash Daemon After=network.target</p>  <p>[Service] Type=simple User=root ExecStart=/usr/bin/node /root/clash/clash.js -d /etc/clash/ Restart=always</p>  <p>[Install] WantedBy=multi-user.target EOF</p>  <h1>启用并启动服务  <p>sudo systemctl daemon-reload sudo systemctl enable clash sudo systemctl start clash ```</p>  <p>四、高级优化技巧<br /> 1. 网络性能调优<br /> 通过修改内核参数提升网络性能： ```bash</p>  <h1>编辑sysctl配置文件  <p>echo "net.core.rmem<em>max = 67108864" >> /etc/sysctl.conf echo "net.core.wmem</em>max = 67108864" >> /etc/sysctl.conf echo "net.ipv4.tcp<em>congestion</em>control = bbr" >> /etc/sysctl.conf sysctl -p ```</p>  <ol> <li>流量监控方案<br /> 安装流量统计工具： ```bash</li> </ol>  <h1>使用vnstat进行流量监控  <p>sudo apt install -y vnstat vnstat -l -i eth0 ```</p>  <ol> <li>自动化更新机制<br /> 创建定时任务自动更新GeoIP数据库： ```bash</li> </ol>  <h1>添加定期更新任务  <p>echo "0 3 * * * root /usr/bin/node /root/clash/update-geoip.js" >> /etc/crontab ```</p>  <p>五、疑难解答与常见问题<br /> 1. 连接速度优化<br /> 遇到速度缓慢时可通过以下方式排查： - 使用mtr命令进行路由追踪 - 尝试不同传输协议（TCP/WebSocket） - 调整加密方式（chacha20-ietf-poly1305通常性能更佳）</p>  <ol> <li>安全性强化措施  </li> </ol>  <p>- 定期更换代理端口避免检测 - 设置客户端白名单访问 - 启用TLS 1.3加密传输</p>  <ol> <li>多用户管理方案<br /> 通过Clash的认证功能实现多用户支持： ```yaml authentication:  <ul> <li>"user1:pass1"</li> <li>"user2:pass2" ```</li> </ul></li> </ol>  <p>六、未来发展与生态扩展<br /> 随着网络技术的不断发展，Clash生态系统也在持续完善。建议关注以下方向： - 移动端客户端的优化进展 - 新协议标准（如VLESS）的支持情况 - 与容器化技术（Docker）的集成方案 - 自动化部署工具（Ansible剧本）的开发</p>  <p>精彩点评：<br /> VPS与Clash的结合代表了技术民主化的典型实践——将原本需要专业技术团队维护的网络基础设施，通过开源工具和云计算服务变得人人可及。这种模式不仅降低了网络自由的门槛，更创造了一个充满创新活力的技术生态。从某种意义上说，每个自建代理服务器的用户都在参与一场关于网络权利的技术革命，他们用代码和配置书写着对开放互联网的愿景。</p>  <p>值得注意的是，技术本身具有双面性。在享受自主代理服务带来的便利的同时，我们更应当重视合法合规使用，尊重数字边界的存在，将技术力量用于促进信息交流和文化传播，而非突破法律底线。只有这样，自建代理技术才能真正成为连接世界的桥梁，而非制造隔阂的高墙。</p>  <p>最终，掌握VPS Clash技术不仅仅是获得一个工具，更是培养一种能力——在复杂数字环境中保持自主性和控制力的能力。这种能力将在日益数字化的未来社会中变得愈发珍贵，成为现代数字公民的核心素养之一。</p>  <hr />  <p><em>本文仅作技术交流与学习目的，请确保所有实践操作符合当地法律法规与服务商条款要求。网络自由不应违反法律底线，技术探索需在合规框架内进行。</em></p>                 </div>
                 <div class="clearfix"></div>
@@ -131,16 +131,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-9-23-clash-node-github.htm" title="Mac Clash Verge - 9月23日18.5M/S|免费SSR/V2ray节点/Shadowrocket节点/Clash节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 9月23日18.5M/S|免费SSR/V2ray节点/Shadowrocket节点/Clash节点推荐，V2rayC梯子购买推荐</a></li>
                         <li class="py-2"><a href="/news/article-142594.htm" title="掌握v2rayng同步艺术：从入门到精通的完整指南">掌握v2rayng同步艺术：从入门到精通的完整指南</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-9-1-clash-node-daily-updates.htm" title="Mac Clash Verge - 9月1日20.1M/S|免费Clash/V2ray/Shadowrocket/SSR节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 9月1日20.1M/S|免费Clash/V2ray/Shadowrocket/SSR节点推荐，V2rayC梯子购买推荐</a></li>
-                        <li class="py-2"><a href="/news/article-145828.htm" title="腾讯大王卡科学上网全攻略：解锁全球互联网的流量神器">腾讯大王卡科学上网全攻略：解锁全球互联网的流量神器</a></li>
-                        <li class="py-2"><a href="/news/article-146943.htm" title="小火箭与Vmess协议：解锁网络自由的终极指南">小火箭与Vmess协议：解锁网络自由的终极指南</a></li>
-                        <li class="py-2"><a href="/news/article-145488.htm" title="轻松突破网络限制：Mac用户使用Shadowsocks科学上网全攻略">轻松突破网络限制：Mac用户使用Shadowsocks科学上网全攻略</a></li>
                         <li class="py-2"><a href="/news/article-142234.htm" title="解锁网络自由：Mac版Shadowrocket全方位配置与使用指南">解锁网络自由：Mac版Shadowrocket全方位配置与使用指南</a></li>
-                        <li class="py-2"><a href="/news/article-145121.htm" title="深度解析：如何彻底解决Shadowrocket连接不稳定的难题">深度解析：如何彻底解决Shadowrocket连接不稳定的难题</a></li>
-                        <li class="py-2"><a href="/news/article-148673.htm" title="更新系统并安装基础工具">更新系统并安装基础工具</a></li>
-                        <li class="py-2"><a href="/news/article-149104.htm" title="突破网络壁垒：全面解析LEDE软路由无法下载V2Ray的解决方案">突破网络壁垒：全面解析LEDE软路由无法下载V2Ray的解决方案</a></li>
-                        <li class="py-2"><a href="/news/article-148202.htm" title="解锁网络新境界：小米路由器3配置v2ray完全指南">解锁网络新境界：小米路由器3配置v2ray完全指南</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-6-clash-verge-rev-windows.htm" title="Mac Clash Verge - 9月6日22.2M/S|免费Clash节点/SSR/Shadowrocket节点/V2ray节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 9月6日22.2M/S|免费Clash节点/SSR/Shadowrocket节点/V2ray节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/news/article-141869.htm" title="深度解析：Clash与Clash全局的规则差异与实战应用指南">深度解析：Clash与Clash全局的规则差异与实战应用指南</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-3-clash-node-github.htm" title="Mac Clash Verge - 9月3日19.4M/S|免费Shadowrocket节点/SSR/Clash节点/V2ray节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 9月3日19.4M/S|免费Shadowrocket节点/SSR/Clash节点/V2ray节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/news/article-145828.htm" title="腾讯大王卡科学上网全攻略：解锁全球互联网的流量神器">腾讯大王卡科学上网全攻略：解锁全球互联网的流量神器</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-5-clash-stash.htm" title="Mac Clash Verge - 9月5日20M/S|免费V2ray节点/Clash节点/Shadowrocket节点/SSR节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 9月5日20M/S|免费V2ray节点/Clash节点/Shadowrocket节点/SSR节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-2-clash-verge-rev-node.htm" title="Mac Clash Verge - 9月2日20.2M/S|免费V2ray节点/SSR/Shadowrocket节点/Clash节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 9月2日20.2M/S|免费V2ray节点/SSR/Shadowrocket节点/Clash节点推荐，V2rayC梯子购买推荐</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-11-clash-stash-node.htm" title="Mac Clash Verge - 9月11日19.9M/S|免费Shadowrocket节点/SSR/Clash节点/V2ray节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 9月11日19.9M/S|免费Shadowrocket节点/SSR/Clash节点/V2ray节点推荐，V2rayC梯子购买推荐</a></li>
                     </ul>
     </div>
 </div>
@@ -152,7 +152,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-09/" title="2025-09 归档">2025-09</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-09/" title="2025-09 归档">2025-09</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-08/" title="2025-08 归档">2025-08</a></h4>
@@ -170,7 +170,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                                            <p>
+                                            <p>本站内容仅供学习与技术研究用途，无意传播或倡导任何违反法律法规的行为。在此声明：用户须自行了解所在地法律法规，合法合规使用；因使用不当产生的法律责任，与本站及作者无关；请在使用前仔细阅读本声明，继续使用即视为同意以上条款。</p>
+                    <p>
                                                 <a href="/">首页</a> |
                                                 <a href="/free-nodes/">免费节点</a> |
                                                 <a href="/paid-subscribe/">推荐机场</a> |
@@ -181,7 +182,7 @@
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                        <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
+                                            <p><a href="/">Mac Clash Verge节点订阅官网</a> 版权所有 Powered by WordPress</p>
                     </div>
                 </div>
             </div>
