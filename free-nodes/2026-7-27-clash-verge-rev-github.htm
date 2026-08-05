@@ -311,9 +311,9 @@ A：非绝对，建议设置科学上网工具为“信任应用”即可，或�
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray 的 PAC 模式有什么优势？</h5></div>
+    <div class="panel-heading"><h5>Trojan 节点无法连接时应如何排查？</h5></div>
     <div class="panel-body">
-        PAC 模式可根据规则动态判断流量是否走代理，无需手动切换节点。适合国内外混合访问环境，提高网络访问速度和稳定性，同时减少误操作导致的访问失败。<hr />    </div>
+        遇到 Trojan 无法连接时，需检查服务器证书是否有效、端口是否开放、密码配置是否匹配。还应确认防火墙未阻断相关端口，并尝试切换 TLS 版本或使用 IP 地址连接。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Nekobox 可以定时更新订阅节点吗？</h5></div>
@@ -321,9 +321,9 @@ A：非绝对，建议设置科学上网工具为“信任应用”即可，或�
         支持。用户可设置定时更新频率，例如每天或每小时，程序会自动下载订阅节点并替换旧节点，确保节点始终可用并保持最新线路信息。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekobox 与 Hiddify Next 有什么区别？</h5></div>
+    <div class="panel-heading"><h5>Nekoray 节点订阅失败如何解决？</h5></div>
     <div class="panel-body">
-        Nekobox 更注重轻量化和本地化，界面简洁，支持多协议基础功能；而 Hiddify Next 则整合了订阅转换、测速、规则分流等高级功能，更适合技术用户使用。<hr />    </div>
+        确认订阅 URL 是否有效并检查网络通畅。可手动刷新或重新添加订阅链接，保证节点列表最新。结合策略组使用，可确保稳定科学上网体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mihomo 可以同时管理多少节点？</h5></div>
@@ -331,24 +331,9 @@ A：非绝对，建议设置科学上网工具为“信任应用”即可，或�
         Mihomo 可以管理大量节点，理论上没有固定上限。通过策略组和节点分类，用户可以轻松管理数百个节点，同时进行测速和自动切换。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowrocket 的节点延迟测量如何帮助选择节点？</h5></div>
-    <div class="panel-body">
-        Shadowrocket 会测试节点延迟和丢包率，并根据结果排序。用户可快速选择延迟最低的节点访问网站或视频，提高连接速度和稳定性，优化整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Nekoray 节点订阅失败如何解决？</h5></div>
-    <div class="panel-body">
-        确认订阅 URL 是否有效并检查网络通畅。可手动刷新或重新添加订阅链接，保证节点列表最新。结合策略组使用，可确保稳定科学上网体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 如何安装？</h5></div>
     <div class="panel-body">
         Sing-box 支持多平台，包括 Windows、Linux、macOS 和 Android。可从官方 GitHub 页面下载预编译版本或通过命令行安装。配置文件采用 JSON 格式，兼容多种协议配置。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 使用透明代理时如何避免 DNS 泄露？</h5></div>
-    <div class="panel-body">
-        在 Mellow 中启用 fake-ip 或内置 DNS 解析功能，并将上游 DNS 指定为 DoH/DoT 服务，确保所有 DNS 请求通过代理转发而非本地解析，从而避免 ISP 或本地网络捕获实际访问域名。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Mihomo 如何启用 TUN 模式？</h5></div>
@@ -356,9 +341,24 @@ A：非绝对，建议设置科学上网工具为“信任应用”即可，或�
         在 Mihomo 的配置文件中启用 `tun:` 模块并安装系统驱动即可实现全局代理。TUN 模式可将所有系统流量导向代理核心，实现真正意义上的全局加速。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Trojan 节点无法连接时应如何排查？</h5></div>
+    <div class="panel-heading"><h5>Shadowrocket 的节点延迟测量如何帮助选择节点？</h5></div>
     <div class="panel-body">
-        遇到 Trojan 无法连接时，需检查服务器证书是否有效、端口是否开放、密码配置是否匹配。还应确认防火墙未阻断相关端口，并尝试切换 TLS 版本或使用 IP 地址连接。    </div>
+        Shadowrocket 会测试节点延迟和丢包率，并根据结果排序。用户可快速选择延迟最低的节点访问网站或视频，提高连接速度和稳定性，优化整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>WinXray 的 PAC 模式有什么优势？</h5></div>
+    <div class="panel-body">
+        PAC 模式可根据规则动态判断流量是否走代理，无需手动切换节点。适合国内外混合访问环境，提高网络访问速度和稳定性，同时减少误操作导致的访问失败。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Nekobox 与 Hiddify Next 有什么区别？</h5></div>
+    <div class="panel-body">
+        Nekobox 更注重轻量化和本地化，界面简洁，支持多协议基础功能；而 Hiddify Next 则整合了订阅转换、测速、规则分流等高级功能，更适合技术用户使用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 使用透明代理时如何避免 DNS 泄露？</h5></div>
+    <div class="panel-body">
+        在 Mellow 中启用 fake-ip 或内置 DNS 解析功能，并将上游 DNS 指定为 DoH/DoT 服务，确保所有 DNS 请求通过代理转发而非本地解析，从而避免 ISP 或本地网络捕获实际访问域名。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -406,16 +406,16 @@ A：非绝对，建议设置科学上网工具为“信任应用”即可，或�
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-6-18-clash-verge-rev-node-github.htm" title="Mac Clash Verge - 6月18日21.1M/S|免费V2ray节点/Shadowrocket节点/Clash节点/SSR节点/Trojan节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 6月18日21.1M/S|免费V2ray节点/Shadowrocket节点/Clash节点/SSR节点/Trojan节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-30-free-node-subscribe.htm" title="Mac Clash Verge - 6月30日23M/S|免费V2ray节点/SSR节点/Clash节点/Trojan节点/Shadowrocket节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 6月30日23M/S|免费V2ray节点/SSR节点/Clash节点/Trojan节点/Shadowrocket节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-13-clash-verge-rev-github.htm" title="Mac Clash Verge - 6月13日22.4M/S|免费Singbox节点/V2ray节点/Trojan节点/SSR节点/Clash节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 6月13日22.4M/S|免费Singbox节点/V2ray节点/Trojan节点/SSR节点/Clash节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-24-clash-verge-rev-nodes.htm" title="Mac Clash Verge - 7月24日20.9M/S|免费Trojan节点/Shadowrocket节点/V2ray节点/SSR节点/Clash节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 7月24日20.9M/S|免费Trojan节点/Shadowrocket节点/V2ray节点/SSR节点/Clash节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-15-clash-verge-rev-windows.htm" title="Mac Clash Verge - 7月15日19.9M/S|免费V2ray节点/Shadowrocket节点/Singbox节点/Trojan节点/SSR节点/Clash节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 7月15日19.9M/S|免费V2ray节点/Shadowrocket节点/Singbox节点/Trojan节点/SSR节点/Clash节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-20-clash-node-daily-updates.htm" title="Mac Clash Verge - 7月20日21.4M/S|免费Singbox节点/Trojan节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 7月20日21.4M/S|免费Singbox节点/Trojan节点/V2ray节点/Clash节点/SSR节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-30-clash-verge-rev-node-share.htm" title="Mac Clash Verge - 7月30日19.3M/S|免费Clash节点/SSR节点/Trojan节点/Singbox节点/V2ray节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 7月30日19.3M/S|免费Clash节点/SSR节点/Trojan节点/Singbox节点/V2ray节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-8-clash-verge-rev-nodes.htm" title="Mac Clash Verge - 7月8日22.1M/S|免费Trojan节点/SSR节点/Singbox节点/V2ray节点/Shadowrocket节点/Clash节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 7月8日22.1M/S|免费Trojan节点/SSR节点/Singbox节点/V2ray节点/Shadowrocket节点/Clash节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-15-clash-verge-rev-node.htm" title="Mac Clash Verge - 6月15日20.5M/S|免费Singbox节点/SSR节点/V2ray节点/Trojan节点/Shadowrocket节点/Clash节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 6月15日20.5M/S|免费Singbox节点/SSR节点/V2ray节点/Trojan节点/Shadowrocket节点/Clash节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-18-clash-verge-rev-node-github.htm" title="Mac Clash Verge - 7月18日19.1M/S|免费SSR节点/V2ray节点/Trojan节点/Shadowrocket节点/Clash节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 7月18日19.1M/S|免费SSR节点/V2ray节点/Trojan节点/Shadowrocket节点/Clash节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-12-clash-verge-rev-node-share.htm" title="Mac Clash Verge - 6月12日22.7M/S|免费SSR节点/Singbox节点/Clash节点/V2ray节点/Trojan节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 6月12日22.7M/S|免费SSR节点/Singbox节点/Clash节点/V2ray节点/Trojan节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-6-24-clash-verge-rev-nodes.htm" title="Mac Clash Verge - 6月24日19.2M/S|免费V2ray节点/Clash节点/Singbox节点/Shadowrocket节点/SSR节点/Trojan节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 6月24日19.2M/S|免费V2ray节点/Clash节点/Singbox节点/Shadowrocket节点/SSR节点/Trojan节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-19-clash-verge-rev-github.htm" title="Mac Clash Verge - 6月19日21.1M/S|免费Clash节点/Trojan节点/Singbox节点/Shadowrocket节点/SSR节点/V2ray节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 6月19日21.1M/S|免费Clash节点/Trojan节点/Singbox节点/Shadowrocket节点/SSR节点/V2ray节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-13-node-share.htm" title="Mac Clash Verge - 7月13日21.8M/S|免费Shadowrocket节点/V2ray节点/Singbox节点/SSR节点/Trojan节点/Clash节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 7月13日21.8M/S|免费Shadowrocket节点/V2ray节点/Singbox节点/SSR节点/Trojan节点/Clash节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-6-9-clash-verge-rev-github.htm" title="Mac Clash Verge - 6月9日21.6M/S|免费V2ray节点/Trojan节点/Singbox节点/Clash节点/Shadowrocket节点/SSR节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 6月9日21.6M/S|免费V2ray节点/Trojan节点/Singbox节点/Clash节点/Shadowrocket节点/SSR节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-7-1-clash-node-github.htm" title="Mac Clash Verge - 7月1日20.6M/S|免费Trojan节点/Singbox节点/V2ray节点/Clash节点/Shadowrocket节点/SSR节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 7月1日20.6M/S|免费Trojan节点/Singbox节点/V2ray节点/Clash节点/Shadowrocket节点/SSR节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-6-18-clash-verge-rev-node-github.htm" title="Mac Clash Verge - 6月18日21.1M/S|免费V2ray节点/Shadowrocket节点/Clash节点/SSR节点/Trojan节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 6月18日21.1M/S|免费V2ray节点/Shadowrocket节点/Clash节点/SSR节点/Trojan节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-7-12-clash-verge-rev-node-github.htm" title="Mac Clash Verge - 7月12日18.6M/S|免费Clash节点/SSR节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 7月12日18.6M/S|免费Clash节点/SSR节点/Trojan节点/V2ray节点/Shadowrocket节点/Singbox节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/clash-stash-2026-8-5.htm" title="Mac Clash Verge - 8月5日22.6M/S|免费Trojan节点/Clash节点/Singbox节点/V2ray节点/SSR节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐">Mac Clash Verge - 8月5日22.6M/S|免费Trojan节点/Clash节点/Singbox节点/V2ray节点/SSR节点/Shadowrocket节点节点推荐，V2rayC梯子购买推荐</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -427,7 +427,10 @@ A：非绝对，建议设置科学上网工具为“信任应用”即可，或�
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">29</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
+                <h4><span class="badge" style="float: right;">5</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2026-07/" title="2026-07 归档">2026-07</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">23</span> <a href="/date/2026-06/" title="2026-06 归档">2026-06</a></h4>

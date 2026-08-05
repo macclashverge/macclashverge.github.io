@@ -1,4 +1,4 @@
-# Mac Clash Verge - 7月29日20.2M/S|免费Clash节点/Singbox节点/Shadowrocket节点/V2ray节点/SSR节点节点推荐，V2rayC梯子购买推荐  更新时间 2026-07-29 10:57:37
+# Mac Clash Verge - 8月5日20M/S|免费V2ray节点/Singbox节点/Shadowrocket节点/Clash节点/SSR节点节点推荐，V2rayC梯子购买推荐  更新时间 2026-08-05 08:28:46
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://macclashverge.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
@@ -9,23 +9,23 @@
 
 ### 免费Clash节点订阅链接
 
-- https://macclashverge.github.io/uploads/2026/07/0-20260729.yaml
-- https://macclashverge.github.io/uploads/2026/07/1-20260729.yaml
-- https://macclashverge.github.io/uploads/2026/07/2-20260729.yaml
-- https://macclashverge.github.io/uploads/2026/07/3-20260729.yaml
-- https://macclashverge.github.io/uploads/2026/07/4-20260729.yaml
+- https://macclashverge.github.io/uploads/2026/08/0-20260805.yaml
+- https://macclashverge.github.io/uploads/2026/08/1-20260805.yaml
+- https://macclashverge.github.io/uploads/2026/08/2-20260805.yaml
+- https://macclashverge.github.io/uploads/2026/08/3-20260805.yaml
+- https://macclashverge.github.io/uploads/2026/08/4-20260805.yaml
 
 ### 免费V2ray节点订阅链接
 
-- https://macclashverge.github.io/uploads/2026/07/0-20260729.txt
-- https://macclashverge.github.io/uploads/2026/07/1-20260729.txt
-- https://macclashverge.github.io/uploads/2026/07/2-20260729.txt
-- https://macclashverge.github.io/uploads/2026/07/3-20260729.txt
-- https://macclashverge.github.io/uploads/2026/07/4-20260729.txt
+- https://macclashverge.github.io/uploads/2026/08/0-20260805.txt
+- https://macclashverge.github.io/uploads/2026/08/1-20260805.txt
+- https://macclashverge.github.io/uploads/2026/08/2-20260805.txt
+- https://macclashverge.github.io/uploads/2026/08/3-20260805.txt
+- https://macclashverge.github.io/uploads/2026/08/4-20260805.txt
 
 ### 免费Sing-box节点订阅链接
 
-- https://macclashverge.github.io/uploads/2026/07/20260729.json
+- https://macclashverge.github.io/uploads/2026/08/20260805.json
 
 ## 更多Clash节点订阅 ：
 
